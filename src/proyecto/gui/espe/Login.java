@@ -8,7 +8,7 @@ import proyecto.conexion.espe.Conexion;
 
 /**
  *
- * @author Xavier Celi
+ * @author Maycol Celi
  */
 public class Login extends javax.swing.JFrame {
 
