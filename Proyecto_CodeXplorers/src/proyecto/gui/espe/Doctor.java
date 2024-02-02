@@ -26,6 +26,7 @@ public class Doctor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        FrameReceta = new javax.swing.JFrame();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -41,6 +42,17 @@ public class Doctor extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout FrameRecetaLayout = new javax.swing.GroupLayout(FrameReceta.getContentPane());
+        FrameReceta.getContentPane().setLayout(FrameRecetaLayout);
+        FrameRecetaLayout.setHorizontalGroup(
+            FrameRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+        FrameRecetaLayout.setVerticalGroup(
+            FrameRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 477, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -170,6 +182,7 @@ public class Doctor extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame FrameReceta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private com.toedter.calendar.JDateChooser jDateChooser1;
