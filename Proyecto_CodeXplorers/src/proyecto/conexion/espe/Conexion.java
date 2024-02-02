@@ -4,11 +4,8 @@
  */
 package proyecto.conexion.espe;
 
-import com.mongodb.ConnectionString;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoException;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import javax.swing.JOptionPane;
 
@@ -36,15 +33,11 @@ public class Conexion {
     }
 
     public Conexion crearConexion() {
-        String connectionString = "mongodb+srv://maycol08:Maycol2004@codexplorers.yuuaio0.mongodb.net/test";
-        
+        String servidor = "localhost" ;
+        int puerto = 27017;
         try {
-            mongo = (MongoClient) MongoClients.create(MongoClientSettings.builder()
-                .applyConnectionString(new ConnectionString(connectionString))
-                .build());
-            
-            dataB = mongo.getDatabase("BD-PROYECTO");
-
+            mongo = new MongoClient(servidor,puerto);
+            dataB = mongo.getDatabase("PROYECTO-DB");  
         } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error en la conexión a MongoDB. Error: " + ex.toString());
         }

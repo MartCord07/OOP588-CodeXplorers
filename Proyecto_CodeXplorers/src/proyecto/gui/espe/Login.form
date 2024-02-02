@@ -24,25 +24,11 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="DesktopLogin" alignment="0" max="32767" attributes="0"/>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="DesktopRegistrar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="DesktopLogin" alignment="0" max="32767" attributes="0"/>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="DesktopRegistrar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -57,11 +43,6 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btnAcceder" min="-2" pref="120" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lblUsuario" min="-2" pref="62" max="-2" attributes="0"/>
@@ -74,6 +55,11 @@
                                       <Component id="txtUsuario" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -81,7 +67,12 @@
                           <Component id="lblBienvenido" min="-2" pref="302" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="62" max="32767" attributes="0"/>
+                  <EmptySpace pref="61" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="btnAcceder" min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -102,12 +93,14 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblErrorLogin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnAcceder" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnRegistrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnAcceder" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="59" max="32767" attributes="0"/>
+                  <EmptySpace pref="68" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -149,6 +142,7 @@
         <Component class="javax.swing.JTextField" name="txtUsuario">
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtUsuarioFocusGained"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtUsuarioKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jContrase&#xf1;a">
@@ -172,7 +166,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Registrase"/>
+            <Property name="text" type="java.lang.String" value="Registrarse"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnRegistrarMouseClicked"/>
@@ -189,94 +183,13 @@
             <Property name="text" type="java.lang.String" value="Usuario o Contrase&#xf1;a incorrectos!"/>
           </Properties>
         </Component>
-      </SubComponents>
-    </Container>
-    <Container class="javax.swing.JDesktopPane" name="DesktopRegistrar">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
-                          <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblRegistroUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblRegisContraseñaConf" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblRegistroContraseña" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtContraseñaRegistro" min="-2" pref="71" max="-2" attributes="0"/>
-                              <Component id="txtRegisContraseñaConf" min="-2" pref="71" max="-2" attributes="0"/>
-                              <Component id="txtUsuarioRegistro" min="-2" pref="71" max="-2" attributes="0"/>
-                              <Component id="jToggleButton1" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <EmptySpace pref="199" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblRegistroUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtUsuarioRegistro" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblRegistroContraseña" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtContraseñaRegistro" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblRegisContraseñaConf" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtRegisContraseñaConf" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                  <Component id="jToggleButton1" min="-2" pref="47" max="-2" attributes="0"/>
-                  <EmptySpace pref="56" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblTitulo">
+        <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Registrar Usuario"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="cc" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="No tienes cuenta aun , registra aqui --&gt;"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblRegistroUsuario">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Usuario"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblRegistroContrase&#xf1;a">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblRegisContrase&#xf1;aConf">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Repita Contrase&#xf1;a"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtUsuarioRegistro">
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtContrase&#xf1;aRegistro">
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtRegisContrase&#xf1;aConf">
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton1">
         </Component>
       </SubComponents>
     </Container>
