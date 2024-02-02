@@ -10,6 +10,7 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {     
         initComponents();
+        DesktopRegistrar.setVisible(false);
         lblErrorLogin.setVisible(false);
     }
 
@@ -18,7 +19,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        DesktopLogin = new javax.swing.JDesktopPane();
         lblBienvenido = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblContraseña = new javax.swing.JLabel();
@@ -27,6 +28,14 @@ public class Login extends javax.swing.JFrame {
         btnAcceder = new javax.swing.JToggleButton();
         btnRegistrar = new javax.swing.JToggleButton();
         lblErrorLogin = new javax.swing.JLabel();
+        DesktopRegistrar = new javax.swing.JDesktopPane();
+        lblTitulo = new javax.swing.JLabel();
+        lblRegistroUsuario = new javax.swing.JLabel();
+        lblRegistroContraseña = new javax.swing.JLabel();
+        lblRegisContraseñaConf = new javax.swing.JLabel();
+        txtUsuarioRegistro = new javax.swing.JTextField();
+        txtContraseñaRegistro = new javax.swing.JTextField();
+        txtRegisContraseñaConf = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,78 +73,151 @@ public class Login extends javax.swing.JFrame {
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         btnRegistrar.setText("Registrase");
+        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrarMouseClicked(evt);
+            }
+        });
 
         lblErrorLogin.setBackground(new java.awt.Color(255, 51, 51));
         lblErrorLogin.setForeground(new java.awt.Color(255, 51, 51));
         lblErrorLogin.setText("Usuario o Contraseña incorrectos!");
 
-        jDesktopPane1.setLayer(lblBienvenido, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(lblUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(lblContraseña, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(txtUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jContraseña, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(btnAcceder, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(btnRegistrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(lblErrorLogin, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopLogin.setLayer(lblBienvenido, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopLogin.setLayer(lblUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopLogin.setLayer(lblContraseña, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopLogin.setLayer(txtUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopLogin.setLayer(jContraseña, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopLogin.setLayer(btnAcceder, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopLogin.setLayer(btnRegistrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopLogin.setLayer(lblErrorLogin, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+        javax.swing.GroupLayout DesktopLoginLayout = new javax.swing.GroupLayout(DesktopLogin);
+        DesktopLogin.setLayout(DesktopLoginLayout);
+        DesktopLoginLayout.setHorizontalGroup(
+            DesktopLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DesktopLoginLayout.createSequentialGroup()
+                .addGroup(DesktopLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DesktopLoginLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                        .addGroup(DesktopLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DesktopLoginLayout.createSequentialGroup()
                                 .addComponent(btnAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnRegistrar))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DesktopLoginLayout.createSequentialGroup()
+                                .addGroup(DesktopLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(DesktopLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblErrorLogin)
                                     .addComponent(jContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                                     .addComponent(txtUsuario)))))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                    .addGroup(DesktopLoginLayout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(lblBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+        DesktopLoginLayout.setVerticalGroup(
+            DesktopLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DesktopLoginLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lblBienvenido)
                 .addGap(37, 37, 37)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(DesktopLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(DesktopLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContraseña)
                     .addComponent(jContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblErrorLogin)
                 .addGap(26, 26, 26)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(DesktopLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAcceder)
                     .addComponent(btnRegistrar))
                 .addContainerGap(59, Short.MAX_VALUE))
+        );
+
+        lblTitulo.setText("Registrar Usuario");
+
+        lblRegistroUsuario.setText("Usuario");
+
+        lblRegistroContraseña.setText("Contraseña");
+
+        lblRegisContraseñaConf.setText("Repita Contraseña");
+
+        DesktopRegistrar.setLayer(lblTitulo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopRegistrar.setLayer(lblRegistroUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopRegistrar.setLayer(lblRegistroContraseña, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopRegistrar.setLayer(lblRegisContraseñaConf, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopRegistrar.setLayer(txtUsuarioRegistro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopRegistrar.setLayer(txtContraseñaRegistro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopRegistrar.setLayer(txtRegisContraseñaConf, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout DesktopRegistrarLayout = new javax.swing.GroupLayout(DesktopRegistrar);
+        DesktopRegistrar.setLayout(DesktopRegistrarLayout);
+        DesktopRegistrarLayout.setHorizontalGroup(
+            DesktopRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DesktopRegistrarLayout.createSequentialGroup()
+                .addGroup(DesktopRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DesktopRegistrarLayout.createSequentialGroup()
+                        .addGap(203, 203, 203)
+                        .addComponent(lblTitulo))
+                    .addGroup(DesktopRegistrarLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(DesktopRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblRegistroUsuario)
+                            .addComponent(lblRegisContraseñaConf)
+                            .addComponent(lblRegistroContraseña))
+                        .addGap(29, 29, 29)
+                        .addGroup(DesktopRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtContraseñaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRegisContraseñaConf, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsuarioRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(199, Short.MAX_VALUE))
+        );
+        DesktopRegistrarLayout.setVerticalGroup(
+            DesktopRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DesktopRegistrarLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(lblTitulo)
+                .addGap(18, 18, 18)
+                .addGroup(DesktopRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRegistroUsuario)
+                    .addComponent(txtUsuarioRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DesktopRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRegistroContraseña)
+                    .addComponent(txtContraseñaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(DesktopRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRegisContraseñaConf)
+                    .addComponent(txtRegisContraseñaConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(DesktopLogin)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(DesktopRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(DesktopLogin)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(DesktopRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -180,6 +262,10 @@ public class Login extends javax.swing.JFrame {
         lblErrorLogin.setVisible(false);
     }//GEN-LAST:event_txtUsuarioFocusGained
 
+    private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
+        DesktopRegistrar.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -218,14 +304,22 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane DesktopLogin;
+    private javax.swing.JDesktopPane DesktopRegistrar;
     private javax.swing.JToggleButton btnAcceder;
     private javax.swing.JToggleButton btnRegistrar;
     private javax.swing.JPasswordField jContraseña;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblErrorLogin;
+    private javax.swing.JLabel lblRegisContraseñaConf;
+    private javax.swing.JLabel lblRegistroContraseña;
+    private javax.swing.JLabel lblRegistroUsuario;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JTextField txtContraseñaRegistro;
+    private javax.swing.JTextField txtRegisContraseñaConf;
     private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtUsuarioRegistro;
     // End of variables declaration//GEN-END:variables
 }
