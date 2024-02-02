@@ -1,7 +1,6 @@
 package proyecto.gui.espe;
 
 import com.mongodb.client.MongoDatabase;
-import java.util.Date;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -20,6 +19,7 @@ public class Login extends javax.swing.JFrame {
             database = conn.getDataB();
         }
         initComponents();
+        txtUsuario.requestFocus();
         lblErrorLogin.setVisible(false);
     }
 
@@ -188,16 +188,19 @@ public class Login extends javax.swing.JFrame {
                         Usuario paciente = new Usuario();
                         paciente.setVisible(true);
                         paciente.setLocationRelativeTo(null);
+                        btnAcceder.setSelected(false);
                         break;
                     case "admin":
                         Admin recepcionista = new Admin();
                         recepcionista.setVisible(true);
                         recepcionista.setLocationRelativeTo(null);
+                        btnAcceder.setSelected(false);
                         break;
                     case "doctor":
                         Doctor doc = new Doctor();
                         doc.setVisible(true);
                         doc.setLocationRelativeTo(null);
+                        btnAcceder.setSelected(false);
                         break;
                 }
                 txtUsuario.setText("");
@@ -222,6 +225,8 @@ public class Login extends javax.swing.JFrame {
         RegistrarUsuario registro = new RegistrarUsuario();
         registro.setVisible(true);
         registro.setLocationRelativeTo(null);
+        btnRegistrar.setSelected(false);
+        txtUsuario.requestFocus();
     }//GEN-LAST:event_btnRegistrarMouseClicked
 
     private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped

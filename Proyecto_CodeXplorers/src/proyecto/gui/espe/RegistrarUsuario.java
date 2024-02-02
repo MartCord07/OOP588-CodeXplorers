@@ -17,6 +17,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             database = conn.getDataB();
         }
         initComponents();
+        txtPaciente.requestFocus();
         lblMensajeError.setVisible(false);
     }
 
@@ -191,15 +192,20 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 txtPaciente.setText("");
                 txtContra.setText("");
                 txtConfirmarContra.setText("");
+                btnRegistrarUsuario.setSelected(false);
             } else {
                 txtPaciente.setText("");
+                btnRegistrarUsuario.setSelected(false);
+                txtPaciente.requestFocus();
                 JOptionPane.showMessageDialog(null, "El usuario ya existe. Por favor, elija otro nombre de usuario.");
             }
         } else {
             lblMensajeError.setVisible(true);
+            btnRegistrarUsuario.setSelected(false);
         }
     } else {
         JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
+        btnRegistrarUsuario.setSelected(false);
     }
     }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
 
