@@ -36,6 +36,7 @@ public class Login extends javax.swing.JFrame {
         txtUsuarioRegistro = new javax.swing.JTextField();
         txtContraseñaRegistro = new javax.swing.JTextField();
         txtRegisContraseñaConf = new javax.swing.JTextField();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,6 +157,7 @@ public class Login extends javax.swing.JFrame {
         DesktopRegistrar.setLayer(txtUsuarioRegistro, javax.swing.JLayeredPane.DEFAULT_LAYER);
         DesktopRegistrar.setLayer(txtContraseñaRegistro, javax.swing.JLayeredPane.DEFAULT_LAYER);
         DesktopRegistrar.setLayer(txtRegisContraseñaConf, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopRegistrar.setLayer(jToggleButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout DesktopRegistrarLayout = new javax.swing.GroupLayout(DesktopRegistrar);
         DesktopRegistrar.setLayout(DesktopRegistrarLayout);
@@ -176,7 +178,8 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(DesktopRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtContraseñaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtRegisContraseñaConf, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsuarioRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtUsuarioRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(199, Short.MAX_VALUE))
         );
         DesktopRegistrarLayout.setVerticalGroup(
@@ -196,7 +199,9 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(DesktopRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRegisContraseñaConf)
                     .addComponent(txtRegisContraseñaConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -309,6 +314,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnAcceder;
     private javax.swing.JToggleButton btnRegistrar;
     private javax.swing.JPasswordField jContraseña;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblErrorLogin;

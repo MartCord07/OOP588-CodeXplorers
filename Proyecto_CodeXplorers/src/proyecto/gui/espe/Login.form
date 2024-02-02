@@ -214,6 +214,7 @@
                               <Component id="txtContraseñaRegistro" min="-2" pref="71" max="-2" attributes="0"/>
                               <Component id="txtRegisContraseñaConf" min="-2" pref="71" max="-2" attributes="0"/>
                               <Component id="txtUsuarioRegistro" min="-2" pref="71" max="-2" attributes="0"/>
+                              <Component id="jToggleButton1" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -241,7 +242,9 @@
                       <Component id="lblRegisContraseñaConf" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtRegisContraseñaConf" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="175" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                  <Component id="jToggleButton1" min="-2" pref="47" max="-2" attributes="0"/>
+                  <EmptySpace pref="56" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -272,6 +275,8 @@
         <Component class="javax.swing.JTextField" name="txtContrase&#xf1;aRegistro">
         </Component>
         <Component class="javax.swing.JTextField" name="txtRegisContrase&#xf1;aConf">
+        </Component>
+        <Component class="javax.swing.JToggleButton" name="jToggleButton1">
         </Component>
       </SubComponents>
     </Container>
