@@ -172,25 +172,35 @@ public class RegistrarUsuario extends javax.swing.JFrame {
 
     private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
         if (verificarDatos()) {
-            if (txtContra.getText().equals(txtConfirmarContra.getText())) {
-                MongoCollection coleccion = database.getCollection("registros");
+        if (txtContra.getText().equals(txtConfirmarContra.getText())) {
+            MongoCollection coleccion = database.getCollection("registros");
+
+            Document filtro = new Document("paciente", txtPaciente.getText());
+            long count = coleccion.countDocuments(filtro);
+
+            if (count == 0) {
                 Document documento = new Document("paciente", txtPaciente.getText())
                         .append("contrasena", txtContra.getText())
                         .append("confirmarcontrasena", txtConfirmarContra.getText())
                         .append("tipo", "paciente");
                 coleccion.insertOne(documento);
+
+                dispose();
                 JOptionPane.showMessageDialog(rootPane, "Usuario Registrado Existosamente.");
                 lblMensajeError.setVisible(false);
                 txtPaciente.setText("");
                 txtContra.setText("");
                 txtConfirmarContra.setText("");
             } else {
-                lblMensajeError.setVisible(true);
+                txtPaciente.setText("");
+                JOptionPane.showMessageDialog(null, "El usuario ya existe. Por favor, elija otro nombre de usuario.");
             }
         } else {
-
-            JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
+            lblMensajeError.setVisible(true);
         }
+    } else {
+        JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
+    }
     }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
 
     private void txtPacienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPacienteKeyTyped
