@@ -108,6 +108,7 @@ public class Usuario extends javax.swing.JFrame {
         fechaNacimiento.setDate(null);
         txtTelefono.setText("");
         botones.clearSelection();
+        txtEdad.setText("");
         cmbDia.setSelectedIndex(0);
         cbmHorario.setSelectedIndex(0);
 
@@ -239,7 +240,7 @@ public class Usuario extends javax.swing.JFrame {
         });
 
         rbtMasculino.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
-        rbtMasculino.setText("Maculino");
+        rbtMasculino.setText("Masculino");
         rbtMasculino.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         rbtFemenino.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
@@ -320,6 +321,9 @@ public class Usuario extends javax.swing.JFrame {
                                     .addComponent(jLabel6))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(fechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addGap(22, 22, 22)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -327,16 +331,15 @@ public class Usuario extends javax.swing.JFrame {
                                                 .addComponent(cbmHorario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(txtTelefono))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(rbtMasculino)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(rbtFemenino))
-                                            .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel10)
                                                 .addGap(34, 34, 34)
-                                                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(fechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))))
+                                        .addGap(22, 22, 22)
+                                        .addComponent(rbtMasculino)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                        .addComponent(rbtFemenino))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
