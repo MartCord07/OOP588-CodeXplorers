@@ -90,7 +90,7 @@ public class Login extends javax.swing.JFrame {
         lblErrorLogin.setText("Usuario o Contraseña incorrectos!");
 
         jLabel1.setForeground(new java.awt.Color(0, 204, 255));
-        jLabel1.setText("¿No tienes cuenta aun? , registrate aqui -->");
+        jLabel1.setText("¿No tienes cuenta aun?, regístrate aquí   –->");
 
         DesktopLogin.setLayer(lblBienvenido, javax.swing.JLayeredPane.DEFAULT_LAYER);
         DesktopLogin.setLayer(lblUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
