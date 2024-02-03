@@ -34,40 +34,47 @@
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="cmbDia" max="32767" attributes="0"/>
-                          <Component id="cbmHorario" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cmbDia" max="32767" attributes="0"/>
+                              <Component id="cbmHorario" max="32767" attributes="0"/>
+                              <Component id="txtTelefono" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="rbtMasculino" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="rbtFemenino" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="txtCedula" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtApellido" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
+                          <Component id="fechaNacimiento" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="btnConsultarCita" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="rbtMasculino" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="rbtFemenino" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="txtCedula" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtTelefono" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtApellido" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" pref="107" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="fechaNacimiento" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                              <Component id="txtEdad" pref="104" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                   </Group>
@@ -105,33 +112,33 @@
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <Component id="fechaNacimiento" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="rbtMasculino" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbtFemenino" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtTelefono" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtEdad" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="rbtMasculino" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="rbtFemenino" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cmbDia" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbmHorario" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbmHorario" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="45" max="32767" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnRegistrarCita" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnConsultarCita" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -146,6 +153,9 @@
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calisto MT" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="33" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="USUARIO"/>
       </Properties>
@@ -316,6 +326,19 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultarCitaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Schoolbook" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Edad"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtEdad">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEdadActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
