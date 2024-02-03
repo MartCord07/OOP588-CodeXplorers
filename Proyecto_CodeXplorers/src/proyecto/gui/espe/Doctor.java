@@ -261,7 +261,9 @@ public class Doctor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
-        
+        Historial his = new Historial();
+        his.setVisible(true);
+        his.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     /**
