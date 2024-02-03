@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import javax.swing.*;
@@ -44,6 +45,12 @@ public class Usuario extends javax.swing.JFrame {
         });
     }
 
+    public int calcularEdad(Date fechaNacimiento) {
+        LocalDate fechaNac = fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fechaActual = LocalDate.now();
+        return Period.between(fechaNac, fechaActual).getYears();
+    }
+
     private boolean validarCampos() {
         if (txtCedula.getText().isEmpty() || txtNombre.getText().isEmpty()
                 || txtApellido.getText().isEmpty() || fechaNacimiento.getDate() == null
@@ -64,11 +71,10 @@ public class Usuario extends javax.swing.JFrame {
 
     private void registrarCita() {
         if (!validarCampos()) {
-            return;  
+            return;
         }
         String cedula = txtCedula.getText();
 
-        
         if (cedulaYaRegistrada(cedula)) {
             JOptionPane.showMessageDialog(this, "Esta cédula ya está registrada. No se puede registrar la cita.");
             return;
@@ -80,6 +86,7 @@ public class Usuario extends javax.swing.JFrame {
                 .append("nombre", txtNombre.getText())
                 .append("apellido", txtApellido.getText())
                 .append("fechaNacimiento", fechaNacimiento.getDate())
+                .append("edad", txtEdad.getText())
                 .append("genero", seleccionSexo)
                 .append("telefono", txtTelefono.getText())
                 .append("dia", cmbDia.getSelectedItem())
@@ -230,6 +237,12 @@ public class Usuario extends javax.swing.JFrame {
 
         rbtFemenino.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
         rbtFemenino.setText("Femenino");
+
+        fechaNacimiento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fechaNacimientoPropertyChange(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
         jLabel8.setText("Día");
@@ -409,10 +422,10 @@ public class Usuario extends javax.swing.JFrame {
             evt.consume();
             JOptionPane.showMessageDialog(null, "Ingrese solo dígitos");
         } else {
-            // Concatenamos el dígito actual con el contenido actual del campo
+            
             String cedulaIngresada = txtCedula.getText() + validacionID;
 
-            // Realizamos la validación solo si la longitud de la cédula es 10
+            
             if (cedulaIngresada.length() == 10 && !validarCedula(cedulaIngresada)) {
                 getToolkit().beep();
                 evt.consume();
@@ -440,6 +453,7 @@ public class Usuario extends javax.swing.JFrame {
             String nombre = consulta.getString("nombre");
             String apellido = consulta.getString("apellido");
             Date fechaNacimiento = consulta.getDate("fechaNacimiento");
+            String edad=consulta.getString("edad");
             String genero = consulta.getString("genero");
             String telefono = consulta.getString("telefono");
             String dia = consulta.getString("dia");
@@ -450,6 +464,7 @@ public class Usuario extends javax.swing.JFrame {
             mensaje.append("Nombre: ").append(nombre).append("\n");
             mensaje.append("Apellido: ").append(apellido).append("\n");
             mensaje.append("Fecha de Nacimiento: ").append(fechaNacimiento).append("\n");
+            mensaje.append("Edad: ").append(edad).append("\n");
             mensaje.append("Género: ").append(genero).append("\n");
             mensaje.append("Teléfono: ").append(telefono).append("\n");
             mensaje.append("Día: ").append(dia).append("\n");
@@ -465,6 +480,20 @@ public class Usuario extends javax.swing.JFrame {
     private void txtEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEdadActionPerformed
 
     }//GEN-LAST:event_txtEdadActionPerformed
+
+    private void fechaNacimientoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaNacimientoPropertyChange
+        if ("date".equals(evt.getPropertyName()) && fechaNacimiento.getDate() != null) {
+            int año = fechaNacimiento.getCalendar().get(Calendar.YEAR);
+            Date fecha = new Date();
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy");
+            String fechaSistema = formato.format(fecha);
+            int anio = Integer.parseInt(fechaSistema), resta;
+            resta = (anio - año);
+            String edad = Integer.toString(resta);
+            txtEdad.setText(edad);
+
+        }
+    }//GEN-LAST:event_fechaNacimientoPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

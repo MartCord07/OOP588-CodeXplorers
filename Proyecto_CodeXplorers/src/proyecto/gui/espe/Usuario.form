@@ -245,6 +245,9 @@
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="fechaNacimiento">
+      <Events>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="fechaNacimientoPropertyChange"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
