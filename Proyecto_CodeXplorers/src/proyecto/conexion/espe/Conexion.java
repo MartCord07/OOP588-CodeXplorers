@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyecto.conexion.espe;
 
 import com.mongodb.MongoClient;
@@ -15,7 +11,6 @@ public class Conexion {
     private MongoDatabase dataB;
 
     //getters y constructor vacio
-
     public MongoClient getMongo() {
         return mongo;
     }
@@ -33,11 +28,11 @@ public class Conexion {
     }
 
     public Conexion crearConexion() {
-        String servidor = "localhost" ;
+        String servidor = "localhost";
         int puerto = 27017;
         try {
-            mongo = new MongoClient(servidor,puerto);
-            dataB = mongo.getDatabase("PROYECTO-DB");  
+            mongo = new MongoClient(servidor, puerto);
+            dataB = mongo.getDatabase("PROYECTO-DB");
         } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error en la conexión a MongoDB. Error: " + ex.toString());
         }

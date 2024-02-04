@@ -172,40 +172,40 @@ public class RegistrarUsuario extends javax.swing.JFrame {
 
     private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
         if (verificarDatos()) {
-        if (txtContra.getText().equals(txtConfirmarContra.getText())) {
-            MongoCollection coleccion = database.getCollection("registros");
+            if (txtContra.getText().equals(txtConfirmarContra.getText())) {
+                MongoCollection coleccion = database.getCollection("registros");
 
-            Document filtro = new Document("paciente", txtPaciente.getText());
-            long count = coleccion.countDocuments(filtro);
+                Document filtro = new Document("paciente", txtPaciente.getText());
+                long count = coleccion.countDocuments(filtro);
 
-            if (count == 0) {
-                Document documento = new Document("paciente", txtPaciente.getText())
-                        .append("contrasena", txtContra.getText())
-                        .append("confirmarcontrasena", txtConfirmarContra.getText())
-                        .append("tipo", "paciente");
-                coleccion.insertOne(documento);
+                if (count == 0) {
+                    Document documento = new Document("paciente", txtPaciente.getText())
+                            .append("contrasena", txtContra.getText())
+                            .append("confirmarcontrasena", txtConfirmarContra.getText())
+                            .append("tipo", "paciente");
+                    coleccion.insertOne(documento);
 
-                dispose();
-                JOptionPane.showMessageDialog(rootPane, "Usuario Registrado Existosamente.");
-                lblMensajeError.setVisible(false);
-                txtPaciente.setText("");
-                txtContra.setText("");
-                txtConfirmarContra.setText("");
-                btnRegistrarUsuario.setSelected(false);
+                    dispose();
+                    JOptionPane.showMessageDialog(rootPane, "Usuario Registrado Existosamente.");
+                    lblMensajeError.setVisible(false);
+                    txtPaciente.setText("");
+                    txtContra.setText("");
+                    txtConfirmarContra.setText("");
+                    btnRegistrarUsuario.setSelected(false);
+                } else {
+                    txtPaciente.setText("");
+                    btnRegistrarUsuario.setSelected(false);
+                    txtPaciente.requestFocus();
+                    JOptionPane.showMessageDialog(null, "El usuario ya existe. Por favor, elija otro nombre de usuario.");
+                }
             } else {
-                txtPaciente.setText("");
+                lblMensajeError.setVisible(true);
                 btnRegistrarUsuario.setSelected(false);
-                txtPaciente.requestFocus();
-                JOptionPane.showMessageDialog(null, "El usuario ya existe. Por favor, elija otro nombre de usuario.");
             }
         } else {
-            lblMensajeError.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
             btnRegistrarUsuario.setSelected(false);
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
-        btnRegistrarUsuario.setSelected(false);
-    }
     }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
 
     private void txtPacienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPacienteKeyTyped
