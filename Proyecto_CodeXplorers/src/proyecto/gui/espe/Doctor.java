@@ -6,6 +6,7 @@ import com.mongodb.client.MongoDatabase;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import proyecto.conexion.espe.Conexion;
@@ -23,6 +24,8 @@ public class Doctor extends javax.swing.JFrame {
             this.usuario = database.getCollection("usuario", Document.class);
 
             initComponents();
+            diagnosticoTextArea = new JTextArea();
+            observacionesTextArea = new JTextArea();
             cmxMedico.setEnabled(false);
 
             cargarNombresMedicos();
@@ -295,9 +298,8 @@ public class Doctor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
-        String diagnostico = diagnosticoTextArea.getText();
-        String observaciones = observacionesTextArea.getText();
-        Historial his = new Historial(diagnostico, observaciones);
+
+        Historial his = new Historial();
         his.setVisible(true);
         his.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnHistorialActionPerformed
