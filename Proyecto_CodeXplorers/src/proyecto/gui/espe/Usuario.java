@@ -272,11 +272,6 @@ public class Usuario extends javax.swing.JFrame {
         btnRegistrarCita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/imagenes/espe/7952181_checklist_pen_tab_list_tick_icon.png"))); // NOI18N
         btnRegistrarCita.setText("Registrar cita");
         btnRegistrarCita.setBorder(new javax.swing.border.MatteBorder(null));
-        btnRegistrarCita.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrarCitaMouseClicked(evt);
-            }
-        });
         btnRegistrarCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarCitaActionPerformed(evt);
@@ -297,11 +292,6 @@ public class Usuario extends javax.swing.JFrame {
         jLabel10.setText("Edad");
 
         txtEdad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtEdad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEdadActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -467,11 +457,6 @@ public class Usuario extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtCedulaKeyTyped
 
-    private void btnRegistrarCitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarCitaMouseClicked
-
-
-    }//GEN-LAST:event_btnRegistrarCitaMouseClicked
-
     private void btnRegistrarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCitaActionPerformed
         registrarCita();
     }//GEN-LAST:event_btnRegistrarCitaActionPerformed
@@ -508,10 +493,6 @@ public class Usuario extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnConsultarCitaActionPerformed
-
-    private void txtEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEdadActionPerformed
-
-    }//GEN-LAST:event_txtEdadActionPerformed
 
     private void fechaNacimientoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaNacimientoPropertyChange
         if ("date".equals(evt.getPropertyName()) && fechaNacimiento.getDate() != null) {
