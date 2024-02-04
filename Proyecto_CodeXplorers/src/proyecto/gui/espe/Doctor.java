@@ -1,4 +1,3 @@
-
 package proyecto.gui.espe;
 
 import com.mongodb.client.MongoCollection;
@@ -7,6 +6,7 @@ import com.mongodb.client.MongoDatabase;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import javax.swing.JOptionPane;
 import org.bson.Document;
 import proyecto.conexion.espe.Conexion;
 
@@ -54,7 +54,6 @@ public class Doctor extends javax.swing.JFrame {
         Document usuarioEncontrado = usuario.find(new Document("cedula", cedula)).first();
 
         if (usuarioEncontrado != null) {
-
             Object edadObject = usuarioEncontrado.get("edad");
 
             String tipoMedico;
@@ -63,46 +62,47 @@ public class Doctor extends javax.swing.JFrame {
                 if (edad >= 0 && edad <= 18) {
                     tipoMedico = "Pediatria";
                 } else if (edad >= 19 && edad <= 60) {
-                    tipoMedico = "Médicina Familiar";
+                    tipoMedico = "Medicina Familiar";
                 } else {
-                    tipoMedico = "Geriatria";
+                    tipoMedico = "Geriatría";
                 }
 
                 lblMedico.setText("" + tipoMedico);
-            } else {
-                lblMedico.setText("Tipo de médico no disponible");
-            }
 
-            if (edadObject instanceof Integer) {
+                cmxMedico.setEnabled(!tipoMedico.equals("Geriatría"));
 
-                lblEdad.setText("Edad: " + edadObject.toString());
-            } else if (edadObject instanceof String) {
-
-                try {
-                    int edad = Integer.parseInt((String) edadObject);
-                    lblEdad.setText("" + edad);
-                } catch (NumberFormatException e) {
-
-                    lblEdad.setText("Edad no es un entero válido");
+                if (edadObject instanceof Integer) {
+                    lblEdad.setText("Edad: " + edadObject.toString());
+                } else if (edadObject instanceof String) {
+                    try {
+                        lblEdad.setText("" + edad);
+                    } catch (NumberFormatException e) {
+                        lblEdad.setText("Edad no válida");
+                    }
+                } else {
+                    lblEdad.setText("Edad en formato inválido");
                 }
             } else {
+                lblMedico.setText("Médico no disponible");
+                lblEdad.setText("Edad no disponible");
 
-                lblEdad.setText("Edad no es un tipo válido");
+                cmxMedico.setEnabled(false);
             }
         } else {
+            lblMedico.setText("Usuario no encontrado");
+            lblEdad.setText("Edad no disponible");
 
-            lblEdad.setText("Usuario no encontrado");
+            cmxMedico.setEnabled(false);
         }
     }
 
     private void cargarNombresMedicos() {
-        // Realizar la consulta a la colección "medico"
+
         MongoCursor<Document> cursor = database.getCollection("medico").find().iterator();
         try {
-            // Limpiar items actuales del JComboBox
+
             cmxMedico.removeAllItems();
 
-            // Agregar los nombres de los médicos al JComboBox
             while (cursor.hasNext()) {
                 Document medicoDocumento = cursor.next();
                 String nombreMedico = medicoDocumento.getString("nombre");
@@ -113,6 +113,25 @@ public class Doctor extends javax.swing.JFrame {
         } finally {
             cursor.close();
         }
+    }
+
+    private boolean validarCedula(String cedula) {
+        if (cedula.length() != 10 || !cedula.matches("\\d{10}")) {
+            return false;
+        }
+
+        int suma = 0;
+        for (int i = 0; i < 9; i++) {
+            int digito = Character.getNumericValue(cedula.charAt(i));
+            digito = (i % 2 == 0) ? digito * 2 : digito;
+            digito = (digito > 9) ? digito - 9 : digito;
+            suma += digito;
+        }
+
+        int ultimoDigito = Character.getNumericValue(cedula.charAt(9));
+        int residuo = suma % 10;
+
+        return (residuo == 0 && ultimoDigito == 0) || (10 - residuo == ultimoDigito);
     }
 
     /**
@@ -174,6 +193,12 @@ public class Doctor extends javax.swing.JFrame {
         jLabel4.setText("Observaciones");
 
         jLabel7.setText("CI paciente");
+
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
 
         jLabel8.setText("Medicos disponibles");
 
@@ -265,6 +290,24 @@ public class Doctor extends javax.swing.JFrame {
         his.setVisible(true);
         his.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnHistorialActionPerformed
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        char validacionID = evt.getKeyChar();
+        if (Character.isLetter(validacionID)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo dígitos");
+        } else {
+
+            String cedulaIngresada = txtCedula.getText() + validacionID;
+
+            if (cedulaIngresada.length() == 10 && !validarCedula(cedulaIngresada)) {
+                getToolkit().beep();
+                evt.consume();
+                
+            }
+        }
+    }//GEN-LAST:event_txtCedulaKeyTyped
 
     /**
      * @param args the command line arguments
