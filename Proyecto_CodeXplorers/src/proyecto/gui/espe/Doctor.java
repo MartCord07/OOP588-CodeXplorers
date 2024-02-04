@@ -5,9 +5,9 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 import javax.swing.JOptionPane;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import proyecto.conexion.espe.Conexion;
 
 public class Doctor extends javax.swing.JFrame {
@@ -24,7 +24,7 @@ public class Doctor extends javax.swing.JFrame {
 
             initComponents();
             cmxMedico.setEnabled(false);
-            establecerIdAleatorio();
+
             cargarNombresMedicos();
             txtCedula.addActionListener(new ActionListener() {
                 @Override
@@ -36,18 +36,6 @@ public class Doctor extends javax.swing.JFrame {
         }
     }
 
-    private String generaridaleatorio() {
-        Random random = new Random();
-        int codigo = 1000 + random.nextInt(9000);
-        return Integer.toString(codigo);
-    }
-
-    private void establecerIdAleatorio() {
-        String idAleatorio = generaridaleatorio();
-        txtId.setText(idAleatorio);
-
-    }
-
     private void buscarYMostrarEdad() {
         String cedula = txtCedula.getText();
 
@@ -55,6 +43,10 @@ public class Doctor extends javax.swing.JFrame {
 
         if (usuarioEncontrado != null) {
             Object edadObject = usuarioEncontrado.get("edad");
+
+            ObjectId objectId = usuarioEncontrado.getObjectId("_id");
+
+            txtId.setText("" + objectId);
 
             String tipoMedico;
             if (edadObject != null) {
@@ -147,12 +139,12 @@ public class Doctor extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        AreaD = new javax.swing.JTextArea();
+        diagnosticoTextArea = new javax.swing.JTextArea();
         btnHistorial = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        AreaO = new javax.swing.JTextArea();
+        observacionesTextArea = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         txtId = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -161,6 +153,7 @@ public class Doctor extends javax.swing.JFrame {
         lblMedico = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         cmxMedico = new javax.swing.JComboBox<>();
+        btnconsulta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -171,9 +164,9 @@ public class Doctor extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dosis SemiBold", 0, 18)); // NOI18N
         jLabel1.setText("ATENCION MEDICA");
 
-        AreaD.setColumns(20);
-        AreaD.setRows(5);
-        jScrollPane1.setViewportView(AreaD);
+        diagnosticoTextArea.setColumns(20);
+        diagnosticoTextArea.setRows(5);
+        jScrollPane1.setViewportView(diagnosticoTextArea);
 
         btnHistorial.setText("Generar Historial");
         btnHistorial.addActionListener(new java.awt.event.ActionListener() {
@@ -186,9 +179,9 @@ public class Doctor extends javax.swing.JFrame {
 
         jLabel2.setText("Id de la consulta:");
 
-        AreaO.setColumns(20);
-        AreaO.setRows(5);
-        jScrollPane2.setViewportView(AreaO);
+        observacionesTextArea.setColumns(20);
+        observacionesTextArea.setRows(5);
+        jScrollPane2.setViewportView(observacionesTextArea);
 
         jLabel4.setText("Observaciones");
 
@@ -201,6 +194,13 @@ public class Doctor extends javax.swing.JFrame {
         });
 
         jLabel8.setText("Medicos disponibles");
+
+        btnconsulta.setText("Procesar consulta");
+        btnconsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnconsultaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,48 +220,55 @@ public class Doctor extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel1)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(45, 45, 45)
-                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(cmxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cmxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(122, 122, 122)
+                                                    .addComponent(jLabel1))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(251, 251, 251)
-                .addComponent(btnHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addComponent(btnconsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101)
+                .addComponent(btnHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5))
+                    .addComponent(lblEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(29, 29, 29)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
@@ -277,16 +284,20 @@ public class Doctor extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(btnHistorial)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnHistorial)
+                    .addComponent(btnconsulta))
+                .addGap(34, 34, 34))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
-        Historial his = new Historial();
+        String diagnostico = diagnosticoTextArea.getText();
+        String observaciones = observacionesTextArea.getText();
+        Historial his = new Historial(diagnostico, observaciones);
         his.setVisible(true);
         his.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnHistorialActionPerformed
@@ -304,20 +315,24 @@ public class Doctor extends javax.swing.JFrame {
             if (cedulaIngresada.length() == 10 && !validarCedula(cedulaIngresada)) {
                 getToolkit().beep();
                 evt.consume();
-                
+
             }
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void btnconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconsultaActionPerformed
+
+    }//GEN-LAST:event_btnconsultaActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea AreaD;
-    private javax.swing.JTextArea AreaO;
     private javax.swing.JButton btnHistorial;
+    private javax.swing.JButton btnconsulta;
     private javax.swing.JComboBox<String> cmxMedico;
+    private javax.swing.JTextArea diagnosticoTextArea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -330,6 +345,7 @@ public class Doctor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblMedico;
+    private javax.swing.JTextArea observacionesTextArea;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JLabel txtId;
     // End of variables declaration//GEN-END:variables
