@@ -269,7 +269,6 @@ public class Usuario extends javax.swing.JFrame {
         cbmHorario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnRegistrarCita.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
-        btnRegistrarCita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/imagenes/espe/7952181_checklist_pen_tab_list_tick_icon.png"))); // NOI18N
         btnRegistrarCita.setText("Registrar cita");
         btnRegistrarCita.setBorder(new javax.swing.border.MatteBorder(null));
         btnRegistrarCita.addActionListener(new java.awt.event.ActionListener() {
@@ -279,7 +278,6 @@ public class Usuario extends javax.swing.JFrame {
         });
 
         btnConsultarCita.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
-        btnConsultarCita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/imagenes/espe/5955449_find_glass_magnifier_search_zoom_icon.png"))); // NOI18N
         btnConsultarCita.setText("Consultar Cita");
         btnConsultarCita.setBorder(new javax.swing.border.MatteBorder(null));
         btnConsultarCita.addActionListener(new java.awt.event.ActionListener() {
