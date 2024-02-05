@@ -2,6 +2,7 @@ package proyecto.gui.espe;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import proyecto.conexion.espe.Conexion;
@@ -71,6 +72,11 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         txtConfirmarContra.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtConfirmarContraFocusGained(evt);
+            }
+        });
+        txtConfirmarContra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtConfirmarContraKeyReleased(evt);
             }
         });
 
@@ -225,6 +231,11 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         lblMensajeError.setVisible(false);
     }//GEN-LAST:event_txtContraFocusGained
 
+    private void txtConfirmarContraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmarContraKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnRegistrarUsuarioActionPerformed(null);
+        }
+    }//GEN-LAST:event_txtConfirmarContraKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnRegistrarUsuario;
