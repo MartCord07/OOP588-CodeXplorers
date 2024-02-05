@@ -6,8 +6,9 @@ package proyecto.gui.espe;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
-import javax.swing.JTextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import proyecto.conexion.espe.Conexion;
@@ -17,43 +18,33 @@ public class Historial extends javax.swing.JFrame {
     Conexion conn = new Conexion();
     MongoDatabase database;
     private MongoCollection<Document> usuario;
-    
 
     public Historial() {
-        initComponents();
-        this.txtCedula = new JTextField(); // Inicializa el JTextField después de initComponents
-        lblId = new javax.swing.JLabel();
         if (conn != null) {
+
             conn = conn.crearConexion();
             database = conn.getDataB();
             this.usuario = database.getCollection("usuario", Document.class);
+
+            initComponents();
+
+            txtCedula.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    buscarYMostrarObjectId();
+                }
+            });
         }
     }
 
-    private void buscarUsuarioPorCedula() {
-        // Mueve la obtención del valor de cedula dentro de este método
-        String cedula = this.txtCedula.getText().trim();
+    private void buscarYMostrarObjectId() {
 
-        if (!cedula.isEmpty()) {
-            Document documento = usuario.find(Filters.eq("cedula", cedula)).first();
+        String cedula = txtCedula.getText();
 
-            if (documento != null) {
-                // Obtener el valor del campo "idObjeto"
-                ObjectId objectId = documento.getObjectId("_id");
-
-                // Mostrar el valor en el JLabel
-                lblId.setText("ID Objeto: " + objectId);
-            } else {
-                // Manejar el caso donde no se encuentra el usuario
-                lblId.setText("Usuario no registrado");
-            }
-        }
+ 
     }
 
-    // Método para realizar la búsqueda cuando se presiona un botón u otra acción
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
-        buscarUsuarioPorCedula();
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -227,4 +218,8 @@ public class Historial extends javax.swing.JFrame {
     private javax.swing.JLabel lblId;
     private javax.swing.JTextField txtCedula;
     // End of variables declaration//GEN-END:variables
+
+    private void first() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
