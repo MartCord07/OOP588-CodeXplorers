@@ -3,6 +3,7 @@ package proyecto.gui.espe;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import java.awt.event.KeyEvent;
 import org.bson.Document;
 import javax.swing.JOptionPane;
 import proyecto.conexion.espe.Conexion;
@@ -65,6 +66,11 @@ public class Login extends javax.swing.JFrame {
         jContraseña.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jContraseñaFocusGained(evt);
+            }
+        });
+        jContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jContraseñaKeyReleased(evt);
             }
         });
 
@@ -236,6 +242,12 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese solo letras");
         }
     }//GEN-LAST:event_txtUsuarioKeyTyped
+
+    private void jContraseñaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jContraseñaKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnAccederMouseClicked(null);
+        }
+    }//GEN-LAST:event_jContraseñaKeyReleased
 
     /**
      * @param args the command line arguments
