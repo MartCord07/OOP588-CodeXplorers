@@ -179,13 +179,13 @@ public class Usuario extends javax.swing.JFrame {
         rbtFemenino = new javax.swing.JRadioButton();
         fechaNacimiento = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
-        cmbDia = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         cbmHorario = new javax.swing.JComboBox<>();
         btnRegistrarCita = new javax.swing.JToggleButton();
         btnConsultarCita = new javax.swing.JToggleButton();
         jLabel10 = new javax.swing.JLabel();
         txtEdad = new javax.swing.JTextField();
+        cmbDia = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -257,10 +257,6 @@ public class Usuario extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
         jLabel8.setText("Día");
 
-        cmbDia.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
-        cmbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione día", "Lunes", "Martes", "Miércoles", "Jueves ", "Viernes" }));
-        cmbDia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         jLabel9.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
         jLabel9.setText("Hora");
 
@@ -291,6 +287,10 @@ public class Usuario extends javax.swing.JFrame {
 
         txtEdad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        cmbDia.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
+        cmbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione día", "Lunes", "Martes", "Miércoles", "Jueves ", "Viernes" }));
+        cmbDia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -315,9 +315,9 @@ public class Usuario extends javax.swing.JFrame {
                                         .addGap(22, 22, 22)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(cmbDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(cbmHorario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(txtTelefono))
+                                                .addComponent(txtTelefono)
+                                                .addComponent(cmbDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel10)
                                                 .addGap(34, 34, 34)

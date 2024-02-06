@@ -49,9 +49,9 @@
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="cmbDia" max="32767" attributes="0"/>
                                               <Component id="cbmHorario" max="32767" attributes="0"/>
                                               <Component id="txtTelefono" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="cmbDia" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
@@ -326,31 +326,6 @@
         <Property name="text" type="java.lang.String" value="D&#xed;a"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbDia">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Schoolbook" size="14" style="1"/>
-        </Property>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="Seleccione d&#xed;a"/>
-            <StringItem index="1" value="Lunes"/>
-            <StringItem index="2" value="Martes"/>
-            <StringItem index="3" value="Mi&#xe9;rcoles"/>
-            <StringItem index="4" value="Jueves "/>
-            <StringItem index="5" value="Viernes"/>
-          </StringArray>
-        </Property>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
-          </Border>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -435,6 +410,31 @@
           </Border>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbDia">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Schoolbook" size="14" style="1"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="6">
+            <StringItem index="0" value="Seleccione d&#xed;a"/>
+            <StringItem index="1" value="Lunes"/>
+            <StringItem index="2" value="Martes"/>
+            <StringItem index="3" value="Mi&#xe9;rcoles"/>
+            <StringItem index="4" value="Jueves "/>
+            <StringItem index="5" value="Viernes"/>
+          </StringArray>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
