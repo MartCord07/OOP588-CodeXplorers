@@ -202,7 +202,7 @@ public class Login extends javax.swing.JFrame {
                         btnAcceder.setSelected(false);
                         break;
                     case "doctor":
-                        Doctor doc = new Doctor();
+                        AtencionMedica doc = new AtencionMedica();
                         doc.setVisible(true);
                         doc.setLocationRelativeTo(null);
                         btnAcceder.setSelected(false);
