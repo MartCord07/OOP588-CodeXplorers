@@ -231,15 +231,14 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             String confirmarContrasena = new String(confirmarContrasenaChars);
 
             if (contrasena.equals(confirmarContrasena)) {
-                MongoCollection coleccion = database.getCollection("registros");
+                MongoCollection coleccion = database.getCollection("registros_usuarios");
 
-                Document filtro = new Document("paciente", txtPaciente.getText());
+                Document filtro = new Document("usuario", txtPaciente.getText());
                 long count = coleccion.countDocuments(filtro);
 
                 if (count == 0) {
-                    Document documento = new Document("paciente", txtPaciente.getText())
-                            .append("contrasena", contrasena)
-                            .append("tipo", "paciente");
+                    Document documento = new Document("usuario", txtPaciente.getText())
+                            .append("contrasena", contrasena);
                     coleccion.insertOne(documento);
                    
                     JOptionPane.showMessageDialog(rootPane, "Usuario Registrado Existosamente.");
