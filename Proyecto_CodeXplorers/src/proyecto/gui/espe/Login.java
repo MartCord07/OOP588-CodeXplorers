@@ -281,6 +281,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioFocusGained
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
+        dispose();
         RegistrarUsuario registro = new RegistrarUsuario();
         registro.setVisible(true);
         registro.setLocationRelativeTo(null);

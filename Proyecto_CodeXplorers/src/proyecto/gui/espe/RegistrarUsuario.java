@@ -35,7 +35,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopRegistro = new javax.swing.JDesktopPane();
-        lblFondo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblContra = new javax.swing.JLabel();
@@ -45,16 +45,15 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         lblMensajeError = new javax.swing.JLabel();
         jContrasena = new javax.swing.JPasswordField();
         jConfContrasena = new javax.swing.JPasswordField();
+        btnRegresar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_registro.jpg"))); // NOI18N
-        lblFondo.setToolTipText("");
-        lblFondo.setMaximumSize(new java.awt.Dimension(632, 477));
-        lblFondo.setMinimumSize(new java.awt.Dimension(632, 477));
-        lblFondo.setPreferredSize(new java.awt.Dimension(632, 477));
+        jDesktopRegistro.setPreferredSize(new java.awt.Dimension(833, 481));
 
-        lblTitulo.setFont(new java.awt.Font("Cooper Black", 2, 18)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_registro.png"))); // NOI18N
+
+        lblTitulo.setFont(new java.awt.Font("Cooper Black", 2, 20)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 51, 255));
         lblTitulo.setText("Registrar Usuario");
 
@@ -102,7 +101,15 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             }
         });
 
-        jDesktopRegistro.setLayer(lblFondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_regresar.png"))); // NOI18N
+        btnRegresar.setContentAreaFilled(false);
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
+        jDesktopRegistro.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(lblTitulo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(lblUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(lblContra, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -112,31 +119,27 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         jDesktopRegistro.setLayer(lblMensajeError, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(jContrasena, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(jConfContrasena, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopRegistro.setLayer(btnRegresar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopRegistroLayout = new javax.swing.GroupLayout(jDesktopRegistro);
         jDesktopRegistro.setLayout(jDesktopRegistroLayout);
         jDesktopRegistroLayout.setHorizontalGroup(
             jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(lblUsuario)
-                .addGap(127, 127, 127)
-                .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
                 .addGap(226, 226, 226)
-                .addComponent(jConfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(btnRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(lblConfirmarContra))
+                .addComponent(jContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jDesktopRegistroLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(lblContra))
             .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(jContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(209, 209, 209)
+                .addComponent(btnRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                .addGap(518, 518, 518)
+                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(lblConfirmarContra))
             .addGroup(jDesktopRegistroLayout.createSequentialGroup()
                 .addGap(226, 226, 226)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -144,52 +147,58 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 .addGap(226, 226, 226)
                 .addComponent(lblMensajeError, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(226, 226, 226)
+                .addComponent(jConfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(lblUsuario)
+                .addGap(127, 127, 127)
+                .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jDesktopRegistroLayout.setVerticalGroup(
             jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addGroup(jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lblUsuario))
-                    .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(128, 128, 128)
-                .addComponent(jConfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(384, 384, 384)
-                .addComponent(btnRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(282, 282, 282)
+                .addGap(156, 156, 156)
+                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(lblContra, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(lblConfirmarContra))
             .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(lblContra))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(208, 208, 208)
-                .addComponent(jContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addComponent(lblTitulo))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(321, 321, 321)
-                .addComponent(lblMensajeError))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(btnRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(lblMensajeError))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGroup(jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(jConfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(123, 123, 123)
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopRegistro, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopRegistro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopRegistro)
+            .addComponent(jDesktopRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jDesktopRegistro.getAccessibleContext().setAccessibleDescription("");
@@ -217,14 +226,17 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                             .append("contrasena", contrasena)
                             .append("tipo", "paciente");
                     coleccion.insertOne(documento);
-
-                    dispose();
+                   
                     JOptionPane.showMessageDialog(rootPane, "Usuario Registrado Existosamente.");
+                    dispose();
                     lblMensajeError.setVisible(false);
                     txtPaciente.setText("");
                     jContrasena.setText("");
                     jConfContrasena.setText("");
                     btnRegistrarUsuario.setSelected(false);
+                    Login logueo = new Login();
+                    logueo.setVisible(true);
+                    logueo.setLocationRelativeTo(null);
                 } else {
                     txtPaciente.setText("");
                     btnRegistrarUsuario.setSelected(false);
@@ -259,19 +271,27 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jContrasenaFocusGained
 
     private void jConfContrasenaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jConfContrasenaKeyReleased
-         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-           btnRegistrarUsuarioActionPerformed(null);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnRegistrarUsuarioActionPerformed(null);
         }
     }//GEN-LAST:event_jConfContrasenaKeyReleased
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        dispose();
+        Login logueo = new Login();
+        logueo.setVisible(true);
+        logueo.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnRegistrarUsuario;
+    private javax.swing.JToggleButton btnRegresar;
     private javax.swing.JPasswordField jConfContrasena;
     private javax.swing.JPasswordField jContrasena;
     private javax.swing.JDesktopPane jDesktopRegistro;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblConfirmarContra;
     private javax.swing.JLabel lblContra;
-    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblMensajeError;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuario;
