@@ -234,7 +234,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                     jContrasena.setText("");
                     jConfContrasena.setText("");
                     btnRegistrarUsuario.setSelected(false);
-                    Login logueo = new Login();
+                    LoginUsuario logueo = new LoginUsuario();
                     logueo.setVisible(true);
                     logueo.setLocationRelativeTo(null);
                 } else {
@@ -278,7 +278,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         dispose();
-        Login logueo = new Login();
+        LoginUsuario logueo = new LoginUsuario();
         logueo.setVisible(true);
         logueo.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
