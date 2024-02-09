@@ -35,23 +35,23 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopRegistro = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblContra = new javax.swing.JLabel();
         lblConfirmarContra = new javax.swing.JLabel();
-        txtPaciente = new javax.swing.JTextField();
         btnRegistrarUsuario = new javax.swing.JToggleButton();
-        lblMensajeError = new javax.swing.JLabel();
+        txtPaciente = new javax.swing.JTextField();
         jContrasena = new javax.swing.JPasswordField();
+        lblMensajeError = new javax.swing.JLabel();
         jConfContrasena = new javax.swing.JPasswordField();
         btnRegresar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jDesktopRegistro.setPreferredSize(new java.awt.Dimension(833, 481));
+        jDesktopRegistro.setPreferredSize(new java.awt.Dimension(642, 481));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_registro.png"))); // NOI18N
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_registro.png"))); // NOI18N
 
         lblTitulo.setFont(new java.awt.Font("Cooper Black", 2, 20)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 51, 255));
@@ -66,12 +66,6 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         lblConfirmarContra.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         lblConfirmarContra.setText("Confirmar Contraseña");
 
-        txtPaciente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPacienteKeyTyped(evt);
-            }
-        });
-
         btnRegistrarUsuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 16)); // NOI18N
         btnRegistrarUsuario.setText("Registrar Nuevo Usuario");
         btnRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -80,15 +74,21 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             }
         });
 
-        lblMensajeError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblMensajeError.setForeground(new java.awt.Color(204, 0, 255));
-        lblMensajeError.setText("La contraseñas no coinciden.");
+        txtPaciente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPacienteKeyTyped(evt);
+            }
+        });
 
         jContrasena.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jContrasenaFocusGained(evt);
             }
         });
+
+        lblMensajeError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblMensajeError.setForeground(new java.awt.Color(204, 0, 255));
+        lblMensajeError.setText("La contraseñas no coinciden.");
 
         jConfContrasena.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -109,15 +109,15 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             }
         });
 
-        jDesktopRegistro.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopRegistro.setLayer(lblFondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(lblTitulo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(lblUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(lblContra, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(lblConfirmarContra, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopRegistro.setLayer(txtPaciente, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(btnRegistrarUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopRegistro.setLayer(lblMensajeError, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopRegistro.setLayer(txtPaciente, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(jContrasena, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopRegistro.setLayer(lblMensajeError, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(jConfContrasena, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopRegistro.setLayer(btnRegresar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -126,79 +126,94 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         jDesktopRegistroLayout.setHorizontalGroup(
             jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(jContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(lblContra))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(btnRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(518, 518, 518)
-                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(lblConfirmarContra))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(lblMensajeError, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(jConfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(lblUsuario)
-                .addGap(127, 127, 127)
-                .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(lblContra))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(jConfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(lblMensajeError, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(btnRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(lblConfirmarContra))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(jContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(518, 518, 518)
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
+            .addGroup(jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                    .addGap(1, 1, 1)
+                    .addComponent(lblFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(2, 2, 2)))
         );
         jDesktopRegistroLayout.setVerticalGroup(
             jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(lblContra, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(lblConfirmarContra))
-            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                        .addGap(200, 200, 200)
+                        .addGap(209, 209, 209)
+                        .addComponent(lblContra, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(jConfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(lblMensajeError)
+                        .addGap(43, 43, 43)
                         .addComponent(btnRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(lblMensajeError))
+                        .addGap(282, 282, 282)
+                        .addComponent(lblConfirmarContra))
                     .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                        .addGroup(jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                                .addGap(81, 81, 81)
-                                .addComponent(jConfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(123, 123, 123)
-                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(156, 156, 156)
+                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addComponent(jContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(410, 410, 410)
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
+            .addGroup(jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                    .addGap(3, 3, 3)
+                    .addComponent(lblFondo)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopRegistro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+            .addComponent(jDesktopRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jDesktopRegistro.getAccessibleContext().setAccessibleDescription("");
@@ -289,9 +304,9 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     private javax.swing.JPasswordField jConfContrasena;
     private javax.swing.JPasswordField jContrasena;
     private javax.swing.JDesktopPane jDesktopRegistro;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblConfirmarContra;
     private javax.swing.JLabel lblContra;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblMensajeError;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuario;

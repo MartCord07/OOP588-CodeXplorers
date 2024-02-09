@@ -30,7 +30,6 @@ public class LoginUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         DesktopLogin = new javax.swing.JDesktopPane();
-        lblFondo = new javax.swing.JLabel();
         lblBienvenido = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblContraseña = new javax.swing.JLabel();
@@ -42,20 +41,24 @@ public class LoginUsuario extends javax.swing.JFrame {
         lblRegistrar = new javax.swing.JLabel();
         lblErrorUsuario = new javax.swing.JLabel();
         lblErrorContraseña = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JToggleButton();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblFondo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_login.jpg"))); // NOI18N
+        DesktopLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblBienvenido.setFont(new java.awt.Font("Kristen ITC", 3, 18)); // NOI18N
-        lblBienvenido.setText("Bienvenidos a \"ALD - Salud y Bienestar\"");
+        lblBienvenido.setFont(new java.awt.Font("Kristen ITC", 3, 20)); // NOI18N
+        lblBienvenido.setText("\"ALD - Salud y Bienestar\"");
+        DesktopLogin.add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 290, -1));
 
         lblUsuario.setFont(new java.awt.Font("Cooper Black", 2, 14)); // NOI18N
         lblUsuario.setText("Usuario:");
+        DesktopLogin.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(573, 84, 76, -1));
 
         lblContraseña.setFont(new java.awt.Font("Cooper Black", 2, 14)); // NOI18N
         lblContraseña.setText("Contraseña:");
+        DesktopLogin.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 148, 94, -1));
 
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -67,6 +70,7 @@ public class LoginUsuario extends javax.swing.JFrame {
                 txtUsuarioKeyTyped(evt);
             }
         });
+        DesktopLogin.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 81, 229, -1));
 
         jContraseña.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -78,6 +82,7 @@ public class LoginUsuario extends javax.swing.JFrame {
                 jContraseñaKeyReleased(evt);
             }
         });
+        DesktopLogin.add(jContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 145, 229, -1));
 
         btnAcceder.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         btnAcceder.setText("Acceder");
@@ -86,6 +91,7 @@ public class LoginUsuario extends javax.swing.JFrame {
                 btnAccederMouseClicked(evt);
             }
         });
+        DesktopLogin.add(btnAcceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(689, 195, 120, -1));
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         btnRegistrar.setText("Registrarse");
@@ -94,109 +100,43 @@ public class LoginUsuario extends javax.swing.JFrame {
                 btnRegistrarMouseClicked(evt);
             }
         });
+        DesktopLogin.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(826, 293, -1, -1));
 
         lblErrorLogin.setBackground(new java.awt.Color(255, 51, 51));
         lblErrorLogin.setForeground(new java.awt.Color(255, 51, 51));
         lblErrorLogin.setText("Usuario o Contraseña incorrectos!");
+        DesktopLogin.add(lblErrorLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(631, 230, -1, -1));
 
         lblRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblRegistrar.setText("¿No tienes cuenta aun?, regístrate aquí   –->");
+        DesktopLogin.add(lblRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 293, -1, -1));
 
         lblErrorUsuario.setForeground(new java.awt.Color(255, 0, 0));
         lblErrorUsuario.setText("Ingrese el Usuario.");
+        DesktopLogin.add(lblErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 109, -1, -1));
 
         lblErrorContraseña.setForeground(new java.awt.Color(255, 0, 0));
         lblErrorContraseña.setText("Ingrese la Contraseña.");
+        DesktopLogin.add(lblErrorContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 173, -1, -1));
 
-        DesktopLogin.setLayer(lblFondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopLogin.setLayer(lblBienvenido, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopLogin.setLayer(lblUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopLogin.setLayer(lblContraseña, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopLogin.setLayer(txtUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopLogin.setLayer(jContraseña, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopLogin.setLayer(btnAcceder, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopLogin.setLayer(btnRegistrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopLogin.setLayer(lblErrorLogin, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopLogin.setLayer(lblRegistrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopLogin.setLayer(lblErrorUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopLogin.setLayer(lblErrorContraseña, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        btnRegresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_volver48.png"))); // NOI18N
+        btnRegresar.setText("    Atrás");
+        btnRegresar.setContentAreaFilled(false);
+        btnRegresar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnRegresar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnRegresar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_volver48.png"))); // NOI18N
+        btnRegresar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_volver64.png"))); // NOI18N
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        DesktopLogin.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 263, 146, 83));
 
-        javax.swing.GroupLayout DesktopLoginLayout = new javax.swing.GroupLayout(DesktopLogin);
-        DesktopLogin.setLayout(DesktopLoginLayout);
-        DesktopLoginLayout.setHorizontalGroup(
-            DesktopLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(537, 537, 537)
-                .addComponent(lblRegistrar))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(667, 667, 667)
-                .addComponent(lblErrorContraseña))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(631, 631, 631)
-                .addComponent(lblErrorLogin))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(667, 667, 667)
-                .addComponent(lblErrorUsuario))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(555, 555, 555)
-                .addComponent(lblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(689, 689, 689)
-                .addComponent(btnAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(667, 667, 667)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(826, 826, 826)
-                .addComponent(btnRegistrar))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(667, 667, 667)
-                .addComponent(jContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(537, 537, 537)
-                .addComponent(lblBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(573, 573, 573)
-                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(lblFondo)
-        );
-        DesktopLoginLayout.setVerticalGroup(
-            DesktopLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(lblRegistrar))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(173, 173, 173)
-                .addComponent(lblErrorContraseña))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(230, 230, 230)
-                .addComponent(lblErrorLogin))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(lblErrorUsuario))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(lblContraseña))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(btnAcceder))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(287, 287, 287)
-                .addComponent(btnRegistrar))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(jContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(lblBienvenido))
-            .addGroup(DesktopLoginLayout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(lblUsuario))
-            .addComponent(lblFondo)
-        );
+        lblFondo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_login.jpg"))); // NOI18N
+        DesktopLogin.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,7 +146,7 @@ public class LoginUsuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(DesktopLogin)
+            .addComponent(DesktopLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         DesktopLogin.getAccessibleContext().setAccessibleDescription("");
@@ -219,35 +159,17 @@ public class LoginUsuario extends javax.swing.JFrame {
         char[] contrasenaChars = jContraseña.getPassword();
         String contrasena = new String(contrasenaChars);
 
-        MongoCollection<Document> coleccion = database.getCollection("registros");
-        Document query = new Document("paciente", nombreUsuario)
+        MongoCollection<Document> coleccion = database.getCollection("registros_usuarios");
+
+        Document query = new Document("usuario", nombreUsuario)
                 .append("contrasena", contrasena);
 
         try (MongoCursor<Document> cursor = coleccion.find(query).iterator()) {
             if (txtUsuario.getText().length() > 0 && jContraseña.getPassword().length > 0) {
                 if (cursor.hasNext()) {
-                    String tipoUsuario = cursor.next().getString("tipo");
-
-                    switch (tipoUsuario) {
-                        case "paciente":
-                            Usuario paciente = new Usuario();
-                            paciente.setVisible(true);
-                            paciente.setLocationRelativeTo(null);
-                            btnAcceder.setSelected(false);
-                            break;
-                        case "admin":
-                            Admin recepcionista = new Admin();
-                            recepcionista.setVisible(true);
-                            recepcionista.setLocationRelativeTo(null);
-                            btnAcceder.setSelected(false);
-                            break;
-                        case "doctor":
-                            AtencionMedica doc = new AtencionMedica();
-                            doc.setVisible(true);
-                            doc.setLocationRelativeTo(null);
-                            btnAcceder.setSelected(false);
-                            break;
-                    }
+                    Usuario usuario = new Usuario();
+                    usuario.setVisible(true);
+                    usuario.setLocationRelativeTo(null);
                     txtUsuario.setText("");
                     jContraseña.setText("");
                     lblErrorLogin.setVisible(false);
@@ -272,7 +194,6 @@ public class LoginUsuario extends javax.swing.JFrame {
     private void jContraseñaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jContraseñaFocusGained
         lblErrorLogin.setVisible(false);
         lblErrorContraseña.setVisible(false);
-        
     }//GEN-LAST:event_jContraseñaFocusGained
 
     private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
@@ -304,48 +225,19 @@ public class LoginUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jContraseñaKeyReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        dispose();
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setVisible(true);
+        menu.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                LoginUsuario loginFrame = new LoginUsuario();
-                loginFrame.setLocationRelativeTo(null);
-                loginFrame.setVisible(true);
-            }
-        });
-    }
-
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopLogin;
     private javax.swing.JToggleButton btnAcceder;
     private javax.swing.JToggleButton btnRegistrar;
+    private javax.swing.JToggleButton btnRegresar;
     private javax.swing.JPasswordField jContraseña;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblContraseña;
