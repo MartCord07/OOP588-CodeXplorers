@@ -77,6 +77,11 @@ public class LoginAdmin extends javax.swing.JFrame {
                 txtUsuarioFocusGained(evt);
             }
         });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
 
         lblErrorUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblErrorUsuario.setForeground(new java.awt.Color(255, 0, 0));
@@ -132,6 +137,9 @@ public class LoginAdmin extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jContraseñaKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jContraseñaKeyTyped(evt);
+            }
         });
 
         javax.swing.GroupLayout jPanelAdminLayout = new javax.swing.GroupLayout(jPanelAdmin);
@@ -139,31 +147,15 @@ public class LoginAdmin extends javax.swing.JFrame {
         jPanelAdminLayout.setHorizontalGroup(
             jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAdminLayout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(76, 76, 76)
+                .addGroup(jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(iconUser)
+                    .addComponent(iconContra))
+                .addGap(12, 12, 12)
                 .addGroup(jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAdminLayout.createSequentialGroup()
                         .addComponent(lblErrorLogin)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanelAdminLayout.createSequentialGroup()
-                        .addGroup(jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(iconUser)
-                            .addComponent(iconContra))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SeparadorContra, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jContraseña)
-                            .addGroup(jPanelAdminLayout.createSequentialGroup()
-                                .addGroup(jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblErrorUsuario)
-                                    .addGroup(jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                        .addComponent(SeparadadorUser))
-                                    .addComponent(lblErrorContraseña)
-                                    .addGroup(jPanelAdminLayout.createSequentialGroup()
-                                        .addGap(36, 36, 36)
-                                        .addComponent(btnAcceder)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(124, 124, 124))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdminLayout.createSequentialGroup()
                         .addGap(0, 12, Short.MAX_VALUE)
                         .addGroup(jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +170,23 @@ public class LoginAdmin extends javax.swing.JFrame {
                                 .addGap(187, 187, 187))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdminLayout.createSequentialGroup()
                                 .addComponent(lblUsuario1)
-                                .addGap(167, 167, 167))))))
+                                .addGap(167, 167, 167))))
+                    .addGroup(jPanelAdminLayout.createSequentialGroup()
+                        .addGroup(jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SeparadadorUser)
+                            .addGroup(jPanelAdminLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblErrorUsuario)
+                                    .addComponent(lblErrorContraseña)
+                                    .addGroup(jPanelAdminLayout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addComponent(btnAcceder)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtUsuario)
+                            .addComponent(jContraseña)
+                            .addComponent(SeparadorContra))
+                        .addGap(70, 70, 70))))
             .addGroup(jPanelAdminLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(btnRegresar)
@@ -303,7 +311,25 @@ public class LoginAdmin extends javax.swing.JFrame {
         menu.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        char validacionAdmin = evt.getKeyChar();
+        if (txtUsuario.getText().length() >= 20) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Se alcanzo el limite de carácteres permitidos.");
+        }
+        if (Character.isDigit(validacionAdmin)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+        }
+    }//GEN-LAST:event_txtUsuarioKeyTyped
 
+    private void jContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jContraseñaKeyTyped
+        if (new String(jContraseña.getPassword()).length() >= 40) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Se alcanzo el limite de carácteres permitidos.");
+        }
+    }//GEN-LAST:event_jContraseñaKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator SeparadadorUser;

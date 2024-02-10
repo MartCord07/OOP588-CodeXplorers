@@ -60,10 +60,6 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
-                          <Component id="jConfContrasena" min="-2" pref="313" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
                           <Component id="lblMensajeError" min="-2" pref="191" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -79,10 +75,6 @@
                           <Component id="lblUsuario" min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
-                          <Component id="jContrasena" min="-2" pref="313" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <EmptySpace min="518" pref="518" max="-2" attributes="0"/>
                           <Component id="btnRegresar" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
@@ -90,9 +82,18 @@
                           <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
                           <Component id="lblTitulo" min="-2" pref="189" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
-                          <Component id="txtPaciente" min="-2" pref="313" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="jConfContrasena" alignment="1" min="-2" pref="253" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtPaciente" min="-2" pref="253" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
+                                  <Component id="jContrasena" min="-2" pref="253" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="65" max="32767" attributes="0"/>
@@ -129,20 +130,22 @@
                           <Component id="lblUsuario" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="208" pref="208" max="-2" attributes="0"/>
-                          <Component id="jContrasena" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="410" pref="410" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
+                                  <Component id="jContrasena" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+                                  <Component id="txtPaciente" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
                           <Component id="btnRegresar" min="-2" pref="59" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
                           <Component id="lblTitulo" min="-2" pref="62" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="162" pref="162" max="-2" attributes="0"/>
-                          <Component id="txtPaciente" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
@@ -219,6 +222,7 @@
         <Component class="javax.swing.JPasswordField" name="jContrasena">
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jContrasenaFocusGained"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jContrasenaKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblMensajeError">
@@ -236,6 +240,7 @@
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jConfContrasenaFocusGained"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jConfContrasenaKeyReleased"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jConfContrasenaKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="btnRegresar">

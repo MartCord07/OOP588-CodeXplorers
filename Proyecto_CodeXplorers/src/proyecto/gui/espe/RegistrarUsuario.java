@@ -85,6 +85,11 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 jContrasenaFocusGained(evt);
             }
         });
+        jContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jContrasenaKeyTyped(evt);
+            }
+        });
 
         lblMensajeError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblMensajeError.setForeground(new java.awt.Color(204, 0, 255));
@@ -98,6 +103,9 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         jConfContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jConfContrasenaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jConfContrasenaKeyTyped(evt);
             }
         });
 
@@ -132,9 +140,6 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                         .addComponent(lblContra))
                     .addGroup(jDesktopRegistroLayout.createSequentialGroup()
                         .addGap(226, 226, 226)
-                        .addComponent(jConfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
                         .addComponent(lblMensajeError, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopRegistroLayout.createSequentialGroup()
                         .addGap(209, 209, 209)
@@ -146,17 +151,20 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                         .addGap(45, 45, 45)
                         .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(jContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
                         .addGap(518, 518, 518)
                         .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopRegistroLayout.createSequentialGroup()
                         .addGap(226, 226, 226)
                         .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jConfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopRegistroLayout.createSequentialGroup()
+                                .addGap(226, 226, 226)
+                                .addComponent(jContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(65, Short.MAX_VALUE))
             .addGroup(jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDesktopRegistroLayout.createSequentialGroup()
@@ -184,17 +192,18 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                         .addGap(156, 156, 156)
                         .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                        .addGap(208, 208, 208)
-                        .addComponent(jContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                        .addGap(410, 410, 410)
+                        .addGroup(jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                                .addGap(208, 208, 208)
+                                .addComponent(jContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopRegistroLayout.createSequentialGroup()
+                                .addGap(162, 162, 162)
+                                .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(180, 180, 180)
                         .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopRegistroLayout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopRegistroLayout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(15, Short.MAX_VALUE))
             .addGroup(jDesktopRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDesktopRegistroLayout.createSequentialGroup()
@@ -240,7 +249,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                     Document documento = new Document("usuario", txtPaciente.getText())
                             .append("contrasena", contrasena);
                     coleccion.insertOne(documento);
-                   
+
                     JOptionPane.showMessageDialog(rootPane, "Usuario Registrado Existosamente.");
                     dispose();
                     lblMensajeError.setVisible(false);
@@ -269,6 +278,10 @@ public class RegistrarUsuario extends javax.swing.JFrame {
 
     private void txtPacienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPacienteKeyTyped
         char validacionPaciente = evt.getKeyChar();
+        if (txtPaciente.getText().length() >= 20) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Se alcanzo el limite de carácteres permitidos.");
+        }
         if (Character.isDigit(validacionPaciente)) {
             getToolkit().beep();
             evt.consume();
@@ -296,6 +309,21 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         logueo.setVisible(true);
         logueo.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void jContrasenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jContrasenaKeyTyped
+        if (new String(jContrasena.getPassword()).length() >= 40) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Se alcanzo el limite de carácteres permitidos.");
+        }
+    }//GEN-LAST:event_jContrasenaKeyTyped
+
+    private void jConfContrasenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jConfContrasenaKeyTyped
+        if (new String(jConfContrasena.getPassword()).length() >= 40) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Se alcanzo el limite de carácteres permitidos.");
+
+        }
+    }//GEN-LAST:event_jConfContrasenaKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnRegistrarUsuario;

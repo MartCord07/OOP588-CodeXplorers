@@ -1,15 +1,11 @@
-
 package proyecto.gui.espe;
-
 
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    
     public MenuPrincipal() {
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -126,10 +122,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         dispose();
         LoginDoctor doctor = new LoginDoctor();
         doctor.setVisible(true);
-        doctor.setLocationRelativeTo(null);
+    doctor.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnDoctorActionPerformed
 
-   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

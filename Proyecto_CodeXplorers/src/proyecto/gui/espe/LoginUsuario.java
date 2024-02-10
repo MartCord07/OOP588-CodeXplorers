@@ -81,6 +81,9 @@ public class LoginUsuario extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jContraseñaKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jContraseñaKeyTyped(evt);
+            }
         });
         DesktopLogin.add(jContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 145, 229, -1));
 
@@ -212,6 +215,10 @@ public class LoginUsuario extends javax.swing.JFrame {
 
     private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
         char validacionPaciente = evt.getKeyChar();
+        if (txtUsuario.getText().length() >= 20) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Se alcanzo el limite de carácteres permitidos.");
+        }
         if (Character.isDigit(validacionPaciente)) {
             getToolkit().beep();
             evt.consume();
@@ -232,7 +239,14 @@ public class LoginUsuario extends javax.swing.JFrame {
         menu.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-   
+    private void jContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jContraseñaKeyTyped
+        if (new String(jContraseña.getPassword()).length() >= 40) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Se alcanzo el limite de carácteres permitidos.");
+        }
+    }//GEN-LAST:event_jContraseñaKeyTyped
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopLogin;
     private javax.swing.JToggleButton btnAcceder;
