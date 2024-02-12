@@ -44,7 +44,7 @@ public class LoginUsuario extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JToggleButton();
         lblFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         DesktopLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

@@ -2,7 +2,7 @@
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -63,20 +63,12 @@
                           <Component id="lblMensajeError" min="-2" pref="191" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="209" pref="209" max="-2" attributes="0"/>
-                          <Component id="btnRegistrarUsuario" min="-2" pref="210" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
                           <Component id="lblConfirmarContra" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
                           <Component id="lblUsuario" min="-2" pref="70" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="518" pref="518" max="-2" attributes="0"/>
-                          <Component id="btnRegresar" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
@@ -95,8 +87,14 @@
                               </Group>
                           </Group>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="209" pref="209" max="-2" attributes="0"/>
+                          <Component id="btnRegistrarUsuario" min="-2" pref="210" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="btnRegresar" min="-2" pref="161" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="65" max="32767" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -109,18 +107,40 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="209" pref="209" max="-2" attributes="0"/>
                           <Component id="lblContra" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
                           <Component id="jConfContrasena" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
+                          <Component id="jContrasena" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+                          <Component id="txtPaciente" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace min="34" pref="34" max="-2" attributes="0"/>
                           <Component id="lblMensajeError" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="43" pref="43" max="-2" attributes="0"/>
                           <Component id="btnRegistrarUsuario" min="-2" pref="38" max="-2" attributes="0"/>
+                          <EmptySpace pref="62" max="32767" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnRegresar" min="-2" pref="75" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="282" pref="282" max="-2" attributes="0"/>
                           <Component id="lblConfirmarContra" min="-2" max="-2" attributes="0"/>
@@ -130,25 +150,11 @@
                           <Component id="lblUsuario" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
-                                  <Component id="jContrasena" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
-                                  <Component id="txtPaciente" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
-                          <Component id="btnRegresar" min="-2" pref="59" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
                           <Component id="lblTitulo" min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -245,10 +251,20 @@
         </Component>
         <Component class="javax.swing.JToggleButton" name="btnRegresar">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/proyecto/iconos/espe/icono_regresar.png"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="1"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/proyecto/iconos/espe/icono_volver48.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="  Volver"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/proyecto/iconos/espe/icono_volver48.png"/>
+            </Property>
+            <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/proyecto/iconos/espe/icono_volver64.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarActionPerformed"/>
