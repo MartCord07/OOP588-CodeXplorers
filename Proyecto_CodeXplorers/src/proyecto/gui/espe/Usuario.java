@@ -261,7 +261,7 @@ public class Usuario extends javax.swing.JFrame {
         jLabel9.setText("Hora");
 
         cbmHorario.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
-        cbmHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " Seleccione horario", "8:00 am - 9:00 am", " 9:00 am -10:00 am", "10:00 am - 11:00 am", "11:00 am - 12:00 pm", "12:00 pm -13:00 pm", "14:00pm -15:00pm", "15:00pm -16:00pm", "16:00pm -17:00pm" }));
+        cbmHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione horario", "8:00 am - 9:00 am", " 9:00 am -10:00 am", "10:00 am - 11:00 am", "11:00 am - 12:00 pm", "12:00 pm -13:00 pm", "14:00pm -15:00pm", "15:00pm -16:00pm", "16:00pm -17:00pm" }));
         cbmHorario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnRegistrarCita.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
