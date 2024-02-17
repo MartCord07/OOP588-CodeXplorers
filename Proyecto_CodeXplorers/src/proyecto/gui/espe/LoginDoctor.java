@@ -272,7 +272,7 @@ public class LoginDoctor extends javax.swing.JFrame {
         try (MongoCursor<Document> cursor = coleccion.find(query).iterator()) {
             if (txtUsuario.getText().length() > 0 && jContraseña.getPassword().length > 0) {
                 if (cursor.hasNext()) {
-                    Doctor doctor = new Doctor();
+                    AtencionMedica doctor = new AtencionMedica();
                     doctor.setVisible(true);
                     doctor.setLocationRelativeTo(null);
                     txtUsuario.setText("");
