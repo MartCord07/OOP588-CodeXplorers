@@ -10,11 +10,11 @@ import javax.swing.table.DefaultTableModel;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
-public class Admin extends javax.swing.JFrame {
+public class CitaVista extends javax.swing.JFrame {
 
     int filaSeleccionada = -1;
 
-    public Admin() {
+    public CitaVista() {
         initComponents();
         actualizarcita.setOpaque(false);
         Eliminar.setOpaque(false);

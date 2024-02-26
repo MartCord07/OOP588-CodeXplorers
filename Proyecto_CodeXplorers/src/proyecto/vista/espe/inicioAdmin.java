@@ -4,7 +4,7 @@
  */
 package proyecto.vista.espe;
 
-import proyecto.vista.espe.Admin;
+import proyecto.vista.espe.CitaVista;
 
 /**
  *
@@ -41,7 +41,7 @@ public class inicioAdmin extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
         jLabel2.setText("Bienvenido");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
 
         Admin.setFont(new java.awt.Font("Cambria Math", 1, 14)); // NOI18N
         Admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/admin_64.png"))); // NOI18N
@@ -52,12 +52,7 @@ public class inicioAdmin extends javax.swing.JFrame {
         Admin.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/admin_96.png"))); // NOI18N
         Admin.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         Admin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Admin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdminActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 150, 140));
+        jPanel1.add(Admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 150, 140));
 
         Cita.setFont(new java.awt.Font("Cambria Math", 1, 14)); // NOI18N
         Cita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/Cita_64.png"))); // NOI18N
@@ -73,7 +68,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 CitaActionPerformed(evt);
             }
         });
-        jPanel1.add(Cita, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 160, 170));
+        jPanel1.add(Cita, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 160, 170));
 
         Doctor.setFont(new java.awt.Font("Cambria Math", 1, 14)); // NOI18N
         Doctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/Doctor_64.png"))); // NOI18N
@@ -84,11 +79,6 @@ public class inicioAdmin extends javax.swing.JFrame {
         Doctor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/Doctor_96.png"))); // NOI18N
         Doctor.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         Doctor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Doctor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DoctorActionPerformed(evt);
-            }
-        });
         jPanel1.add(Doctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 150, 150));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_inicioAdmin.png"))); // NOI18N
@@ -110,23 +100,11 @@ public class inicioAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void DoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoctorActionPerformed
-        AñadirDoctor nuevoDoctor = new AñadirDoctor();
-        nuevoDoctor.setVisible(true);
-        nuevoDoctor.setLocationRelativeTo(null);
-    }//GEN-LAST:event_DoctorActionPerformed
-
     private void CitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CitaActionPerformed
-        Admin cita = new Admin();
+        ConsultarCitaAD cita = new ConsultarCitaAD();
         cita.setVisible(true);
         cita.setLocationRelativeTo(null);
     }//GEN-LAST:event_CitaActionPerformed
-
-    private void AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminActionPerformed
-        AñadirAdmin nuevoAdmin = new AñadirAdmin();
-        nuevoAdmin.setVisible(true);
-        nuevoAdmin.setLocationRelativeTo(null);
-    }//GEN-LAST:event_AdminActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
