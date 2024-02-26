@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package proyecto.gui.espe;
+package proyecto.vista.espe;
+
+import proyecto.vista.espe.Admin;
 
 /**
  *

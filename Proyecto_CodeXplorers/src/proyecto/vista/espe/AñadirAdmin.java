@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package proyecto.gui.espe;
+package proyecto.vista.espe;
 
 /**
  *
  * @author Aliss
  */
-public class AñadirDoctor extends javax.swing.JFrame {
+public class AñadirAdmin extends javax.swing.JFrame {
 
     /**
-     * Creates new form AñadirDoctor
+     * Creates new form AñadirAdmin
      */
-    public AñadirDoctor() {
+    public AñadirAdmin() {
         initComponents();
     }
 
@@ -42,9 +42,6 @@ public class AñadirDoctor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,4 +1,4 @@
-package proyecto.gui.espe;
+package proyecto.vista.espe;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.result.DeleteResult;
@@ -503,7 +503,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private com.toedter.calendar.JDateChooser jdNacimiento;
     private javax.swing.JPanel opciones;
     private javax.swing.ButtonGroup sexo;
     // End of variables declaration//GEN-END:variables

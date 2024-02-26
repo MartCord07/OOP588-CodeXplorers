@@ -1,6 +1,7 @@
 
 package proyecto.gui.espe;
 
+import proyecto.vista.espe.inicioAdmin;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
