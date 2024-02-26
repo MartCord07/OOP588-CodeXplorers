@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import proyecto.conexion.espe.Conexion;
+import proyecto.dao.espe.Conexion;
 
 public class AtencionMedica extends javax.swing.JFrame {
 

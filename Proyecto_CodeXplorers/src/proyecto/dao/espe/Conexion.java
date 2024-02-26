@@ -1,4 +1,4 @@
-package proyecto.conexion.espe;
+package proyecto.dao.espe;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;

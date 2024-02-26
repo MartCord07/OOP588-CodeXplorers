@@ -20,7 +20,7 @@ import javax.swing.*;
 
 import org.bson.Document;
 
-import proyecto.conexion.espe.Conexion;
+import proyecto.dao.espe.Conexion;
 
 /**
  *

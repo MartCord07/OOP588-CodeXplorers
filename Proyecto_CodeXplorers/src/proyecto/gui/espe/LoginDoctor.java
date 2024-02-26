@@ -7,7 +7,7 @@ import com.mongodb.client.MongoDatabase;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import org.bson.Document;
-import proyecto.conexion.espe.Conexion;
+import proyecto.dao.espe.Conexion;
 
 
 public class LoginDoctor extends javax.swing.JFrame {

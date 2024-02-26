@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import proyecto.conexion.espe.Conexion;
+import proyecto.dao.espe.Conexion;
 
 public class Historial extends javax.swing.JFrame {
 

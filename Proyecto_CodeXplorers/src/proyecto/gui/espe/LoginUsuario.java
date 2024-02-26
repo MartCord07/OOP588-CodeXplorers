@@ -6,7 +6,7 @@ import com.mongodb.client.MongoDatabase;
 import java.awt.event.KeyEvent;
 import org.bson.Document;
 import javax.swing.JOptionPane;
-import proyecto.conexion.espe.Conexion;
+import proyecto.dao.espe.Conexion;
 
 public class LoginUsuario extends javax.swing.JFrame {
 

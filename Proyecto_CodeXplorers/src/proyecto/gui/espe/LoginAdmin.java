@@ -7,7 +7,7 @@ import com.mongodb.client.MongoDatabase;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import org.bson.Document;
-import proyecto.conexion.espe.Conexion;
+import proyecto.dao.espe.Conexion;
 
 
 public class LoginAdmin extends javax.swing.JFrame {
@@ -255,7 +255,7 @@ public class LoginAdmin extends javax.swing.JFrame {
         try (MongoCursor<Document> cursor = coleccion.find(query).iterator()) {
             if (txtUsuario.getText().length() > 0 && jContraseña.getPassword().length > 0) {
                 if (cursor.hasNext()) {
-                    Admin admin = new Admin();
+                    inicioAdmin admin = new inicioAdmin();
                     admin.setVisible(true);
                     admin.setLocationRelativeTo(null);
                     txtUsuario.setText("");
