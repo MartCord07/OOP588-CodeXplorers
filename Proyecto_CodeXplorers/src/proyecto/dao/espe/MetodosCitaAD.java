@@ -5,21 +5,22 @@
 package proyecto.dao.espe;
 
 import java.util.List;
-import proyecto.vista.espe.CitaVista;
+import proyecto.modelo.espe.CitaAD;
+
 
 /**
  *
  * @author Aliss
  */
-public class MetodosCita implements ICita {
+public class MetodosCitaAD implements ICitaAD {
 
     @Override
-    public List<CitaVista> ListaPerfil() {
+    public List<CitaAD> ListaCitas() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean ActualizarCita(CitaVista cita) {
+    public boolean ActualizarCita(CitaAD cita) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -29,9 +30,11 @@ public class MetodosCita implements ICita {
     }
 
     @Override
-    public CitaVista BuscarIdCita(int idcita) {
+    public CitaAD BuscarIdCita(int idcita) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    
 
     
 }

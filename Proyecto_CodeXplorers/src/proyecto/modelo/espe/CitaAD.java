@@ -8,6 +8,6 @@ package proyecto.modelo.espe;
  *
  * @author Aliss
  */
-public class Cita {
+public class CitaAD {
 
 }

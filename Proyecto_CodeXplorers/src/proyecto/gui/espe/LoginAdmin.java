@@ -1,7 +1,7 @@
 
 package proyecto.gui.espe;
 
-import proyecto.vista.espe.inicioAdmin;
+
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import proyecto.dao.espe.Conexion;
+import proyecto.vista.espe.inicioAdmin;
 
 
 public class LoginAdmin extends javax.swing.JFrame {
