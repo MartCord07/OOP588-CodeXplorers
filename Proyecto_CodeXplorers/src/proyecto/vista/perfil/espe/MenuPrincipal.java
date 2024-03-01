@@ -1,4 +1,6 @@
-package proyecto.gui.espe;
+package proyecto.vista.perfil.espe;
+
+import proyecto.vista.perfil.espe.LoginUsuario;
 
 public class MenuPrincipal extends javax.swing.JFrame {
 

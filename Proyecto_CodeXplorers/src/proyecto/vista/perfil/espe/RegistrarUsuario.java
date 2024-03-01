@@ -1,5 +1,6 @@
-package proyecto.gui.espe;
+package proyecto.vista.perfil.espe;
 
+import proyecto.vista.perfil.espe.LoginUsuario;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import proyecto.modelo.espe.Paciente;
