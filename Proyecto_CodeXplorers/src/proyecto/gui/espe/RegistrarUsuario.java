@@ -1,25 +1,31 @@
 package proyecto.gui.espe;
 
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-import org.bson.Document;
-import proyecto.dao.espe.Conexion;
+import proyecto.modelo.espe.Paciente;
+import proyecto.modelo.espe.Perfil;
+import proyecto.servicio.espe.PacienteServicio;
 
 public class RegistrarUsuario extends javax.swing.JFrame {
 
-    Conexion conn = new Conexion();
-    MongoDatabase database;
-
     public RegistrarUsuario() {
-        if (conn != null) {
-            conn = conn.crearConexion();
-            database = conn.getDataB();
-        }
         initComponents();
         txtPaciente.requestFocus();
         lblMensajeError.setVisible(false);
+    }
+
+    private void LimpiarDatos() {
+        lblMensajeError.setVisible(false);
+        txtPaciente.setText("");
+        jContrasena.setText("");
+        jConfContrasena.setText("");
+        btnRegistrarUsuario.setSelected(false);
+    }
+
+    private void LimpiarRepetido() {
+        txtPaciente.setText("");
+        btnRegistrarUsuario.setSelected(false);
+        txtPaciente.requestFocus();
     }
 
     private boolean verificarDatos() {
@@ -244,35 +250,23 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             char[] contrasenaChars = jContrasena.getPassword();
             char[] confirmarContrasenaChars = jConfContrasena.getPassword();
 
-            String contrasena = new String(contrasenaChars);
+            String contrasenaa = new String(contrasenaChars);
             String confirmarContrasena = new String(confirmarContrasenaChars);
 
-            if (contrasena.equals(confirmarContrasena)) {
-                MongoCollection coleccion = database.getCollection("registros_usuarios");
-
-                Document filtro = new Document("usuario", txtPaciente.getText());
-                long count = coleccion.countDocuments(filtro);
-
-                if (count == 0) {
-                    Document documento = new Document("usuario", txtPaciente.getText())
-                            .append("contrasena", contrasena);
-                    coleccion.insertOne(documento);
-
+            if (contrasenaa.equals(confirmarContrasena)) {
+                Perfil RegistrarPaciente = new Perfil(
+                        txtPaciente.getText(),
+                        contrasenaa);
+                if (PacienteServicio.RegistrarPerfil(RegistrarPaciente)) {
                     JOptionPane.showMessageDialog(rootPane, "Usuario Registrado Existosamente.");
-                    dispose();
-                    lblMensajeError.setVisible(false);
-                    txtPaciente.setText("");
-                    jContrasena.setText("");
-                    jConfContrasena.setText("");
-                    btnRegistrarUsuario.setSelected(false);
+                    LimpiarDatos();
+                    this.dispose();
                     LoginUsuario logueo = new LoginUsuario();
                     logueo.setVisible(true);
                     logueo.setLocationRelativeTo(null);
                 } else {
-                    txtPaciente.setText("");
-                    btnRegistrarUsuario.setSelected(false);
-                    txtPaciente.requestFocus();
-                    JOptionPane.showMessageDialog(null, "El usuario ya existe. Por favor, elija otro nombre de usuario.");
+                    LimpiarRepetido();
+                    JOptionPane.showMessageDialog(null, "Error al Registrar, intente nuevamente.");
                 }
             } else {
                 lblMensajeError.setVisible(true);
@@ -312,7 +306,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jConfContrasenaKeyReleased
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        dispose();
+        this.dispose();
         LoginUsuario logueo = new LoginUsuario();
         logueo.setVisible(true);
         logueo.setLocationRelativeTo(null);

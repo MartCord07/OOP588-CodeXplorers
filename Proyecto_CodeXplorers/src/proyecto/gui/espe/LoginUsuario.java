@@ -1,30 +1,28 @@
 package proyecto.gui.espe;
 
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
 import java.awt.event.KeyEvent;
-import org.bson.Document;
 import javax.swing.JOptionPane;
-import proyecto.dao.espe.Conexion;
+import proyecto.modelo.espe.Paciente;
+import proyecto.modelo.espe.Perfil;
+import proyecto.servicio.espe.PacienteServicio;
 
 public class LoginUsuario extends javax.swing.JFrame {
-
-    Conexion conn = new Conexion();
-    MongoDatabase database;
-
+    
     public LoginUsuario() {
-        if (conn != null) {
-            conn = conn.crearConexion();
-            database = conn.getDataB();
-        }
+        
         initComponents();
         txtUsuario.requestFocus();
         lblErrorLogin.setVisible(false);
         lblErrorContraseña.setVisible(false);
         lblErrorUsuario.setVisible(false);
     }
-
+    
+    private void LimpiarDatos() {
+        txtUsuario.setText("");
+        jContraseña.setText("");
+        lblErrorLogin.setVisible(false);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -160,38 +158,31 @@ public class LoginUsuario extends javax.swing.JFrame {
     private void btnAccederMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccederMouseClicked
         String nombreUsuario = txtUsuario.getText();
         char[] contrasenaChars = jContraseña.getPassword();
-        String contrasena = new String(contrasenaChars);
-
-        MongoCollection<Document> coleccion = database.getCollection("registros_usuarios");
-
-        Document query = new Document("usuario", nombreUsuario)
-                .append("contrasena", contrasena);
-
-        try (MongoCursor<Document> cursor = coleccion.find(query).iterator()) {
-            if (txtUsuario.getText().length() > 0 && jContraseña.getPassword().length > 0) {
-                if (cursor.hasNext()) {
-                    Usuario usuario = new Usuario();
-                    usuario.setVisible(true);
-                    usuario.setLocationRelativeTo(null);
-                    txtUsuario.setText("");
-                    jContraseña.setText("");
-                    lblErrorLogin.setVisible(false);
-                } else {
-                    lblErrorLogin.setVisible(true);
-                    btnAcceder.setSelected(false);
-                }
-            } else if (txtUsuario.getText().length() == 0 && jContraseña.getPassword().length == 0) {
-                lblErrorContraseña.setVisible(true);
-                lblErrorUsuario.setVisible(true);
+        String contrasenaa = new String(contrasenaChars);
+        Perfil LoginPerfil = new Perfil(
+                nombreUsuario, contrasenaa);
+        
+        if (txtUsuario.getText().length() > 0 && jContraseña.getPassword().length > 0) {
+            if (PacienteServicio.AutenticarPerfil(LoginPerfil)) {
                 btnAcceder.setSelected(false);
-            } else if (txtUsuario.getText().length() > 0 && jContraseña.getPassword().length == 0) {
-                lblErrorContraseña.setVisible(true);
-                btnAcceder.setSelected(false);
-            } else if (txtUsuario.getText().length() == 0 && jContraseña.getPassword().length > 0) {
-                lblErrorUsuario.setVisible(true);
+               // this.setVisible(false);
+                LimpiarDatos();
+            } else {
+                lblErrorLogin.setVisible(true);
                 btnAcceder.setSelected(false);
             }
+        } else if (txtUsuario.getText().length() == 0 && jContraseña.getPassword().length == 0) {
+            lblErrorContraseña.setVisible(true);
+            lblErrorUsuario.setVisible(true);
+            btnAcceder.setSelected(false);
+        } else if (txtUsuario.getText().length() > 0 && jContraseña.getPassword().length == 0) {
+            lblErrorContraseña.setVisible(true);
+            btnAcceder.setSelected(false);
+        } else if (txtUsuario.getText().length() == 0 && jContraseña.getPassword().length > 0) {
+            lblErrorUsuario.setVisible(true);
+            btnAcceder.setSelected(false);
         }
+        
     }//GEN-LAST:event_btnAccederMouseClicked
 
     private void jContraseñaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jContraseñaFocusGained
@@ -205,7 +196,7 @@ public class LoginUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioFocusGained
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-        dispose();
+        this.dispose();
         RegistrarUsuario registro = new RegistrarUsuario();
         registro.setVisible(true);
         registro.setLocationRelativeTo(null);
