@@ -29,15 +29,16 @@ public class Conexion {
     }
 
     public Conexion crearConexion() {
-         String uriConexion = "mongodb+srv://maycol:CodeXplorers@codexplorers.yuuaio0.mongodb.net/test?retryWrites=true&w=majority&connectTimeoutMS=30000&socketTimeoutMS=30000";
+        String uriConexion = "mongodb+srv://maycol:CodeXplorers@codexplorers.yuuaio0.mongodb.net/test?retryWrites=true&w=majority&connectTimeoutMS=30000&socketTimeoutMS=30000";
         try {
-              dataB = MongoClients.create(uriConexion).getDatabase("BD-PROYECTO");
+            dataB = MongoClients.create(uriConexion).getDatabase("BD-PROYECTO");
         } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error en la conexión a MongoDB. Error: " + ex.toString());
         }
-        return new Conexion( dataB);
+        return new Conexion(dataB);
     }
- public void close() {
+
+    public void close() {
         if (mongo != null) {
             try {
                 mongo.close();
