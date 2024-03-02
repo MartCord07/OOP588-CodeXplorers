@@ -1,4 +1,3 @@
-
 package proyecto.vista.doctor.espe;
 
 import java.awt.event.KeyEvent;
@@ -6,6 +5,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import proyecto.modelo.espe.Paciente;
 import proyecto.servicio.espe.DoctorServicio;
+import proyecto.vista.perfil.espe.MenuPrincipal;
 
 /**
  *
@@ -22,10 +22,11 @@ public class AtencionMedica extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         cargarPacientes();
-        
+
     }
-    public void cargarPacientes(){
-        listaPacientes=DoctorServicio.ListarPaciente();
+
+    public void cargarPacientes() {
+        listaPacientes = DoctorServicio.ListarPaciente();
         cargarTablaTodosPacientes(listaPacientes);
     }
 
@@ -40,10 +41,9 @@ public class AtencionMedica extends javax.swing.JFrame {
 
             });
         }
-        
+
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,7 +58,7 @@ public class AtencionMedica extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -111,6 +111,11 @@ public class AtencionMedica extends javax.swing.JFrame {
         jPanel1.add(lblCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_regresar.png"))); // NOI18N
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_atencionmed.jpg"))); // NOI18N
@@ -131,12 +136,19 @@ public class AtencionMedica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyPressed
-    if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-        if(!txtCedula.getText().trim().equals("")){
-            
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (!txtCedula.getText().trim().equals("")) {
+
+            }
         }
-    }
     }//GEN-LAST:event_txtCedulaKeyPressed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        dispose();
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setVisible(true);
+        menu.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
