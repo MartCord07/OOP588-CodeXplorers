@@ -1,17 +1,19 @@
 
 package proyecto.modelo.espe;
 
+import java.util.Date;
+
 
 public class Paciente {
     private String cedula,nombre,apellido,genero,telefono,dia,horario;
     private String Contraseña;
-    private int fechaNacimiento;
+    private Date fechaNacimiento;
    
 
     public Paciente() {
     }
 
-    public Paciente(String cedula, String nombre, String apellido, String genero, String telefono, String dia, String horario, String Contraseña, int fechaNacimiento) {
+    public Paciente(String cedula, String nombre, String apellido, String genero, String telefono, String dia, String horario, String Contraseña, Date fechaNacimiento) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -87,11 +89,11 @@ public class Paciente {
         this.Contraseña = Contraseña;
     }
 
-    public int getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(int fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -101,5 +103,6 @@ public class Paciente {
     }
     
     
-    
-    }
+}
+
+   
