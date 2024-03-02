@@ -4,10 +4,17 @@
  */
 package proyecto.dao.espe;
 
+import java.util.List;
+import proyecto.modelo.espe.Doctor;
+import proyecto.modelo.espe.Paciente;
+
 /**
  *
  * @author Usuario
  */
 public interface IDoctor {
+    public List<Paciente> ListarUsuario();
+    public Doctor BuscarCedulaPersona(String cedula);
+    
     
 }
