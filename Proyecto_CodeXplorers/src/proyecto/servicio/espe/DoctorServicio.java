@@ -4,10 +4,17 @@
  */
 package proyecto.servicio.espe;
 
-/**
- *
- * @author Usuario
- */
+import java.util.List;
+import proyecto.dao.espe.MetodosDoctor;
+import proyecto.modelo.espe.Paciente;
+
+
 public class DoctorServicio {
+    public static List<Paciente>ListarPaciente(){
+        return new MetodosDoctor().ListarPaciente();
+    }
+    public static Paciente BuscarCedulaPaciente(String cedula){
+        return new MetodosDoctor().BuscarCedulaPaciente(cedula);
+    }
     
 }

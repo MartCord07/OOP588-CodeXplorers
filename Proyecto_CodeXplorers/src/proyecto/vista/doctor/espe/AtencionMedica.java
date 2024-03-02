@@ -4,13 +4,19 @@
  */
 package proyecto.vista.doctor.espe;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import proyecto.modelo.espe.Paciente;
+
 /**
  *
  * @author Usuario
  */
 public class AtencionMedica extends javax.swing.JFrame {
 
-    
+    private DefaultTableModel modeloTabla;
+    List<Paciente>listaPacientes=null;
+    public static String codCedula="";
     public AtencionMedica() {
         initComponents();
     }
