@@ -98,6 +98,11 @@ public class AtencionMedica extends javax.swing.JFrame {
 
         btnAtender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/Atender_icono.png"))); // NOI18N
         btnAtender.setText("Atender");
+        btnAtender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtenderActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAtender, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, -1, -1));
 
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -149,6 +154,12 @@ public class AtencionMedica extends javax.swing.JFrame {
         menu.setVisible(true);
         menu.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderActionPerformed
+        ConsultaPaciente consulta = new ConsultaPaciente();
+        consulta.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnAtenderActionPerformed
 
     /**
      * @param args the command line arguments
