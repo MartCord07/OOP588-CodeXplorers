@@ -27,7 +27,18 @@ public class Paciente {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-   
+    public Paciente(String cedula, String nombre, String apellido, String genero, String telefono, String dia, String horario, String edad, Date fechaNacimiento) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.genero = genero;
+        this.telefono = telefono;
+        this.dia = dia;
+        this.horario = horario;
+        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
+    }
+    
 
     public String getCedula() {
         return cedula;
