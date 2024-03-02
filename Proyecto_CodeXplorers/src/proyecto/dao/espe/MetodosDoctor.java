@@ -57,6 +57,7 @@ public class MetodosDoctor {
         }
         return listaPaciente;
     }
+    
 
     public Paciente BuscarCedulaPaciente(String cedula) {
         Paciente paciente = null;
@@ -79,5 +80,6 @@ public class MetodosDoctor {
         }
         return paciente;
     }
+   
 
 }

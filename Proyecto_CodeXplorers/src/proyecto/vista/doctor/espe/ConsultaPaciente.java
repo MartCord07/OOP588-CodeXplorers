@@ -128,10 +128,20 @@ public class ConsultaPaciente extends javax.swing.JFrame {
 
         btnMedicamentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_consultamedicina.png"))); // NOI18N
         btnMedicamentos.setText("Stock Mediciamentos");
+        btnMedicamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMedicamentosActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnMedicamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 580, -1, -1));
 
         btnHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_historial.png"))); // NOI18N
         btnHistorial.setText("Generar Historial");
+        btnHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 580, 180, -1));
 
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_regresar.png"))); // NOI18N
@@ -169,6 +179,18 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         atencion.setVisible(true);
         atencion.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicamentosActionPerformed
+        ConsultaMedicamentos medicamento = new ConsultaMedicamentos();
+        medicamento.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnMedicamentosActionPerformed
+
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
+        HistorialClinico historial = new HistorialClinico();
+        historial.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnHistorialActionPerformed
 
     /**
      * @param args the command line arguments

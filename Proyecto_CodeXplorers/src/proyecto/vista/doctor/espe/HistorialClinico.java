@@ -15,6 +15,9 @@ public class HistorialClinico extends javax.swing.JFrame {
      */
     public HistorialClinico() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        
     }
 
     /**
@@ -32,11 +35,11 @@ public class HistorialClinico extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 846, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 659, Short.MAX_VALUE)
         );
 
         pack();

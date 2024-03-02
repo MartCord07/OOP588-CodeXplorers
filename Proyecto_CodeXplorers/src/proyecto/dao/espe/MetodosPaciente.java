@@ -19,18 +19,19 @@ import proyecto.modelo.espe.Paciente;
  * @author Victoria
  */
 public class MetodosPaciente implements IPaciente {
+
     Conexion conn = new Conexion();
     MongoDatabase database;
     private MongoCollection coleccionUsuario;
-    
 
     public MetodosPaciente() {
         if (conn != null) {
             this.conn = conn.crearConexion();
-            this.database=conn.getDataB();
+            this.database = conn.getDataB();
             this.coleccionUsuario = database.getCollection("usuario");
         }
     }
+
     private void cierreConexion() {
         try {
             conn.getMongo().close();
@@ -38,7 +39,7 @@ public class MetodosPaciente implements IPaciente {
             JOptionPane.showMessageDialog(null, "Error al cerrar la conexión " + ex.toString());
         }
     }
-  
+
     @Override
     public Paciente BuscarCedulaPaciente(String cedula) {
         Paciente paciente = null;
@@ -57,21 +58,21 @@ public class MetodosPaciente implements IPaciente {
                 paciente.setDia(resultado.getString("dia"));
                 paciente.setHorario(resultado.getString("horario"));
             }
-        }catch(MongoException ex){
+        } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error al consultar por cedula");
-        }finally{
+        } finally {
             cierreConexion();
         }
         return paciente;
-    
+
     }
 
     @Override
     public boolean InsertarPaciente(Paciente paciente) {
         Document documento;
-       try{
-           documento=new Document ("cedula",paciente.getCedula())
-                   .append("nombre", paciente.getNombre())
+        try {
+            documento = new Document("cedula", paciente.getCedula())
+                    .append("nombre", paciente.getNombre())
                     .append("apellido", paciente.getApellido())
                     .append("fecha_nacimiento", paciente.getFechaNacimiento())
                     .append("edad", paciente.getEdad())
@@ -79,16 +80,39 @@ public class MetodosPaciente implements IPaciente {
                     .append("telefono", paciente.getTelefono())
                     .append("dia", paciente.getDia())
                     .append("horaria", paciente.getHorario());
-           
+
             coleccionUsuario.insertOne(documento);
-            
-       }catch(MongoException ex){
-           JOptionPane.showMessageDialog(null, "Error al insertar datos "+ex.toString());
-           return false;
-       }finally{
-           cierreConexion();
-       }
-       return true;
+
+        } catch (MongoException ex) {
+            JOptionPane.showMessageDialog(null, "Error al insertar datos " + ex.toString());
+            return false;
+        } finally {
+            cierreConexion();
+        }
+        return true;
     }
-    
+
+    public List<Paciente> ListarPaciente() {
+        List<Paciente> listaPaciente = new ArrayList<>();
+        FindIterable<Document> documentoPaciente;
+        try {
+            documentoPaciente = coleccionUsuario.find();
+            for (Document temp : documentoPaciente) {
+                Paciente paciente = new Paciente();
+                paciente.setCedula(temp.getString("cedula"));
+                paciente.setNombre(temp.getString("nombre"));
+                paciente.setApellido(temp.getString("apellido"));
+                paciente.setEdad(temp.getString("edad"));
+                paciente.setGenero(temp.getString("genero"));
+                paciente.setTelefono(temp.getString("telefono"));
+            }
+        } catch (MongoException ex) {
+            JOptionPane.showMessageDialog(null, "Error al consultar datos" + ex.getMessage());
+        } finally {
+            cierreConexion();
+        }
+        return listaPaciente;
+
+    }
+
 }

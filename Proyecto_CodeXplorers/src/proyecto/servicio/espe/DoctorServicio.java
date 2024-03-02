@@ -17,4 +17,5 @@ public class DoctorServicio {
         return new MetodosDoctor().BuscarCedulaPaciente(cedula);
     }
     
+    
 }

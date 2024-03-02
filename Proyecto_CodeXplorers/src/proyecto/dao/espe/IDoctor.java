@@ -14,7 +14,9 @@ import proyecto.modelo.espe.Paciente;
  */
 public interface IDoctor {
     public List<Paciente> ListarPaciente();
-    public Doctor BuscarCedulaPersona(String cedula);
+    public Doctor BuscarCedulaPaciente(String cedula);
+    public boolean InsertarHistorial(Paciente paciente);
+    
     
     
 }

@@ -1,10 +1,9 @@
 package proyecto.vista.doctor.espe;
 
-import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import proyecto.modelo.espe.Paciente;
-import proyecto.servicio.espe.DoctorServicio;
+import proyecto.servicio.espe.PacienteServicio;
 import proyecto.vista.perfil.espe.MenuPrincipal;
 
 /**
@@ -15,19 +14,27 @@ public class AtencionMedica extends javax.swing.JFrame {
 
     private DefaultTableModel modeloTabla;
     List<Paciente> listaPacientes = null;
-    public static String codCedula = "";
 
     public AtencionMedica() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        cargarPacientes();
+        cargarPaciente();
 
     }
 
-    public void cargarPacientes() {
-        listaPacientes = DoctorServicio.ListarPaciente();
+    public void cargarPaciente() {
+        cbxCedula.setSelectedItem("Todos");
+        listaPacientes = PacienteServicio.ListarPaciente();
         cargarTablaTodosPacientes(listaPacientes);
+        cargarComboCedula(listaPacientes);
+    }
+
+    public void cargarComboCedula(List<Paciente> listarPacientes) {
+        for (Paciente pacient : listaPacientes) {
+            cbxCedula.addItem(pacient.getCedula() + " - " + pacient.getApellido() + " " + pacient.getNombre());
+        }
+
     }
 
     public void cargarTablaTodosPacientes(List<Paciente> listaPacientes) {
@@ -38,10 +45,20 @@ public class AtencionMedica extends javax.swing.JFrame {
                 paciente.getApellido(),
                 paciente.getEdad(),
                 paciente.getGenero()
-
             });
         }
 
+    }
+
+    public void cargaTablaBusqueda(String cedula) {
+        Paciente paciente = new PacienteServicio().BuscarCedulaPaciente(cedula);
+        modeloTabla.addRow(new Object[]{
+            paciente.getCedula(),
+            paciente.getNombre(),
+            paciente.getApellido(),
+            paciente.getEdad(),
+            paciente.getGenero()
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -53,9 +70,10 @@ public class AtencionMedica extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPacientes = new javax.swing.JTable();
         btnAtender = new javax.swing.JButton();
-        txtCedula = new javax.swing.JTextField();
         lblCedula = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
+        cbxCedula = new javax.swing.JComboBox<>();
+        btnBuscar = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -105,13 +123,6 @@ public class AtencionMedica extends javax.swing.JFrame {
         });
         jPanel1.add(btnAtender, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, -1, -1));
 
-        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCedulaKeyPressed(evt);
-            }
-        });
-        jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 180, 30));
-
         lblCedula.setText("Busqueda por cedula");
         jPanel1.add(lblCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
@@ -122,6 +133,17 @@ public class AtencionMedica extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
+
+        cbxCedula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione un registro--", " " }));
+        jPanel1.add(cbxCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 180, -1));
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_atencionmed.jpg"))); // NOI18N
         jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 552, -1));
@@ -140,14 +162,6 @@ public class AtencionMedica extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (!txtCedula.getText().trim().equals("")) {
-
-            }
-        }
-    }//GEN-LAST:event_txtCedulaKeyPressed
-
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         dispose();
         MenuPrincipal menu = new MenuPrincipal();
@@ -160,6 +174,17 @@ public class AtencionMedica extends javax.swing.JFrame {
         consulta.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnAtenderActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (cbxCedula.getSelectedItem().equals("Todos")) {
+            listaPacientes = PacienteServicio.ListarPaciente();
+            cargarTablaTodosPacientes(listaPacientes);
+        } else {
+            String dato = cbxCedula.getSelectedItem().toString();
+            String[] cedula = dato.split("-");
+            cargaTablaBusqueda(cedula[0].trim());
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,16 +200,24 @@ public class AtencionMedica extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AtencionMedica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtencionMedica.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AtencionMedica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtencionMedica.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AtencionMedica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtencionMedica.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AtencionMedica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtencionMedica.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -198,13 +231,14 @@ public class AtencionMedica extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtender;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JComboBox<String> cbxCedula;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JTable tblPacientes;
-    private javax.swing.JTextField txtCedula;
     // End of variables declaration//GEN-END:variables
 }
