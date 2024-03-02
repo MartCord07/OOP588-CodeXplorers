@@ -1,6 +1,8 @@
 package proyecto.servicio.espe;
 
 import proyecto.dao.espe.MetodosLogin;
+import proyecto.dao.espe.MetodosPaciente;
+import proyecto.modelo.espe.Paciente;
 import proyecto.modelo.espe.Perfil;
 
 public class PacienteServicio {
@@ -11,4 +13,14 @@ public class PacienteServicio {
     public static boolean AutenticarPerfil(Perfil usuario) {
         return new MetodosLogin().AutenticarPerfil(usuario);
     }
+    
+   public static Paciente BuscarCedulaPaciente(String cedula) {
+        return new MetodosPaciente().BuscarCedulaPaciente(cedula);
+    }
+    
+    public static boolean InsertarPaciente(Paciente paciente) {
+        return new MetodosPaciente().InsertarPaciente(paciente);
+    }
+    
+   
 }
