@@ -31,7 +31,7 @@ public class MetodosPaciente implements IPaciente {
 
     private void cierreConexion() {
         try {
-            conn.getMongo().close();
+            conn.close();
         } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error al cerrar la conexión " + ex.toString());
         }

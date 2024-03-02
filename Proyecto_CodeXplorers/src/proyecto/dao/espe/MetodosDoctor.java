@@ -28,7 +28,7 @@ public class MetodosDoctor {
 
     private void cierreConexion() {
         try {
-            conn.getMongo().close();
+            conn.close();
         } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error al cerrar la conexion" + ex.toString());
         }

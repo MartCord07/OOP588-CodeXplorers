@@ -6,22 +6,22 @@ import proyecto.modelo.espe.Perfil;
 import proyecto.servicio.espe.PerfilServicio;
 
 public class LoginUsuario extends javax.swing.JFrame {
-    
+
     public LoginUsuario() {
-        
+
         initComponents();
         txtUsuario.requestFocus();
         lblErrorLogin.setVisible(false);
         lblErrorContraseña.setVisible(false);
         lblErrorUsuario.setVisible(false);
     }
-    
+
     private void LimpiarDatos() {
         txtUsuario.setText("");
         jContraseña.setText("");
         lblErrorLogin.setVisible(false);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -160,11 +160,11 @@ public class LoginUsuario extends javax.swing.JFrame {
         String contrasenaa = new String(contrasenaChars);
         Perfil LoginPerfil = new Perfil(
                 nombreUsuario, contrasenaa);
-        
+
         if (txtUsuario.getText().length() > 0 && jContraseña.getPassword().length > 0) {
             if (PerfilServicio.AutenticarPerfil(LoginPerfil)) {
                 btnAcceder.setSelected(false);
-               // this.setVisible(false);
+                this.setVisible(false);
                 LimpiarDatos();
             } else {
                 lblErrorLogin.setVisible(true);
@@ -181,7 +181,7 @@ public class LoginUsuario extends javax.swing.JFrame {
             lblErrorUsuario.setVisible(true);
             btnAcceder.setSelected(false);
         }
-        
+
     }//GEN-LAST:event_btnAccederMouseClicked
 
     private void jContraseñaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jContraseñaFocusGained

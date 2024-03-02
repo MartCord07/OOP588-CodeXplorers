@@ -7,10 +7,10 @@ import com.mongodb.client.MongoDatabase;
 import java.security.MessageDigest;
 import javax.swing.JOptionPane;
 import org.bson.Document;
-import proyecto.gui.espe.AtencionMedica;
-import proyecto.gui.espe.Usuario;
+import proyecto.vista.doctor.espe.AtencionMedica;
 import proyecto.modelo.espe.Perfil;
 import proyecto.vista.espe.inicioAdmin;
+import proyecto.vista.paciente.espe.PacienteVentana;
 
 public class MetodosLogin implements IPerfil {
 
@@ -71,7 +71,7 @@ public class MetodosLogin implements IPerfil {
 
                     switch (tipoPerfil) {
                         case 1:
-                            Usuario usuarioFrame = new Usuario();
+                          PacienteVentana usuarioFrame = new PacienteVentana();
                             usuarioFrame.setVisible(true);
                             usuarioFrame.setLocationRelativeTo(null);
                             break;
