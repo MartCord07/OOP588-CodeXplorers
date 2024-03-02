@@ -1,7 +1,9 @@
 package proyecto.dao.espe;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.MongoException;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import javax.swing.JOptionPane;
 
@@ -19,8 +21,7 @@ public class Conexion {
         return dataB;
     }
 
-    public Conexion(MongoClient mongoClient, MongoDatabase database) {
-        this.mongo = mongoClient;
+    public Conexion(MongoDatabase database) {
         this.dataB = database;
     }
 
@@ -28,14 +29,23 @@ public class Conexion {
     }
 
     public Conexion crearConexion() {
-        String servidor = "localhost";
-        int puerto = 27017;
+        String uriConexion = "mongodb+srv://maycol:CodeXplorers@codexplorers.yuuaio0.mongodb.net/test?retryWrites=true&w=majority&connectTimeoutMS=30000&socketTimeoutMS=30000";
         try {
-            mongo = new MongoClient(servidor, puerto);
-            dataB = mongo.getDatabase("PROYECTO-DB");
+            dataB = MongoClients.create(uriConexion).getDatabase("BD-PROYECTO");
         } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error en la conexión a MongoDB. Error: " + ex.toString());
         }
-        return new Conexion(mongo, dataB);
+        return new Conexion(dataB);
+    }
+
+    public void close() {
+        if (mongo != null) {
+            try {
+                mongo.close();
+                JOptionPane.showMessageDialog(null, "Conexión cerrada exitosamente.");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión a MongoDB. Error: " + ex.toString());
+            }
+        }
     }
 }

@@ -28,7 +28,7 @@ public class MetodosLogin implements IPerfil {
 
     private void cierreConexion() {
         try {
-            conn.getMongo().close();
+            conn.close();
         } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + ex.toString());
         }
