@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyecto.dao.espe;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.eq;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.bson.Document;
-import proyecto.gui.espe.Usuario;
-import proyecto.modelo.espe.Doctor;
 import proyecto.modelo.espe.Paciente;
 
 /**
@@ -53,7 +46,7 @@ public class MetodosDoctor {
                 paciente.setCedula(temp.getString("cedula"));
                 paciente.setNombre(temp.getString("nombre"));
                 paciente.setApellido(temp.getString("apellido"));
-                paciente.setFechaNacimiento(temp.getDate("fechaNacimiento"));
+                paciente.setEdad(temp.getString("edad"));
                 paciente.setGenero(temp.getString("genero"));
                 paciente.setTelefono(temp.getString("telefono"));
             }
@@ -75,7 +68,7 @@ public class MetodosDoctor {
             if (resultado != null) {
                 paciente.setNombre(resultado.getString("nombre"));
                 paciente.setApellido(resultado.getString("apellido"));
-                paciente.setFechaNacimiento(resultado.getDate("fechaNacimiento"));
+                paciente.setEdad(resultado.getString("edad"));
                 paciente.setGenero(resultado.getString("genero"));
                 paciente.setTelefono(resultado.getString("telefono"));
             }

@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyecto.modelo.espe;
 
-/**
- *
- * @author Usuario
- */
 public class Doctor {
-    
-    private String cedula,nombre,apellido,genero;
+
+    private String cedula, nombre, apellido, genero;
     private String nacimiento;
 
     public Doctor() {
@@ -69,7 +61,5 @@ public class Doctor {
     public String toString() {
         return "Doctor{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", nacimiento=" + nacimiento + '}';
     }
-    
-    
-    
+
 }
