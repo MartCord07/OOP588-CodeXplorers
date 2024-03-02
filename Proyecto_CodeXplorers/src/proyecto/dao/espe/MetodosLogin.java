@@ -4,7 +4,7 @@ import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import java.util.Random;
+import java.security.MessageDigest;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import proyecto.gui.espe.AtencionMedica;
@@ -37,23 +37,15 @@ public class MetodosLogin implements IPerfil {
     @Override
     public boolean RegistrarPerfil(Perfil Usuario) {
         boolean validar = false;
-        try{
-        Random rand = new Random();
-        int randomId = rand.nextInt(1000000); 
-    
-        Document filtro = new Document("id_perfil", randomId);
-        long contador = collection.countDocuments(filtro);
+        try {
+            String contrasenaEncriptada = encriptarContraseña(Usuario.getContrasena());
 
-        if (contador == 0) {
             Document documento = new Document("usuario", Usuario.getNombrePerfil())
-                    .append("contrasena", Usuario.getContrasena())
-                    .append("tipo_perfil", "Paciente")
-                    .append("id_perfil", randomId);
+                    .append("contrasena", contrasenaEncriptada)
+                    .append("id_perfil", 1);
             collection.insertOne(documento);
+
             validar = true;
-        } else {
-            return RegistrarPerfil(Usuario);
-        }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al registrar paciente:" + ex.toString());
             validar = false;
@@ -65,46 +57,65 @@ public class MetodosLogin implements IPerfil {
 
     @Override
     public boolean AutenticarPerfil(Perfil Usuario) {
-    boolean validar = false;
-    try {
-        Document query = new Document("usuario", Usuario.getNombrePerfil())
-                        .append("contrasena", Usuario.getContrasena());
+        boolean validar = false;
+        try {
+            String contrasenaIngresadaEncriptada = encriptarContraseña(Usuario.getContrasena());
 
-        try (MongoCursor<Document> cursor = collection.find(query).iterator()) {
-            if (cursor.hasNext()) {
-                Document usuarioAutenticado = cursor.next();
-                String tipoPerfil = usuarioAutenticado.getString("tipo_perfil");
-                
-                switch (tipoPerfil) {
-                    case "Paciente":
-                        Usuario usuarioFrame = new Usuario();
-                        usuarioFrame.setVisible(true);
-                        usuarioFrame.setLocationRelativeTo(null);
-                        break;
-                    case "Admin":
-                        inicioAdmin inicioAdminFrame = new inicioAdmin();
-                        inicioAdminFrame.setVisible(true);
-                        inicioAdminFrame.setLocationRelativeTo(null);
-                        break;
-                    case "Doctor":
-                        AtencionMedica atencionMedicaFrame = new AtencionMedica();
-                        atencionMedicaFrame.setVisible(true);
-                        atencionMedicaFrame.setLocationRelativeTo(null);
-                        break;
-                    default:
-                        JOptionPane.showMessageDialog(null, "Usuario no Existente");
-                        break;
+            Document query = new Document("usuario", Usuario.getNombrePerfil())
+                    .append("contrasena", contrasenaIngresadaEncriptada);
+
+            try (MongoCursor<Document> cursor = collection.find(query).iterator()) {
+                if (cursor.hasNext()) {
+                    Document usuarioAutenticado = cursor.next();
+                    int tipoPerfil = usuarioAutenticado.getInteger("id_perfil");
+
+                    switch (tipoPerfil) {
+                        case 1:
+                            Usuario usuarioFrame = new Usuario();
+                            usuarioFrame.setVisible(true);
+                            usuarioFrame.setLocationRelativeTo(null);
+                            break;
+                        case 2:
+                            inicioAdmin inicioAdminFrame = new inicioAdmin();
+                            inicioAdminFrame.setVisible(true);
+                            inicioAdminFrame.setLocationRelativeTo(null);
+                            break;
+                        case 3:
+                            AtencionMedica atencionMedicaFrame = new AtencionMedica();
+                            atencionMedicaFrame.setVisible(true);
+                            atencionMedicaFrame.setLocationRelativeTo(null);
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null, "Usuario no Existente");
+                            break;
+                    }
+                    validar = true;
                 }
-                validar = true; 
             }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al autenticar paciente:" + ex.toString());
+            validar = false;
+        } finally {
+            cierreConexion();
         }
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(null, "Error al autenticar paciente:" + ex.toString());
-        validar = false;
-    } finally {
-        cierreConexion();
+        return validar;
     }
-    return validar;
+
+    @Override
+    public String encriptarContraseña(String contraseña) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(contraseña.getBytes());
+            byte[] digest = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+            return sb.toString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
 }

@@ -7,4 +7,6 @@ public interface IPerfil {
     public boolean RegistrarPerfil(Perfil Usuario);
 
     public boolean AutenticarPerfil(Perfil Usuario);
+
+    public String encriptarContraseña(String contraseña);
 }
