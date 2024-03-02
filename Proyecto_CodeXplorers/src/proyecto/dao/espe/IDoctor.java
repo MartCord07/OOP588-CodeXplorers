@@ -13,7 +13,7 @@ import proyecto.modelo.espe.Paciente;
  * @author Usuario
  */
 public interface IDoctor {
-    public List<Paciente> ListarUsuario();
+    public List<Paciente> ListarPaciente();
     public Doctor BuscarCedulaPersona(String cedula);
     
     
