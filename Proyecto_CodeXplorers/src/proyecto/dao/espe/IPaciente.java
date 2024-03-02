@@ -4,7 +4,6 @@
  */
 package proyecto.dao.espe;
 
-import java.util.List;
 import proyecto.modelo.espe.Paciente;
 
 /**
@@ -12,7 +11,6 @@ import proyecto.modelo.espe.Paciente;
  * @author Victoria
  */
 public interface IPaciente {
-    public List<Paciente>ListarPaciente();
     public Paciente BuscarCedulaPaciente(String cedula);
     public boolean InsertarPaciente(Paciente paciente);
     
