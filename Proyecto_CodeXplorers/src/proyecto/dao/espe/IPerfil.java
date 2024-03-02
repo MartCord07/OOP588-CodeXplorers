@@ -8,5 +8,5 @@ public interface IPerfil {
 
     public boolean AutenticarPerfil(Perfil Usuario);
 
-    public String encriptarContraseña(String contraseña);
+    public String EncriptarContraseña(String contraseña);
 }

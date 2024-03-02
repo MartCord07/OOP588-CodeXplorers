@@ -38,7 +38,7 @@ public class MetodosLogin implements IPerfil {
     public boolean RegistrarPerfil(Perfil Usuario) {
         boolean validar = false;
         try {
-            String contrasenaEncriptada = encriptarContraseña(Usuario.getContrasena());
+            String contrasenaEncriptada = EncriptarContraseña(Usuario.getContrasena());
 
             Document documento = new Document("usuario", Usuario.getNombrePerfil())
                     .append("contrasena", contrasenaEncriptada)
@@ -59,7 +59,7 @@ public class MetodosLogin implements IPerfil {
     public boolean AutenticarPerfil(Perfil Usuario) {
         boolean validar = false;
         try {
-            String contrasenaIngresadaEncriptada = encriptarContraseña(Usuario.getContrasena());
+            String contrasenaIngresadaEncriptada = EncriptarContraseña(Usuario.getContrasena());
 
             Document query = new Document("usuario", Usuario.getNombrePerfil())
                     .append("contrasena", contrasenaIngresadaEncriptada);
@@ -102,7 +102,7 @@ public class MetodosLogin implements IPerfil {
     }
 
     @Override
-    public String encriptarContraseña(String contraseña) {
+    public String EncriptarContraseña(String contraseña) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(contraseña.getBytes());
