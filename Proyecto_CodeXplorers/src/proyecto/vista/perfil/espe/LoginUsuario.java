@@ -2,9 +2,8 @@ package proyecto.vista.perfil.espe;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-import proyecto.modelo.espe.Paciente;
 import proyecto.modelo.espe.Perfil;
-import proyecto.servicio.espe.PacienteServicio;
+import proyecto.servicio.espe.PerfilServicio;
 
 public class LoginUsuario extends javax.swing.JFrame {
     
@@ -163,7 +162,7 @@ public class LoginUsuario extends javax.swing.JFrame {
                 nombreUsuario, contrasenaa);
         
         if (txtUsuario.getText().length() > 0 && jContraseña.getPassword().length > 0) {
-            if (PacienteServicio.AutenticarPerfil(LoginPerfil)) {
+            if (PerfilServicio.AutenticarPerfil(LoginPerfil)) {
                 btnAcceder.setSelected(false);
                // this.setVisible(false);
                 LimpiarDatos();

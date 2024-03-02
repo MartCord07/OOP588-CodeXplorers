@@ -1,11 +1,9 @@
 package proyecto.vista.perfil.espe;
 
-import proyecto.vista.perfil.espe.LoginUsuario;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-import proyecto.modelo.espe.Paciente;
 import proyecto.modelo.espe.Perfil;
-import proyecto.servicio.espe.PacienteServicio;
+import proyecto.servicio.espe.PerfilServicio;
 
 public class RegistrarUsuario extends javax.swing.JFrame {
 
@@ -258,7 +256,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 Perfil RegistrarPaciente = new Perfil(
                         txtPaciente.getText(),
                         contrasenaa);
-                if (PacienteServicio.RegistrarPerfil(RegistrarPaciente)) {
+                if (PerfilServicio.RegistrarPerfil(RegistrarPaciente)) {
                     JOptionPane.showMessageDialog(rootPane, "Usuario Registrado Existosamente.");
                     LimpiarDatos();
                     this.dispose();
