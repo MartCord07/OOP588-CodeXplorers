@@ -5,15 +5,16 @@ import java.util.Date;
 
 
 public class Paciente {
-    private String cedula,nombre,apellido,genero,telefono,dia,horario;
+    private String cedula,nombre,apellido,genero,telefono,dia,horario,edad;
     private String Contraseña;
     private Date fechaNacimiento;
+    
    
 
     public Paciente() {
     }
 
-    public Paciente(String cedula, String nombre, String apellido, String genero, String telefono, String dia, String horario, String Contraseña, Date fechaNacimiento) {
+    public Paciente(String cedula, String nombre, String apellido, String genero, String telefono, String dia, String horario, String edad, String Contraseña, Date fechaNacimiento) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -21,9 +22,12 @@ public class Paciente {
         this.telefono = telefono;
         this.dia = dia;
         this.horario = horario;
+        this.edad = edad;
         this.Contraseña = Contraseña;
         this.fechaNacimiento = fechaNacimiento;
     }
+
+   
 
     public String getCedula() {
         return cedula;
@@ -97,10 +101,21 @@ public class Paciente {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public String getEdad() {
+        return edad;
+    }
+
+    public void setEdad(String edad) {
+        this.edad = edad;
+    }
+
     @Override
     public String toString() {
-        return "Paciente{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", telefono=" + telefono + ", dia=" + dia + ", horario=" + horario + ", Contrase\u00f1a=" + Contraseña + ", fechaNacimiento=" + fechaNacimiento + '}';
+        return "Paciente{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", telefono=" + telefono + ", dia=" + dia + ", horario=" + horario + ", edad=" + edad + ", Contrase\u00f1a=" + Contraseña + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
+    
+    
+
     
     
 }
