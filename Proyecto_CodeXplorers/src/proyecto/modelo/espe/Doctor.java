@@ -4,19 +4,22 @@ import java.util.Date;
 
 public class Doctor {
 
-    private String cedula, nombre, apellido, genero,edad;
+    private String cedula,nombre,apellido,genero,telefono,edad;
+    
     private Date fechaNacimiento;
 
-    public Doctor() {
-    }
-
-    public Doctor(String cedula, String nombre, String apellido, String genero, String edad, Date fechaNacimiento) {
+    public Doctor(String cedula, String nombre, String apellido, String genero, String telefono, String edad, Date fechaNacimiento) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.genero = genero;
+        this.telefono = telefono;
         this.edad = edad;
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Doctor() {
+        
     }
 
     public String getCedula() {
@@ -51,6 +54,14 @@ public class Doctor {
         this.genero = genero;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getEdad() {
         return edad;
     }
@@ -69,8 +80,10 @@ public class Doctor {
 
     @Override
     public String toString() {
-        return "Doctor{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento + '}';
+        return "Doctor{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", telefono=" + telefono + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
 
+  
+   
     
 }

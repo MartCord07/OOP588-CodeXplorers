@@ -4,7 +4,6 @@
  */
 package proyecto.dao.espe;
 
-import java.util.List;
 import proyecto.modelo.espe.Paciente;
 
 /**

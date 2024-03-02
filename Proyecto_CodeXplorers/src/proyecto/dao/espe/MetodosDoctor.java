@@ -8,12 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.bson.Document;
-import proyecto.modelo.espe.Paciente;
+import proyecto.modelo.espe.Doctor;
 
-/**
- *
- * @author Usuario
- */
+
+
 public class MetodosDoctor {
 
     MongoDatabase database;
@@ -36,13 +34,13 @@ public class MetodosDoctor {
         }
     }
 
-    public List<Paciente> ListarPaciente() {
-        List<Paciente> listaPaciente = new ArrayList<>();
+    public List<Doctor> ListarPacientes() {
+        List<Doctor> listaPaciente = new ArrayList<>();
         FindIterable<Document> documentoPaciente;
         try {
             documentoPaciente = coleccionUsuario.find();
             for (Document temp : documentoPaciente) {
-                Paciente paciente = new Paciente();
+                Doctor paciente = new Doctor();
                 paciente.setCedula(temp.getString("cedula"));
                 paciente.setNombre(temp.getString("nombre"));
                 paciente.setApellido(temp.getString("apellido"));
@@ -59,8 +57,8 @@ public class MetodosDoctor {
     }
     
 
-    public Paciente BuscarCedulaPaciente(String cedula) {
-        Paciente paciente = null;
+    public Doctor BuscarCedulaPaciente(String cedula) {
+        Doctor paciente = null;
         Document filtro = null, resultado = null;
         try {
             filtro = new Document("cedula", cedula);
@@ -80,6 +78,8 @@ public class MetodosDoctor {
         }
         return paciente;
     }
+
+    
    
 
 }

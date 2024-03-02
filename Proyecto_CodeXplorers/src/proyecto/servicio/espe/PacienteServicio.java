@@ -1,6 +1,5 @@
 package proyecto.servicio.espe;
 
-import java.util.List;
 import proyecto.dao.espe.MetodosPaciente;
 import proyecto.modelo.espe.Paciente;
 
@@ -14,8 +13,6 @@ public class PacienteServicio {
         return new MetodosPaciente().InsertarPaciente(paciente);
     }
 
-    public static List<Paciente> ListarPaciente() {
-        return new MetodosPaciente().ListarPaciente();
-    }
+
 
 }

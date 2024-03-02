@@ -5,11 +5,8 @@
 package proyecto.dao.espe;
 
 import com.mongodb.MongoException;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import proyecto.modelo.espe.Paciente;
@@ -92,27 +89,6 @@ public class MetodosPaciente implements IPaciente {
         return true;
     }
 
-    public List<Paciente> ListarPaciente() {
-        List<Paciente> listaPaciente = new ArrayList<>();
-        FindIterable<Document> documentoPaciente;
-        try {
-            documentoPaciente = coleccionUsuario.find();
-            for (Document temp : documentoPaciente) {
-                Paciente paciente = new Paciente();
-                paciente.setCedula(temp.getString("cedula"));
-                paciente.setNombre(temp.getString("nombre"));
-                paciente.setApellido(temp.getString("apellido"));
-                paciente.setEdad(temp.getString("edad"));
-                paciente.setGenero(temp.getString("genero"));
-                paciente.setTelefono(temp.getString("telefono"));
-            }
-        } catch (MongoException ex) {
-            JOptionPane.showMessageDialog(null, "Error al consultar datos" + ex.getMessage());
-        } finally {
-            cierreConexion();
-        }
-        return listaPaciente;
-
-    }
+  
 
 }

@@ -6,16 +6,16 @@ package proyecto.dao.espe;
 
 import java.util.List;
 import proyecto.modelo.espe.Doctor;
-import proyecto.modelo.espe.Paciente;
+
 
 /**
  *
  * @author Usuario
  */
 public interface IDoctor {
-    public List<Paciente> ListarPaciente();
+    public List<Doctor> ListarPaciente();
     public Doctor BuscarCedulaPaciente(String cedula);
-    public boolean InsertarHistorial(Paciente paciente);
+    public boolean InsertarHistorial(Doctor paciente);
     
     
     

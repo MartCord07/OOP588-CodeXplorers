@@ -2,8 +2,9 @@ package proyecto.vista.doctor.espe;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import proyecto.modelo.espe.Paciente;
-import proyecto.servicio.espe.PacienteServicio;
+import proyecto.modelo.espe.Doctor;
+
+
 import proyecto.vista.perfil.espe.MenuPrincipal;
 
 /**
@@ -13,52 +14,12 @@ import proyecto.vista.perfil.espe.MenuPrincipal;
 public class AtencionMedica extends javax.swing.JFrame {
 
     private DefaultTableModel modeloTabla;
-    List<Paciente> listaPacientes = null;
-
-    public AtencionMedica() {
+    List<Doctor> listaPacientes = null;
+    public static String codCedula="";
+    
+    public AtencionMedica(){
         initComponents();
-        setLocationRelativeTo(null);
-        setResizable(false);
-        cargarPaciente();
-
-    }
-
-    public void cargarPaciente() {
-        cbxCedula.setSelectedItem("Todos");
-        listaPacientes = PacienteServicio.ListarPaciente();
-        cargarTablaTodosPacientes(listaPacientes);
-        cargarComboCedula(listaPacientes);
-    }
-
-    public void cargarComboCedula(List<Paciente> listarPacientes) {
-        for (Paciente pacient : listaPacientes) {
-            cbxCedula.addItem(pacient.getCedula() + " - " + pacient.getApellido() + " " + pacient.getNombre());
-        }
-
-    }
-
-    public void cargarTablaTodosPacientes(List<Paciente> listaPacientes) {
-        for (Paciente paciente : listaPacientes) {
-            modeloTabla.addRow(new Object[]{
-                paciente.getCedula(),
-                paciente.getNombre(),
-                paciente.getApellido(),
-                paciente.getEdad(),
-                paciente.getGenero()
-            });
-        }
-
-    }
-
-    public void cargaTablaBusqueda(String cedula) {
-        Paciente paciente = new PacienteServicio().BuscarCedulaPaciente(cedula);
-        modeloTabla.addRow(new Object[]{
-            paciente.getCedula(),
-            paciente.getNombre(),
-            paciente.getApellido(),
-            paciente.getEdad(),
-            paciente.getGenero()
-        });
+        //cargarPaciente();
     }
 
     @SuppressWarnings("unchecked")
@@ -126,7 +87,7 @@ public class AtencionMedica extends javax.swing.JFrame {
         lblCedula.setText("Busqueda por cedula");
         jPanel1.add(lblCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_regresar.png"))); // NOI18N
+        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_volver48.png"))); // NOI18N
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarActionPerformed(evt);
@@ -176,14 +137,8 @@ public class AtencionMedica extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtenderActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        if (cbxCedula.getSelectedItem().equals("Todos")) {
-            listaPacientes = PacienteServicio.ListarPaciente();
-            cargarTablaTodosPacientes(listaPacientes);
-        } else {
-            String dato = cbxCedula.getSelectedItem().toString();
-            String[] cedula = dato.split("-");
-            cargaTablaBusqueda(cedula[0].trim());
-        }
+      
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
