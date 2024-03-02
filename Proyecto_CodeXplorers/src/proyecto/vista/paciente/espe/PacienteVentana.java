@@ -4,6 +4,8 @@
  */
 package proyecto.vista.paciente.espe;
 
+import com.mongodb.client.MongoCollection;
+import static com.mongodb.client.model.Filters.eq;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -13,8 +15,10 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import org.bson.Document;
 import proyecto.modelo.espe.Paciente;
 import proyecto.servicio.espe.PacienteServicio;
+import proyecto.vista.perfil.espe.LoginUsuario;
 import proyecto.vista.perfil.espe.MenuPrincipal;
 
 /**
@@ -23,6 +27,7 @@ import proyecto.vista.perfil.espe.MenuPrincipal;
  */
 public class PacienteVentana extends javax.swing.JFrame {
      private String seleccionGenero = "";
+     private MongoCollection<Document> usuario;
 
     
     public PacienteVentana() {
@@ -63,8 +68,8 @@ public class PacienteVentana extends javax.swing.JFrame {
     }
       
 
-    public void regresarMenu() {
-        MenuPrincipal menu = new MenuPrincipal();
+    public void regresarLogin() {
+        LoginUsuario menu = new LoginUsuario();
         menu.setVisible(true);
         setVisible(false);
     }
@@ -99,6 +104,7 @@ public class PacienteVentana extends javax.swing.JFrame {
         btnRegistrarCita = new javax.swing.JToggleButton();
         btnConsultarCita = new javax.swing.JToggleButton();
         btnRegresar = new javax.swing.JToggleButton();
+        btnCerrarSesion = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -109,7 +115,7 @@ public class PacienteVentana extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Britannic Bold", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 0, 255));
         jLabel1.setText("PACIENTE");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 170, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 170, -1));
         jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 220, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
@@ -207,6 +213,11 @@ public class PacienteVentana extends javax.swing.JFrame {
         btnConsultarCita.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         btnConsultarCita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/consultar icon.png"))); // NOI18N
         btnConsultarCita.setText("Consultar Cita");
+        btnConsultarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarCitaActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnConsultarCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, 180, -1));
 
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
@@ -217,7 +228,17 @@ public class PacienteVentana extends javax.swing.JFrame {
                 btnRegresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 560, -1, -1));
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 570, -1, -1));
+
+        btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/cerrar sesion icon.png"))); // NOI18N
+        btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo paciente (1).jpeg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 460, 680));
@@ -271,7 +292,7 @@ public class PacienteVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarCitaActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        regresarMenu();
+        regresarLogin();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void fechaNacimientoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaNacimientoPropertyChange
@@ -315,6 +336,18 @@ public class PacienteVentana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
+    private void btnConsultarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCitaActionPerformed
+      ConsultaPaciente consultaPac=new ConsultaPaciente();
+      consultaPac.setVisible(true);
+      setVisible(false);
+    }//GEN-LAST:event_btnConsultarCitaActionPerformed
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+      MenuPrincipal menu=new MenuPrincipal();
+      menu.setVisible(true);
+      setVisible(false);
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -352,6 +385,7 @@ public class PacienteVentana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup botones;
+    private javax.swing.JToggleButton btnCerrarSesion;
     private javax.swing.JToggleButton btnConsultarCita;
     private javax.swing.JToggleButton btnRegistrarCita;
     private javax.swing.JToggleButton btnRegresar;
