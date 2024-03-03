@@ -4,9 +4,11 @@ import java.util.Date;
 
 public class Doctor {
 
-    private String cedula,nombre,apellido,genero,telefono,edad;
-    
+    private String cedula, nombre, apellido, genero, telefono, edad;
+    private String nombreMed, descripcionMed, disponibleMed, tipoMed;
+
     private Date fechaNacimiento;
+// Consultar paciente
 
     public Doctor(String cedula, String nombre, String apellido, String genero, String telefono, String edad, Date fechaNacimiento) {
         this.cedula = cedula;
@@ -17,10 +19,52 @@ public class Doctor {
         this.edad = edad;
         this.fechaNacimiento = fechaNacimiento;
     }
+    //Consultar medicina
+
+    public Doctor(String nombreMed, String descripcionMed, String disponibleMed, String tipoMed) {
+        this.nombreMed = nombreMed;
+        this.descripcionMed = descripcionMed;
+        this.disponibleMed = disponibleMed;
+        this.tipoMed = tipoMed;
+    }
+    
 
     public Doctor() {
-        
+
     }
+
+    public String getNombreMed() {
+        return nombreMed;
+    }
+
+    public void setNombreMed(String nombreMed) {
+        this.nombreMed = nombreMed;
+    }
+
+    public String getDescripcionMed() {
+        return descripcionMed;
+    }
+
+    public void setDescripcionMed(String descripcionMed) {
+        this.descripcionMed = descripcionMed;
+    }
+
+    public String getDisponibleMed() {
+        return disponibleMed;
+    }
+
+    public void setDisponibleMed(String disponibleMed) {
+        this.disponibleMed = disponibleMed;
+    }
+
+    public String getTipoMed() {
+        return tipoMed;
+    }
+
+    public void setTipoMed(String tipoMed) {
+        this.tipoMed = tipoMed;
+    }
+    
 
     public String getCedula() {
         return cedula;
@@ -83,7 +127,4 @@ public class Doctor {
         return "Doctor{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", telefono=" + telefono + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
 
-  
-   
-    
 }

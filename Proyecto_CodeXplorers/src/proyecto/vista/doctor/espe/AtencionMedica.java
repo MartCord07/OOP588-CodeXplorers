@@ -1,47 +1,47 @@
 package proyecto.vista.doctor.espe;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyecto.modelo.espe.Doctor;
 import proyecto.servicio.espe.DoctorServicio;
-
-import proyecto.vista.perfil.espe.MenuPrincipal;
+import proyecto.vista.perfil.espe.LoginUsuario;
 
 /**
  *
  * @author Usuario
  */
 public final class AtencionMedica extends javax.swing.JFrame {
-    
+
     private DefaultTableModel modeloTabla;
     List<Doctor> listaPacientes = null;
     public static String codCedula = "";
-    
+
     public AtencionMedica() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         cargarPaciente();
     }
-    
+
     public void cargarPaciente() {
         cbxCedula.setSelectedItem("Todos");
         listaPacientes = DoctorServicio.ListarPaciente();
         cargarTablaTodosPacientes(listaPacientes);
         cargarComboCedula(listaPacientes);
     }
-    
+
     public void cargarComboCedula(List<Doctor> listarPacientes) {
         for (Doctor doc : listarPacientes) {
             cbxCedula.addItem(doc.getCedula() + " - " + doc.getApellido() + " " + doc.getNombre());
         }
     }
-    
+
     public void limpiarTabla() {
         modeloTabla = (DefaultTableModel) tblPacientes.getModel();
         modeloTabla.setRowCount(0);
     }
-    
+
     public void cargarTablaTodosPacientes(List<Doctor> listaPacientes) {
         limpiarTabla();
         for (Doctor doctor : listaPacientes) {
@@ -54,7 +54,7 @@ public final class AtencionMedica extends javax.swing.JFrame {
             });
         }
     }
-    
+
     public void cargarTablaBusqueda(String cedula) {
         limpiarTabla();
         Doctor doctor = DoctorServicio.BuscarCedulaPaciente(cedula);
@@ -64,10 +64,10 @@ public final class AtencionMedica extends javax.swing.JFrame {
             doctor.getApellido(),
             doctor.getEdad(),
             doctor.getGenero()
-        
+
         });
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -141,7 +141,7 @@ public final class AtencionMedica extends javax.swing.JFrame {
         });
         jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
 
-        cbxCedula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione un registro--", " " }));
+        cbxCedula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione un registro--", "Todos", " " }));
         jPanel1.add(cbxCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 180, -1));
 
         btnBuscar.setText("Buscar");
@@ -171,15 +171,22 @@ public final class AtencionMedica extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         dispose();
-        MenuPrincipal menu = new MenuPrincipal();
-        menu.setVisible(true);
-        menu.setLocationRelativeTo(null);
+        LoginUsuario usuario = new LoginUsuario();
+        usuario.setVisible(true);
+        usuario.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderActionPerformed
-        ConsultaPaciente consulta = new ConsultaPaciente();
-        consulta.setVisible(true);
-        setVisible(false);
+        int filaSeleccionada = tblPacientes.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            codCedula = (String) modeloTabla.getValueAt(filaSeleccionada, 0);
+            ConsultaPaciente consulta = new ConsultaPaciente();
+            consulta.setVisible(true);
+            setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un paciente");
+        }
+
     }//GEN-LAST:event_btnAtenderActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -209,21 +216,21 @@ public final class AtencionMedica extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(AtencionMedica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(AtencionMedica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(AtencionMedica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AtencionMedica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
