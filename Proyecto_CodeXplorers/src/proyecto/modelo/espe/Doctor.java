@@ -27,6 +27,10 @@ public class Doctor {
         this.disponibleMed = disponibleMed;
         this.tipoMed = tipoMed;
     }
+
+    public Doctor(String cedula) {
+        this.cedula = cedula;
+    }
     
 
     public Doctor() {

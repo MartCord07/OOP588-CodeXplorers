@@ -12,24 +12,37 @@ import proyecto.servicio.espe.DoctorServicio;
  * @author Usuario
  */
 public class ConsultaPaciente extends javax.swing.JFrame {
-Doctor paciente = null;
-String cedula = null;
 
+    String ci = null;
 
     public ConsultaPaciente() {
-        
-        
+
+        initComponents();
+
         setLocationRelativeTo(null);
         setResizable(false);
-        mostrarDatosPaciente();
+
     }
-    
-   private void mostrarDatosPaciente() {
+
+    protected void asignarPaciente(String cedula) {
+        ci = cedula;
+        System.out.println(cedula);
+        obtenerDatosPaciente(cedula);
+    }
+
+    private void obtenerDatosPaciente(String cedula) {
+        Doctor paciente1 = DoctorServicio.obtenerPacientePorCedula(cedula);
+
+        mostrarDatosPaciente(paciente1);
+    }
+
+    private void mostrarDatosPaciente(Doctor paciente) {
         txtCedula.setText(paciente.getCedula());
         txtNombre.setText(paciente.getNombre());
         txtApellido.setText(paciente.getApellido());
-       txtEdad.setText(paciente.getEdad());
-       txtGenero.setText(paciente.getGenero());
+        txtEdad.setText(paciente.getEdad());
+        txtGenero.setText(paciente.getGenero());
+
     }
 
     @SuppressWarnings("unchecked")
@@ -58,7 +71,7 @@ String cedula = null;
         jLabel13 = new javax.swing.JLabel();
         txtNombreDoc = new javax.swing.JTextField();
         txtApellidoDoc = new javax.swing.JTextField();
-        txtGeneroDoc = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
         txtEdadDoc = new javax.swing.JTextField();
         cbxEspecialidad = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
@@ -68,7 +81,9 @@ String cedula = null;
         btnHistorial = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        txtCedulaDoc = new javax.swing.JTextField();
+        cbxMedicoDisponible = new javax.swing.JComboBox<>();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabel16 = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -97,10 +112,25 @@ String cedula = null;
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Datos del paciente");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        txtCedula.setEditable(false);
+        txtCedula.setEnabled(false);
         jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 130, -1));
+
+        txtNombre.setEditable(false);
+        txtNombre.setEnabled(false);
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 130, -1));
+
+        txtApellido.setEditable(false);
+        txtApellido.setEnabled(false);
         jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 130, -1));
+
+        txtGenero.setEditable(false);
+        txtGenero.setEnabled(false);
         jPanel1.add(txtGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 150, -1));
+
+        txtEdad.setEditable(false);
+        txtEdad.setEnabled(false);
         jPanel1.add(txtEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 150, -1));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
@@ -108,39 +138,39 @@ String cedula = null;
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 700, 10));
 
         jLabel8.setText("Nombre del doctor");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
 
         jLabel9.setText("Apellido del doctor");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, -1));
 
-        jLabel10.setText("Genero del doctor");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
+        jLabel10.setText("IDE del doctor");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
 
         jLabel11.setText("Edad del doctor");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
 
         jLabel12.setText("Especialidad");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel13.setText("Datos del doctor");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
-        jPanel1.add(txtNombreDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 150, -1));
-        jPanel1.add(txtApellidoDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 150, -1));
-        jPanel1.add(txtGeneroDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 140, -1));
-        jPanel1.add(txtEdadDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, 140, -1));
+        jPanel1.add(txtNombreDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 150, -1));
+        jPanel1.add(txtApellidoDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 150, -1));
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 150, -1));
+        jPanel1.add(txtEdadDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, 150, -1));
 
         cbxEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Area Especializada", "Medico General", "Traumatologo", "Alergologo", "Dermatologo", "Otro" }));
-        jPanel1.add(cbxEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 140, -1));
+        jPanel1.add(cbxEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 150, -1));
 
         jLabel14.setText("Diagnostico");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
 
         AreaDiagnostico.setColumns(20);
         AreaDiagnostico.setRows(5);
         jScrollPane1.setViewportView(AreaDiagnostico);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 540, 100));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 440, 60));
 
         btnMedicamentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_consultamedicina.png"))); // NOI18N
         btnMedicamentos.setText("Stock Mediciamentos");
@@ -168,9 +198,15 @@ String cedula = null;
         });
         jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 680, -1, -1));
 
-        jLabel15.setText("Cedula del doctor");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
-        jPanel1.add(txtCedulaDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 150, -1));
+        jLabel15.setText("Medicos Disponibles");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
+
+        cbxMedicoDisponible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un medico", " " }));
+        jPanel1.add(cbxMedicoDisponible, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 150, -1));
+        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, -1, -1));
+
+        jLabel16.setText("Cantidadad Medicamento");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_consultamed.jpg"))); // NOI18N
         jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -191,7 +227,7 @@ String cedula = null;
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         dispose();
-        AtencionMedica atencion= new AtencionMedica();
+        AtencionMedica atencion = new AtencionMedica();
         atencion.setVisible(true);
         atencion.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
@@ -249,6 +285,7 @@ String cedula = null;
     private javax.swing.JButton btnMedicamentos;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbxEspecialidad;
+    private javax.swing.JComboBox<String> cbxMedicoDisponible;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -256,6 +293,7 @@ String cedula = null;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -267,15 +305,15 @@ String cedula = null;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtApellidoDoc;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtCedulaDoc;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtEdadDoc;
     private javax.swing.JTextField txtGenero;
-    private javax.swing.JTextField txtGeneroDoc;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreDoc;
     // End of variables declaration//GEN-END:variables

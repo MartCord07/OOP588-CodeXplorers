@@ -60,6 +60,7 @@ public final class AtencionMedica extends javax.swing.JFrame {
     public void cargarTablaBusqueda(String cedula) {
         limpiarTabla();
         Doctor doctor = DoctorServicio.BuscarCedulaPaciente(cedula);
+       
         modeloTabla.addRow(new Object[]{
             doctor.getCedula(),
             doctor.getNombre(),
@@ -68,6 +69,7 @@ public final class AtencionMedica extends javax.swing.JFrame {
             doctor.getGenero()
 
         });
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -186,13 +188,18 @@ public final class AtencionMedica extends javax.swing.JFrame {
     private void btnAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderActionPerformed
 
         int filaSeleccionada = tblPacientes.getSelectedRow();
-        if (filaSeleccionada != -1) {
+       
+        if (filaSeleccionada >= 0) {
             String cedula = tblPacientes.getValueAt(filaSeleccionada, 0).toString();
-            Doctor paciente = DoctorServicio.obtenerPacientePorCedula(cedula);
+            
+            Doctor paciente1 = DoctorServicio.obtenerPacientePorCedula(cedula);
+            
 
             ConsultaPaciente consulta = new ConsultaPaciente();
+            consulta.asignarPaciente(paciente1.getCedula());
             consulta.setVisible(true);
             setVisible(false);
+            
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione un paciente de la tabla.");
         }
@@ -202,19 +209,23 @@ public final class AtencionMedica extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         limpiarTabla();
-        if (cbxCedula.getSelectedItem() == "Todos") {
+        if(cbxCedula.getSelectedItem()=="Todos"){
             listaPacientes = DoctorServicio.ListarPaciente();
             cargarTablaTodosPacientes(listaPacientes);
-        } else {
+        }else{
+            
             String dato = cbxCedula.getSelectedItem().toString();
+           
+            
             String[] cedula = dato.split("-");
             cargarTablaBusqueda(cedula[0].trim());
+            
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tblPacientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblPacientesKeyPressed
-
+        System.out.println("prueba");
     }//GEN-LAST:event_tblPacientesKeyPressed
 
     /**

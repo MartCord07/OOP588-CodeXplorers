@@ -4,6 +4,7 @@ import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -58,11 +59,13 @@ public class MetodosDoctor {
     }
 
     public Doctor BuscarCedulaPaciente(String cedula) {
-        Doctor paciente = null;
-        Document filtro = null, resultado = null;
+        //Doctor paciente = null ;
+        Doctor paciente = new Doctor(cedula);
+        
         try {
-            filtro = new Document("cedula", cedula);
-            resultado = (Document) coleccionUsuario.find(filtro).first();
+            Document filtro = new Document("cedula", cedula);
+            Document resultado = (Document) coleccionUsuario.find(filtro).first();
+           
 
             if (resultado != null) {
                 paciente.setNombre(resultado.getString("nombre"));
@@ -71,6 +74,7 @@ public class MetodosDoctor {
                 paciente.setGenero(resultado.getString("genero"));
                 paciente.setTelefono(resultado.getString("telefono"));
             }
+
         } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error al consultar por cedula");
         } finally {
