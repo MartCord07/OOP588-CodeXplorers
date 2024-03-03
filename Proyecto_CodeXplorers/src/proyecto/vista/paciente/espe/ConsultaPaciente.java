@@ -4,17 +4,30 @@
  */
 package proyecto.vista.paciente.espe;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import proyecto.modelo.espe.Paciente;
+import proyecto.servicio.espe.PacienteServicio;
+import proyecto.vista.perfil.espe.MenuPrincipal;
+
 /**
  *
  * @author HP
  */
 public class ConsultaPaciente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ConsultaPaciente
-     */
+    private DefaultTableModel modeloTabla;
+    Paciente paciente = new Paciente();
+
     public ConsultaPaciente() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+    }
+
+    public void limpiarTabla() {
+        modeloTabla = (DefaultTableModel) tabla.getModel();
+        modeloTabla.setRowCount(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -26,10 +39,10 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
+        txtCedula = new javax.swing.JTextField();
+        btnConsultar = new javax.swing.JToggleButton();
+        btnRegresar = new javax.swing.JToggleButton();
+        btnCerrarSesion = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,7 +60,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cédula", "Nombre", "Apellido", "Género", "Fecha de Nacimiento", "Edad ", "Teléfono", "Día", "Horario"
+                "Cédula", "Nombre", "Apellido", "Género", "Teléfono", "Fecha de Nacimiento", "Edad ", "Día", "Horario"
             }
         ) {
             Class[] types = new Class [] {
@@ -72,19 +85,34 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel3.setText("Ingrese su cédula");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 180, -1));
+        jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 180, -1));
 
-        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jToggleButton1.setText("Consultar");
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, -1, -1));
+        btnConsultar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, -1, -1));
 
-        jToggleButton2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jToggleButton2.setText("Regresar");
-        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        btnRegresar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
-        jToggleButton3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jToggleButton3.setText("Cerrar Sesión");
-        jPanel1.add(jToggleButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, -1, -1));
+        btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/Fondo consultarPaciente (1).jpeg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 280));
@@ -95,7 +123,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -108,6 +136,42 @@ public class ConsultaPaciente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        PacienteVentana pacVentana = new PacienteVentana();
+        pacVentana.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        if(!txtCedula.getText().trim().equals("")) {
+        limpiarTabla();
+        paciente = new PacienteServicio().BuscarCedulaPaciente(txtCedula.getText());
+        if(paciente != null) {
+            modeloTabla.addRow(new Object[]{
+                paciente.getCedula(),
+                paciente.getNombre(),
+                paciente.getApellido(),
+                paciente.getGenero(),
+                paciente.getTelefono(),
+                paciente.getFechaNacimiento(),
+                paciente.getEdad(),
+                paciente.getDia(),
+                paciente.getHorario()
+            });
+        } else {
+            JOptionPane.showMessageDialog(null, "No existe una cita registrada con esa cédula");
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Ingrese la cédula");
+    }
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,15 +209,15 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnCerrarSesion;
+    private javax.swing.JToggleButton btnConsultar;
+    private javax.swing.JToggleButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JTable tabla;
+    private javax.swing.JTextField txtCedula;
     // End of variables declaration//GEN-END:variables
 }
