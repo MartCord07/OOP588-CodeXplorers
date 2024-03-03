@@ -10,19 +10,19 @@ import javax.swing.JOptionPane;
 import org.bson.Document;
 import proyecto.modelo.espe.Doctor;
 
-
-
 public class MetodosDoctor {
 
     MongoDatabase database;
     Conexion conn = new Conexion();
     private MongoCollection coleccionUsuario;
+    private MongoCollection coleccionMedicina;
 
     public MetodosDoctor() {
         if (conn != null) {
             this.conn = conn.crearConexion();
             this.database = conn.getDataB();
             this.coleccionUsuario = database.getCollection("usuario");
+            this.coleccionMedicina=database.getCollection("medicamentos");
         }
     }
 
@@ -46,7 +46,8 @@ public class MetodosDoctor {
                 paciente.setApellido(temp.getString("apellido"));
                 paciente.setEdad(temp.getString("edad"));
                 paciente.setGenero(temp.getString("genero"));
-                paciente.setTelefono(temp.getString("telefono"));
+
+                listaPaciente.add(paciente); // Agregar paciente a la lista
             }
         } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error al consultar datos" + ex.getMessage());
@@ -55,7 +56,6 @@ public class MetodosDoctor {
         }
         return listaPaciente;
     }
-    
 
     public Doctor BuscarCedulaPaciente(String cedula) {
         Doctor paciente = null;
@@ -71,15 +71,33 @@ public class MetodosDoctor {
                 paciente.setGenero(resultado.getString("genero"));
                 paciente.setTelefono(resultado.getString("telefono"));
             }
-        }catch(MongoException ex){
+        } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error al consultar por cedula");
-        }finally{
+        } finally {
             cierreConexion();
         }
         return paciente;
     }
-
     
-   
+    public Doctor BuscarNombreMedicina(String nombreMed){
+        Doctor medicina = null;
+        Document filtro = null, resultado = null;
+        try{
+            filtro = new Document("nombreMed", nombreMed);
+            resultado = (Document)coleccionMedicina.find(filtro).first();
+            
+            if(resultado !=null){
+                medicina.setNombreMed(resultado.getString("nombreMed"));
+                medicina.setDescripcionMed(resultado.getString("descripcionMed"));
+                medicina.setDisponibleMed(resultado.getString("disponibleMed"));
+                medicina.setTipoMed(resultado.getString("tipoMed"));
+            }
+        }catch (MongoException ex){
+            JOptionPane.showMessageDialog(null, "Error al consultar medicamento");
+        }finally{
+            cierreConexion();
+        }
+        return medicina;
+    }
 
 }
