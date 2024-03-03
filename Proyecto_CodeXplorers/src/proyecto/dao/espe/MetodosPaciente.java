@@ -72,12 +72,12 @@ public class MetodosPaciente implements IPaciente {
             documento = new Document("cedula", paciente.getCedula())
                     .append("nombre", paciente.getNombre())
                     .append("apellido", paciente.getApellido())
-                    .append("fecha_nacimiento", paciente.getFechaNacimiento())
+                    .append("fechaNacimiento", paciente.getFechaNacimiento())
                     .append("edad", paciente.getEdad())
                     .append("genero", paciente.getGenero())
                     .append("telefono", paciente.getTelefono())
                     .append("dia", paciente.getDia())
-                    .append("horaria", paciente.getHorario());
+                    .append("horario", paciente.getHorario());
 
             coleccionUsuario.insertOne(documento);
 
