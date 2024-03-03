@@ -7,6 +7,8 @@ import proyecto.servicio.espe.PerfilServicio;
 
 public class LoginUsuario extends javax.swing.JFrame {
 
+    public static String codCedula = "";
+
     public LoginUsuario() {
 
         initComponents();
@@ -163,6 +165,7 @@ public class LoginUsuario extends javax.swing.JFrame {
 
         if (txtUsuario.getText().length() > 0 && jContraseña.getPassword().length > 0) {
             if (PerfilServicio.AutenticarPerfil(LoginPerfil)) {
+                codCedula = txtUsuario.getText();
                 btnAcceder.setSelected(false);
                 this.setVisible(false);
                 LimpiarDatos();
