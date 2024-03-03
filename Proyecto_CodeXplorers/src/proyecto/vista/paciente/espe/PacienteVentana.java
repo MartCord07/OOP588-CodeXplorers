@@ -14,6 +14,8 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import proyecto.modelo.espe.Paciente;
@@ -23,16 +25,18 @@ import proyecto.vista.perfil.espe.MenuPrincipal;
 
 /**
  *
- * @author HP
+ * @author Victoria
  */
 public class PacienteVentana extends javax.swing.JFrame {
-     private String seleccionGenero = "";
-     private MongoCollection<Document> usuario;
 
+    private String seleccionGenero = "";
+    private MongoCollection<Document> usuario;
     
+
     public PacienteVentana() {
         initComponents();
         setResizable(false);
+        setLocationRelativeTo(null);
         botones.add(masculino);
         botones.add(femenino);
         masculino.addActionListener(new ActionListener() {
@@ -48,14 +52,16 @@ public class PacienteVentana extends javax.swing.JFrame {
                 seleccionGenero = "F";
             }
         });
-         
+
     }
+
     public int calcularEdad(Date fechaNacimiento) {
         LocalDate fechaNac = fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate fechaActual = LocalDate.now();
         return Period.between(fechaNac, fechaActual).getYears();
     }
-     public void limpiarDatos() {
+
+    public void limpiarDatos() {
         txtCedula.setText("");
         txtNombre.setText("");
         txtApellido.setText("");
@@ -64,9 +70,8 @@ public class PacienteVentana extends javax.swing.JFrame {
         cbmHorario.setSelectedIndex(0);
         cmbDia.setSelectedIndex(0);
         botones.clearSelection();
-        
+
     }
-      
 
     public void regresarLogin() {
         LoginUsuario menu = new LoginUsuario();
@@ -74,7 +79,6 @@ public class PacienteVentana extends javax.swing.JFrame {
         setVisible(false);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -263,12 +267,16 @@ public class PacienteVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCitaActionPerformed
-        if (!txtCedula.getText().equals("") && !txtApellido.getText().trim().equals("")
-                && !txtNombre.getText().trim().equals("") && !txtApellido.getText().trim().equals("")
+
+        if ( !txtCedula.getText().equals("") && !txtApellido.getText().trim().equals("")
+                && !txtNombre.getText().trim().equals("") 
                 && !txtTelefono.getText().trim().equals("") && !txtEdad.getText().trim().equals("")
-                && JOptionPane.showConfirmDialog(this, "seguro de guardar los datos", "ingreso de datos",
-                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
-            
+                && JOptionPane.showConfirmDialog(this, "¿Seguro de guardar los datos?", "Ingreso de Datos",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == 0
+                && (masculino.isSelected() || femenino.isSelected())
+                && cmbDia.getSelectedIndex() != 0
+                && cbmHorario.getSelectedIndex() != 0) {
+
             Paciente insertarPaciente = new Paciente(
                     txtCedula.getText(),
                     txtNombre.getText(),
@@ -277,18 +285,22 @@ public class PacienteVentana extends javax.swing.JFrame {
                     txtTelefono.getText(),
                     cmbDia.getSelectedItem().toString(),
                     cbmHorario.getSelectedItem().toString(),
-                    txtEdad.getText(),  
+                    txtEdad.getText(),
                     fechaNacimiento.getDate()
             );
-            if(PacienteServicio.InsertarPaciente(insertarPaciente)){
+
+            if (PacienteServicio.InsertarPaciente(insertarPaciente)) {
                 JOptionPane.showMessageDialog(null, "Cita registrada correctamente");
                 limpiarDatos();
-
-            }else{
-                JOptionPane.showMessageDialog(null, "error al registrar cita");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al registrar cita");
             }
-       
+            
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos para registrar la cita");
         }
+
     }//GEN-LAST:event_btnRegistrarCitaActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -310,7 +322,7 @@ public class PacienteVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_fechaNacimientoPropertyChange
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-         char validacionNombre = evt.getKeyChar();
+        char validacionNombre = evt.getKeyChar();
         if (Character.isDigit(validacionNombre)) {
             getToolkit().beep();
             evt.consume();
@@ -328,7 +340,7 @@ public class PacienteVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApellidoKeyTyped
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-         char validacionTelefono = evt.getKeyChar();
+        char validacionTelefono = evt.getKeyChar();
         if (Character.isLetter(validacionTelefono)) {
             getToolkit().beep();
             evt.consume();
@@ -337,15 +349,15 @@ public class PacienteVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void btnConsultarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCitaActionPerformed
-      ConsultaPaciente consultaPac=new ConsultaPaciente();
-      consultaPac.setVisible(true);
-      setVisible(false);
+        ConsultaPaciente consultaPac = new ConsultaPaciente();
+        consultaPac.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnConsultarCitaActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-      MenuPrincipal menu=new MenuPrincipal();
-      menu.setVisible(true);
-      setVisible(false);
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     /**
