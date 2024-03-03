@@ -87,8 +87,9 @@ public class MetodosDoctor {
             resultado = (Document)coleccionMedicina.find(filtro).first();
             
             if(resultado !=null){
+                medicina = new Doctor();
                 medicina.setNombreMed(resultado.getString("nombreMed"));
-                medicina.setDescripcionMed(resultado.getString("descripcionMed"));
+                medicina.setDescripcionMed(resultado.getString("descrpicionMed"));
                 medicina.setDisponibleMed(resultado.getString("disponibleMed"));
                 medicina.setTipoMed(resultado.getString("tipoMed"));
             }
