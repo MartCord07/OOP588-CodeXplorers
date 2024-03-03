@@ -6,7 +6,7 @@ import proyecto.modelo.espe.Perfil;
 import proyecto.servicio.espe.PerfilServicio;
 
 public class RegistrarUsuario extends javax.swing.JFrame {
-
+    
     public RegistrarUsuario() {
         initComponents();
         txtPaciente.requestFocus();
@@ -15,7 +15,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         lblmsconfcontra.setVisible(false);
         lblmscontra.setVisible(false);
     }
-
+    
     private void LimpiarDatos() {
         lblMensajeError.setVisible(false);
         txtPaciente.setText("");
@@ -23,13 +23,47 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         jConfContrasena.setText("");
         btnRegistrarUsuario.setSelected(false);
     }
-
+    
     private void LimpiarRepetido() {
         txtPaciente.setText("");
         btnRegistrarUsuario.setSelected(false);
-        txtPaciente.requestFocus();
     }
-
+    
+    public static boolean validarcedula(String input) {
+        
+        if (input.matches("\\d{10}")) {
+            int[] A = new int[10];
+            int sumpares = 0, sumimpar = 0, s, mul, sumat;
+            
+            for (int i = 0; i < 10; i++) {
+                A[i] = Character.getNumericValue(input.charAt(i));
+            }
+            
+            for (int i = 0; i < 9; i += 2) {
+                mul = A[i] * 2;
+                if (mul > 9) {
+                    mul -= 9;
+                }
+                sumpares += mul;
+            }
+            
+            for (int i = 1; i < 9; i += 2) {
+                sumimpar += A[i];
+            }
+            
+            sumat = sumpares + sumimpar;
+            s = 10 - (sumat % 10);
+            
+            if (s == 10) {
+                s = 0;
+            }
+            
+            return s == A[9];
+        } else {
+            return false;
+        }
+    }
+    
     private boolean verificarDatos() {
         boolean validar = false;
         if ((txtPaciente.getText().length() > 0) && (jContrasena.getPassword().length > 0) && (jConfContrasena.getPassword().length > 0)) {
@@ -37,7 +71,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         }
         return validar;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -69,7 +103,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         jDesktopRegistro.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 58, 189, 62));
 
         lblUsuario.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        lblUsuario.setText("Usuario");
+        lblUsuario.setText("Cédula");
         jDesktopRegistro.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 156, 70, 28));
 
         lblContra.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
@@ -92,6 +126,9 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         txtPaciente.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtPacienteFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPacienteFocusLost(evt);
             }
         });
         txtPaciente.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -187,10 +224,10 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         if ((txtPaciente.getText().length() > 0) && (jContrasena.getPassword().length > 0) && (jConfContrasena.getPassword().length > 0)) {
             char[] contrasenaChars = jContrasena.getPassword();
             char[] confirmarContrasenaChars = jConfContrasena.getPassword();
-
+            
             String contrasenaa = new String(contrasenaChars);
             String confirmarContrasena = new String(confirmarContrasenaChars);
-
+            
             if (contrasenaa.equals(confirmarContrasena)) {
                 Perfil RegistrarPaciente = new Perfil(
                         txtPaciente.getText(),
@@ -204,7 +241,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                     logueo.setLocationRelativeTo(null);
                 } else {
                     LimpiarRepetido();
-                    JOptionPane.showMessageDialog(null, "Error al Registrar, intente nuevamente.");
+                    JOptionPane.showMessageDialog(null, "La cédula ya esta registrada, ingresa otra cédula.");
                 }
             } else {
                 lblMensajeError.setVisible(true);
@@ -246,7 +283,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             evt.consume();
             JOptionPane.showMessageDialog(null, "Se alcanzo el limite de carácteres permitidos.");
         }
-        if (Character.isDigit(validacionPaciente)) {
+        if (Character.isLetter(validacionPaciente)) {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null, "Ingrese solo letras");
@@ -287,13 +324,20 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         if (new String(jConfContrasena.getPassword()).length() >= 40) {
             evt.consume();
             JOptionPane.showMessageDialog(null, "Se alcanzo el limite de carácteres permitidos.");
-
+            
         }
     }//GEN-LAST:event_jConfContrasenaKeyTyped
 
     private void txtPacienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPacienteFocusGained
         lblmsusuario.setVisible(false);
     }//GEN-LAST:event_txtPacienteFocusGained
+
+    private void txtPacienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPacienteFocusLost
+        if (!validarcedula(txtPaciente.getText().trim())) {
+            JOptionPane.showMessageDialog(null, "Ingrese una cédula valida.");
+            txtPaciente.requestFocus();
+        }
+    }//GEN-LAST:event_txtPacienteFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnRegistrarUsuario;

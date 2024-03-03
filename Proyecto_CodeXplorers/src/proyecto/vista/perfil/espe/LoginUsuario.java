@@ -50,7 +50,7 @@ public class LoginUsuario extends javax.swing.JFrame {
         DesktopLogin.add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 290, -1));
 
         lblUsuario.setFont(new java.awt.Font("Cooper Black", 2, 14)); // NOI18N
-        lblUsuario.setText("Usuario:");
+        lblUsuario.setText("Cédula:");
         DesktopLogin.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(573, 84, 76, -1));
 
         lblContraseña.setFont(new java.awt.Font("Cooper Black", 2, 14)); // NOI18N
@@ -209,7 +209,7 @@ public class LoginUsuario extends javax.swing.JFrame {
             evt.consume();
             JOptionPane.showMessageDialog(null, "Se alcanzo el limite de carácteres permitidos.");
         }
-        if (Character.isDigit(validacionPaciente)) {
+        if (Character.isLetter(validacionPaciente)) {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null, "Ingrese solo letras");

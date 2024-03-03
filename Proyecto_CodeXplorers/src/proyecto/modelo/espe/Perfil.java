@@ -4,8 +4,8 @@ package proyecto.modelo.espe;
 
 public class Perfil {
     private int id_Perfil;
-    private String nombrePerfil;
-    private String tipo_perfil;
+    private String cedulaPerfil;
+    private String rol_perfil;
     private String contrasena;
 
     public Perfil() {
@@ -13,13 +13,13 @@ public class Perfil {
 
     public Perfil(int idPerfil, String nombrePerfil, String tipoPerfil, String contrasena) {
         this.id_Perfil = idPerfil;
-        this.nombrePerfil = nombrePerfil;
-        this.tipo_perfil = tipoPerfil;
+        this.cedulaPerfil = nombrePerfil;
+        this.rol_perfil = tipoPerfil;
         this.contrasena = contrasena;
     }
 
     public Perfil(String nombrePerfil, String contrasena) {
-        this.nombrePerfil = nombrePerfil;
+        this.cedulaPerfil = nombrePerfil;
         this.contrasena = contrasena;
     }
     
@@ -32,20 +32,20 @@ public class Perfil {
         this.id_Perfil = idPerfil;
     }
 
-    public String getNombrePerfil() {
-        return nombrePerfil;
+    public String getCedulaPerfil() {
+        return cedulaPerfil;
     }
 
-    public void setNombrePerfil(String nombrePerfil) {
-        this.nombrePerfil = nombrePerfil;
+    public void setCedulaPerfil(String nombrePerfil) {
+        this.cedulaPerfil = nombrePerfil;
     }
 
     public String getTipoPerfil() {
-        return tipo_perfil;
+        return rol_perfil;
     }
 
     public void setTipoPerfil(String tipoPerfil) {
-        this.tipo_perfil = tipoPerfil;
+        this.rol_perfil = tipoPerfil;
     }
 
     public String getContrasena() {
@@ -58,7 +58,7 @@ public class Perfil {
 
     @Override
     public String toString() {
-        return "Perfil{" + "idPerfil=" + id_Perfil + ", nombrePerfil=" + nombrePerfil + ", tipoPerfil=" + tipo_perfil + ", contrasena=" + contrasena + '}';
+        return "Perfil{" + "idPerfil=" + id_Perfil + ", nombrePerfil=" + cedulaPerfil + ", tipoPerfil=" + rol_perfil + ", contrasena=" + contrasena + '}';
     }
     
     

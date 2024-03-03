@@ -36,16 +36,22 @@ public class MetodosLogin implements IPerfil {
 
     @Override
     public boolean RegistrarPerfil(Perfil Usuario) {
+        Document filtro = new Document("cedula_Perfil", Usuario.getCedulaPerfil());
+        long contador = collection.countDocuments(filtro);
         boolean validar = false;
         try {
-            String contrasenaEncriptada = EncriptarContraseña(Usuario.getContrasena());
+            if (contador == 0) {
+                String contrasenaEncriptada = EncriptarContraseña(Usuario.getContrasena());
 
-            Document documento = new Document("usuario", Usuario.getNombrePerfil())
-                    .append("contrasena", contrasenaEncriptada)
-                    .append("id_perfil", 1);
-            collection.insertOne(documento);
-
-            validar = true;
+                Document documento = new Document("cedula_Perfil", Usuario.getCedulaPerfil())                     
+                        .append("contrasena_Perfil", contrasenaEncriptada)
+                        .append("rol_Perfil", "Paciente")
+                        .append("id_Perfil", 1);
+                collection.insertOne(documento);
+                validar = true;
+            } else {
+                validar = false;
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al registrar paciente:" + ex.toString());
             validar = false;
@@ -61,17 +67,17 @@ public class MetodosLogin implements IPerfil {
         try {
             String contrasenaIngresadaEncriptada = EncriptarContraseña(Usuario.getContrasena());
 
-            Document query = new Document("usuario", Usuario.getNombrePerfil())
-                    .append("contrasena", contrasenaIngresadaEncriptada);
+            Document query = new Document("cedula_Perfil", Usuario.getCedulaPerfil())
+                    .append("contrasena_Perfil", contrasenaIngresadaEncriptada);
 
             try (MongoCursor<Document> cursor = collection.find(query).iterator()) {
                 if (cursor.hasNext()) {
                     Document usuarioAutenticado = cursor.next();
-                    int tipoPerfil = usuarioAutenticado.getInteger("id_perfil");
+                    int tipoPerfil = usuarioAutenticado.getInteger("id_Perfil");
 
                     switch (tipoPerfil) {
                         case 1:
-                          PacienteVentana usuarioFrame = new PacienteVentana();
+                            PacienteVentana usuarioFrame = new PacienteVentana();
                             usuarioFrame.setVisible(true);
                             usuarioFrame.setLocationRelativeTo(null);
                             break;
