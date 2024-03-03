@@ -164,8 +164,8 @@ public class LoginUsuario extends javax.swing.JFrame {
                 nombreUsuario, contrasenaa);
 
         if (txtUsuario.getText().length() > 0 && jContraseña.getPassword().length > 0) {
-            if (PerfilServicio.AutenticarPerfil(LoginPerfil)) {
-                codCedula = txtUsuario.getText();
+            codCedula = txtUsuario.getText();
+            if (PerfilServicio.AutenticarPerfil(LoginPerfil)) {             
                 btnAcceder.setSelected(false);
                 this.setVisible(false);
                 LimpiarDatos();
