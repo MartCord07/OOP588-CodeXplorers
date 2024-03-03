@@ -39,29 +39,30 @@ public class MetodosPaciente implements IPaciente {
 
     @Override
     public Paciente BuscarCedulaPaciente(String cedula) {
-        Paciente paciente = null;
-        Document filtro = null, resultado = null;
-        try {
-            filtro = new Document("cedula", cedula);
-            resultado = (Document) coleccionUsuario.find(filtro).first();
+    Paciente paciente = null;
+    Document filtro = null, resultado = null;
+    try {
+        filtro = new Document("cedula", cedula);
+        resultado = (Document) coleccionUsuario.find(filtro).first();
 
-            if (resultado != null) {
-                paciente.setNombre(resultado.getString("nombre"));
-                paciente.setApellido(resultado.getString("apellido"));
-                paciente.setFechaNacimiento(resultado.getDate("fechaNacimiento"));
-                paciente.setEdad(resultado.getString("edad"));
-                paciente.setGenero(resultado.getString("genero"));
-                paciente.setTelefono(resultado.getString("telefono"));
-                paciente.setDia(resultado.getString("dia"));
-                paciente.setHorario(resultado.getString("horario"));
-            }
-        } catch (MongoException ex) {
-            JOptionPane.showMessageDialog(null, "Error al consultar por cedula");
-        } finally {
-            cierreConexion();
+        if (resultado != null) {
+            paciente = new Paciente();  // Inicializa el objeto paciente antes de asignar valores
+            paciente.setCedula(resultado.getString("cedula"));
+            paciente.setNombre(resultado.getString("nombre"));
+            paciente.setApellido(resultado.getString("apellido"));
+            paciente.setFechaNacimiento(resultado.getDate("fechaNacimiento"));
+            paciente.setEdad(resultado.getString("edad"));
+            paciente.setGenero(resultado.getString("genero"));
+            paciente.setTelefono(resultado.getString("telefono"));
+            paciente.setDia(resultado.getString("dia"));
+            paciente.setHorario(resultado.getString("horario"));
         }
-        return paciente;
-
+    } catch (MongoException ex) {
+        JOptionPane.showMessageDialog(null, "Error al consultar por cedula");
+    } finally {
+        cierreConexion();
+    }
+    return paciente;
     }
 
     @Override
@@ -88,7 +89,5 @@ public class MetodosPaciente implements IPaciente {
         }
         return true;
     }
-
-  
 
 }
