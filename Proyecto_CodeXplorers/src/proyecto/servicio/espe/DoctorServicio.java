@@ -20,5 +20,9 @@ public class DoctorServicio {
     public static Doctor BuscarNombreMedicina(String nombreMed){
         return new MetodosDoctor().BuscarNombreMedicina(nombreMed);
     }
+     public static Doctor obtenerPacientePorCedula(String cedula) {
+        return new MetodosDoctor().BuscarCedulaPaciente(cedula);
+    }
+
     
 }

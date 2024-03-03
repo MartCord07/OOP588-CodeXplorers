@@ -4,16 +4,32 @@
  */
 package proyecto.vista.doctor.espe;
 
+import proyecto.modelo.espe.Doctor;
+import proyecto.servicio.espe.DoctorServicio;
+
 /**
  *
  * @author Usuario
  */
 public class ConsultaPaciente extends javax.swing.JFrame {
+Doctor paciente = null;
+String cedula = null;
+
 
     public ConsultaPaciente() {
-        initComponents();
+        
+        
         setLocationRelativeTo(null);
         setResizable(false);
+        mostrarDatosPaciente();
+    }
+    
+   private void mostrarDatosPaciente() {
+        txtCedula.setText(paciente.getCedula());
+        txtNombre.setText(paciente.getNombre());
+        txtApellido.setText(paciente.getApellido());
+       txtEdad.setText(paciente.getEdad());
+       txtGenero.setText(paciente.getGenero());
     }
 
     @SuppressWarnings("unchecked")
