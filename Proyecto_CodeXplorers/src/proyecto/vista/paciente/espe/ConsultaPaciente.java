@@ -12,7 +12,7 @@ import proyecto.vista.perfil.espe.MenuPrincipal;
 
 /**
  *
- * @author HP
+ * @author Victoria
  */
 public class ConsultaPaciente extends javax.swing.JFrame {
 
@@ -85,6 +85,12 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel3.setText("Ingrese su cédula");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 180, -1));
 
         btnConsultar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
@@ -172,6 +178,15 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Ingrese la cédula");
     }
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        char validacion = evt.getKeyChar();
+        if (Character.isLetter(validacion)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo digitos");
+        }
+    }//GEN-LAST:event_txtCedulaKeyTyped
 
     /**
      * @param args the command line arguments
