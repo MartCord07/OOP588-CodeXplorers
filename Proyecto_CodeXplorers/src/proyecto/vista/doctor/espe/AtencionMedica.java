@@ -1,5 +1,6 @@
 package proyecto.vista.doctor.espe;
 
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +17,7 @@ public final class AtencionMedica extends javax.swing.JFrame {
     private DefaultTableModel modeloTabla;
     List<Doctor> listaPacientes = null;
     public static String codCedula = "";
+    Doctor paciente = new Doctor();
 
     public AtencionMedica() {
         initComponents();
@@ -110,6 +112,11 @@ public final class AtencionMedica extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblPacientes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblPacientesKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPacientes);
         if (tblPacientes.getColumnModel().getColumnCount() > 0) {
             tblPacientes.getColumnModel().getColumn(0).setResizable(false);
@@ -177,15 +184,19 @@ public final class AtencionMedica extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderActionPerformed
+
         int filaSeleccionada = tblPacientes.getSelectedRow();
-        if (filaSeleccionada >= 0) {
-            codCedula = (String) modeloTabla.getValueAt(filaSeleccionada, 0);
+        if (filaSeleccionada != -1) {
+            String cedula = tblPacientes.getValueAt(filaSeleccionada, 0).toString();
+            Doctor paciente = DoctorServicio.obtenerPacientePorCedula(cedula);
+
             ConsultaPaciente consulta = new ConsultaPaciente();
             consulta.setVisible(true);
             setVisible(false);
-        }else{
-            JOptionPane.showMessageDialog(null, "Seleccione un paciente");
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un paciente de la tabla.");
         }
+
 
     }//GEN-LAST:event_btnAtenderActionPerformed
 
@@ -201,6 +212,10 @@ public final class AtencionMedica extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tblPacientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblPacientesKeyPressed
+
+    }//GEN-LAST:event_tblPacientesKeyPressed
 
     /**
      * @param args the command line arguments

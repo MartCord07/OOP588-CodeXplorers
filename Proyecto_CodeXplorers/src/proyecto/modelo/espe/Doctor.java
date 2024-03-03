@@ -5,7 +5,7 @@ import java.util.Date;
 public class Doctor {
 
     private String cedula, nombre, apellido, genero, telefono, edad;
-    private String nombreMed, descripcionMed, disponibleMed, tipoMed;
+    private String nombreMed, descrpicionMed, disponibleMed, tipoMed;
 
     private Date fechaNacimiento;
 // Consultar paciente
@@ -23,7 +23,7 @@ public class Doctor {
 
     public Doctor(String nombreMed, String descripcionMed, String disponibleMed, String tipoMed) {
         this.nombreMed = nombreMed;
-        this.descripcionMed = descripcionMed;
+        this.descrpicionMed = descripcionMed;
         this.disponibleMed = disponibleMed;
         this.tipoMed = tipoMed;
     }
@@ -42,11 +42,11 @@ public class Doctor {
     }
 
     public String getDescripcionMed() {
-        return descripcionMed;
+        return descrpicionMed;
     }
 
     public void setDescripcionMed(String descripcionMed) {
-        this.descripcionMed = descripcionMed;
+        this.descrpicionMed = descripcionMed;
     }
 
     public String getDisponibleMed() {
