@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import org.bson.Document;
 import proyecto.vista.doctor.espe.AtencionMedica;
 import proyecto.modelo.espe.Perfil;
-import proyecto.vista.espe.inicioAdmin;
+import proyecto.vista.admin.espe.inicioAdmin;
 import proyecto.vista.paciente.espe.PacienteVentana;
 
 public class MetodosLogin implements IPerfil {
