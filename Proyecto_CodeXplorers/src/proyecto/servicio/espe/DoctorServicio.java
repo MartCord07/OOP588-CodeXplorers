@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package proyecto.servicio.espe;
 
 import java.util.List;
@@ -20,9 +17,14 @@ public class DoctorServicio {
     public static Doctor BuscarNombreMedicina(String nombreMed){
         return new MetodosDoctor().BuscarNombreMedicina(nombreMed);
     }
-     public static Doctor obtenerPacientePorCedula(String cedula) {
-        return new MetodosDoctor().BuscarCedulaPaciente(cedula);
-    }
-
+    
+    
+     public static List<Doctor> BuscarDoctor(String especialidad){
+         return new MetodosDoctor().BuscarDoctor(especialidad);
+     }
+     public static List<Doctor>ListarDoctores(){
+         return new MetodosDoctor().ListarDoctores();
+     }
+     
     
 }

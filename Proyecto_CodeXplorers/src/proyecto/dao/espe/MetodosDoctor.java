@@ -17,13 +17,15 @@ public class MetodosDoctor {
     Conexion conn = new Conexion();
     private MongoCollection coleccionUsuario;
     private MongoCollection coleccionMedicina;
+    private MongoCollection coleccionDoctor;
 
     public MetodosDoctor() {
         if (conn != null) {
             this.conn = conn.crearConexion();
             this.database = conn.getDataB();
             this.coleccionUsuario = database.getCollection("usuario");
-            this.coleccionMedicina=database.getCollection("medicamentos");
+            this.coleccionMedicina = database.getCollection("medicamentos");
+            this.coleccionDoctor = database.getCollection("doctor");
         }
     }
 
@@ -58,14 +60,36 @@ public class MetodosDoctor {
         return listaPaciente;
     }
 
+    public List<Doctor> ListarDoctores() {
+        List<Doctor> listaDoctores = new ArrayList<>();
+        FindIterable<Document> documentoDoctores;
+        try {
+            documentoDoctores = coleccionDoctor.find();
+            for (Document temp : documentoDoctores) {
+                System.out.println(temp);
+
+                Doctor doctor = new Doctor();
+                doctor.setNombreDoc(temp.getString("nombreDoc"));
+                doctor.setApellidoDoc(temp.getString("apellidoDoc"));
+                doctor.setEspecialidad(temp.getString("especialidad"));
+                doctor.setiDdoctor(temp.getString("idDoctor"));
+                listaDoctores.add(doctor); // Agregar paciente a la lista
+            }
+        } catch (MongoException ex) {
+            JOptionPane.showMessageDialog(null, "Error al consultar datos" + ex.getMessage());
+        } finally {
+            cierreConexion();
+        }
+        return listaDoctores;
+    }
+
     public Doctor BuscarCedulaPaciente(String cedula) {
-        //Doctor paciente = null ;
+
         Doctor paciente = new Doctor(cedula);
-        
+
         try {
             Document filtro = new Document("cedula", cedula);
             Document resultado = (Document) coleccionUsuario.find(filtro).first();
-           
 
             if (resultado != null) {
                 paciente.setNombre(resultado.getString("nombre"));
@@ -82,27 +106,54 @@ public class MetodosDoctor {
         }
         return paciente;
     }
-    
-    public Doctor BuscarNombreMedicina(String nombreMed){
+
+    public Doctor BuscarNombreMedicina(String nombreMed) {
         Doctor medicina = null;
         Document filtro = null, resultado = null;
-        try{
+        try {
             filtro = new Document("nombreMed", nombreMed);
-            resultado = (Document)coleccionMedicina.find(filtro).first();
-            
-            if(resultado !=null){
+            resultado = (Document) coleccionMedicina.find(filtro).first();
+
+            if (resultado != null) {
                 medicina = new Doctor();
                 medicina.setNombreMed(resultado.getString("nombreMed"));
                 medicina.setDescripcionMed(resultado.getString("descrpicionMed"));
                 medicina.setDisponibleMed(resultado.getString("disponibleMed"));
                 medicina.setTipoMed(resultado.getString("tipoMed"));
             }
-        }catch (MongoException ex){
+        } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error al consultar medicamento");
-        }finally{
+        } finally {
             cierreConexion();
         }
         return medicina;
+    }
+
+    public List<Doctor> BuscarDoctor(String especialidad) {
+        List<Doctor> listaDoctores1 = new ArrayList<>();
+   
+        Document filtro = null, resultado = null;
+        try {
+            filtro = new Document("especialidad", especialidad);
+
+            FindIterable<Document> documents = coleccionDoctor.find(filtro);
+
+            if (documents != null) {
+                for (Document documento : documents) {
+                    Doctor doctor1 = new Doctor();
+                    doctor1.setNombreDoc(documento.getString("nombreDoc"));
+                    doctor1.setApellidoDoc(documento.getString("apellidoDoc"));
+                    doctor1.setEspecialidad(documento.getString("especialidad"));
+                    doctor1.setiDdoctor(documento.getString("idDoctor"));
+                    listaDoctores1.add(doctor1);
+                }
+            }
+        } catch (MongoException ex) {
+            JOptionPane.showMessageDialog(null, "Error al consultar doctor");
+        } finally {
+            cierreConexion();
+        }
+        return listaDoctores1;
     }
 
 }

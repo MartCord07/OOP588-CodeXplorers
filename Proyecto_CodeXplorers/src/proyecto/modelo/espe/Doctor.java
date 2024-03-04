@@ -6,32 +6,65 @@ public class Doctor {
 
     private String cedula, nombre, apellido, genero, telefono, edad;
     private String nombreMed, descrpicionMed, disponibleMed, tipoMed;
+    private String nombreDoc, apellidoDoc, especialidad, iDdoctor;
 
     private Date fechaNacimiento;
-// Consultar paciente
 
-    public Doctor(String cedula, String nombre, String apellido, String genero, String telefono, String edad, Date fechaNacimiento) {
+    public Doctor(String cedula, String nombre, String apellido, String genero, String telefono, String edad, String nombreMed, String descrpicionMed, String disponibleMed, String tipoMed, String nombreDoc, String apellidoDoc, String especialidad, String iDdoctor, Date fechaNacimiento) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.genero = genero;
         this.telefono = telefono;
         this.edad = edad;
-        this.fechaNacimiento = fechaNacimiento;
-    }
-    //Consultar medicina
-
-    public Doctor(String nombreMed, String descripcionMed, String disponibleMed, String tipoMed) {
         this.nombreMed = nombreMed;
-        this.descrpicionMed = descripcionMed;
+        this.descrpicionMed = descrpicionMed;
         this.disponibleMed = disponibleMed;
         this.tipoMed = tipoMed;
+        this.nombreDoc = nombreDoc;
+        this.apellidoDoc = apellidoDoc;
+        this.especialidad = especialidad;
+        this.iDdoctor = iDdoctor;
+        this.fechaNacimiento = fechaNacimiento;
     }
+
+    public String getNombreDoc() {
+        return nombreDoc;
+    }
+
+    public void setNombreDoc(String nombreDoc) {
+        this.nombreDoc = nombreDoc;
+    }
+
+    public String getApellidoDoc() {
+        return apellidoDoc;
+    }
+
+    public void setApellidoDoc(String apellidoDoc) {
+        this.apellidoDoc = apellidoDoc;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public String getiDdoctor() {
+        return iDdoctor;
+    }
+
+    public void setiDdoctor(String iDdoctor) {
+        this.iDdoctor = iDdoctor;
+    }
+
+   
 
     public Doctor(String cedula) {
         this.cedula = cedula;
     }
-    
 
     public Doctor() {
 
@@ -68,7 +101,6 @@ public class Doctor {
     public void setTipoMed(String tipoMed) {
         this.tipoMed = tipoMed;
     }
-    
 
     public String getCedula() {
         return cedula;

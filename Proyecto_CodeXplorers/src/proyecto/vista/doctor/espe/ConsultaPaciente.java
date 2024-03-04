@@ -4,6 +4,13 @@
  */
 package proyecto.vista.doctor.espe;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import javax.swing.JComboBox;
 import proyecto.modelo.espe.Doctor;
 import proyecto.servicio.espe.DoctorServicio;
 
@@ -14,24 +21,46 @@ import proyecto.servicio.espe.DoctorServicio;
 public class ConsultaPaciente extends javax.swing.JFrame {
 
     String ci = null;
+    List<Doctor> listadoctores = null;
+    JComboBox<String> comboMedico;
 
     public ConsultaPaciente() {
 
         initComponents();
+
+        cbxMedicoDisponible.setVisible(false);
+        lblMedico.setVisible(false);
+        listadoctores = DoctorServicio.ListarDoctores();
+        cargarComboEspecialidad(listadoctores);
 
         setLocationRelativeTo(null);
         setResizable(false);
 
     }
 
+    public void cargarComboEspecialidad(List<Doctor> listarDoctores) {
+
+        List<String> filtro = new ArrayList<>();
+        for (Doctor doc : listarDoctores) {
+            filtro.add(doc.getEspecialidad());
+        }
+        Set<String> conjunto = new HashSet<>(filtro);
+        String[] nuevoArray = conjunto.toArray(new String[0]);
+
+        for (String element : nuevoArray) {
+            cbxEspecialidad.addItem(element);
+
+        }
+    }
+
     protected void asignarPaciente(String cedula) {
         ci = cedula;
-        System.out.println(cedula);
+
         obtenerDatosPaciente(cedula);
     }
 
     private void obtenerDatosPaciente(String cedula) {
-        Doctor paciente1 = DoctorServicio.obtenerPacientePorCedula(cedula);
+        Doctor paciente1 = DoctorServicio.BuscarCedulaPaciente(cedula);
 
         mostrarDatosPaciente(paciente1);
     }
@@ -66,13 +95,11 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         txtNombreDoc = new javax.swing.JTextField();
         txtApellidoDoc = new javax.swing.JTextField();
         txtID = new javax.swing.JTextField();
-        txtEdadDoc = new javax.swing.JTextField();
         cbxEspecialidad = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -80,7 +107,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         btnMedicamentos = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
+        lblMedico = new javax.swing.JLabel();
         cbxMedicoDisponible = new javax.swing.JComboBox<>();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel16 = new javax.swing.JLabel();
@@ -146,9 +173,6 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         jLabel10.setText("IDE del doctor");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
 
-        jLabel11.setText("Edad del doctor");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
-
         jLabel12.setText("Especialidad");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
@@ -158,9 +182,13 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         jPanel1.add(txtNombreDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 150, -1));
         jPanel1.add(txtApellidoDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 150, -1));
         jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 150, -1));
-        jPanel1.add(txtEdadDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, 150, -1));
 
-        cbxEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Area Especializada", "Medico General", "Traumatologo", "Alergologo", "Dermatologo", "Otro" }));
+        cbxEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Area Especializada", " " }));
+        cbxEspecialidad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxEspecialidadItemStateChanged(evt);
+            }
+        });
         jPanel1.add(cbxEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 150, -1));
 
         jLabel14.setText("Diagnostico");
@@ -198,8 +226,8 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         });
         jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 680, -1, -1));
 
-        jLabel15.setText("Medicos Disponibles");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
+        lblMedico.setText("Medicos Disponibles");
+        jPanel1.add(lblMedico, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
 
         cbxMedicoDisponible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un medico", " " }));
         jPanel1.add(cbxMedicoDisponible, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 150, -1));
@@ -235,7 +263,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     private void btnMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicamentosActionPerformed
         ConsultaMedicamentos medicamento = new ConsultaMedicamentos();
         medicamento.setVisible(true);
-        setVisible(false);
+
     }//GEN-LAST:event_btnMedicamentosActionPerformed
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
@@ -243,6 +271,39 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         historial.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnHistorialActionPerformed
+
+    private void cbxEspecialidadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxEspecialidadItemStateChanged
+
+        if (cbxEspecialidad.getSelectedItem().toString() != null || cbxEspecialidad.getSelectedItem().toString() != "") {
+
+            String especialidad = cbxEspecialidad.getSelectedItem().toString();
+            List<Doctor> doctor = DoctorServicio.BuscarDoctor(especialidad);
+            if (!doctor.isEmpty()) {
+                List<String> filtro = new ArrayList<>();
+                for (Doctor doc : doctor) {
+                    filtro.add(doc.getNombreDoc() + " - " + doc.getApellidoDoc() + " - " + doc.getiDdoctor());
+                }
+
+                Set<String> conjunto = new HashSet<>(filtro);
+                String[] nuevoArray = conjunto.toArray(new String[0]);
+
+                for (String element : nuevoArray) {
+                    cbxMedicoDisponible.addItem(element);
+                    System.out.println(element);
+
+                }
+
+                cbxMedicoDisponible.setVisible(true);
+                lblMedico.setVisible(true);
+            } else {
+                doctor.clear();
+                cbxMedicoDisponible.setVisible(false);
+                lblMedico.setVisible(false);
+            }
+
+        }
+
+    }//GEN-LAST:event_cbxEspecialidadItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -288,11 +349,9 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxMedicoDisponible;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -307,11 +366,11 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblMedico;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtApellidoDoc;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtEdad;
-    private javax.swing.JTextField txtEdadDoc;
     private javax.swing.JTextField txtGenero;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;

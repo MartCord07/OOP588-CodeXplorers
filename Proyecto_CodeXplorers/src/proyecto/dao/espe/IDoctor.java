@@ -14,5 +14,9 @@ public interface IDoctor {
     public Doctor BuscarCedulaPaciente(String cedula);
 
     public Doctor BuscarNombreMedicina(String nombreMed);
+    
+    public Doctor BuscarDoctor(String especialidad);
+    
+    public List<Doctor> ListarDoctores();
 
 }

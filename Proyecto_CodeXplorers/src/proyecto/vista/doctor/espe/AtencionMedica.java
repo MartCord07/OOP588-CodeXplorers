@@ -192,7 +192,7 @@ public final class AtencionMedica extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             String cedula = tblPacientes.getValueAt(filaSeleccionada, 0).toString();
             
-            Doctor paciente1 = DoctorServicio.obtenerPacientePorCedula(cedula);
+            Doctor paciente1 = DoctorServicio.BuscarCedulaPaciente(cedula);
             
 
             ConsultaPaciente consulta = new ConsultaPaciente();
