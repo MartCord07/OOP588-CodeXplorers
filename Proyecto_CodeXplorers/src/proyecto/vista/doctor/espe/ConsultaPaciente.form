@@ -239,6 +239,10 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombreDoc">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="160" y="330" width="150" height="-1"/>
@@ -246,6 +250,10 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtApellidoDoc">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="450" y="330" width="150" height="-1"/>
@@ -253,6 +261,10 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtID">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="160" y="370" width="150" height="-1"/>
@@ -280,7 +292,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel14">
+        <Component class="javax.swing.JLabel" name="lblDiagnostico">
           <Properties>
             <Property name="text" type="java.lang.String" value="Diagnostico"/>
           </Properties>
@@ -388,7 +400,7 @@
         <Component class="javax.swing.JSpinner" name="jSpinner1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="160" y="510" width="-1" height="-1"/>
+              <AbsoluteConstraints x="160" y="510" width="90" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>

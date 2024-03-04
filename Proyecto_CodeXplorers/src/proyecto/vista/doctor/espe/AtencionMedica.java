@@ -225,7 +225,7 @@ public final class AtencionMedica extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tblPacientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblPacientesKeyPressed
-        System.out.println("prueba");
+       
     }//GEN-LAST:event_tblPacientesKeyPressed
 
     /**

@@ -66,7 +66,6 @@ public class MetodosDoctor {
         try {
             documentoDoctores = coleccionDoctor.find();
             for (Document temp : documentoDoctores) {
-                System.out.println(temp);
 
                 Doctor doctor = new Doctor();
                 doctor.setNombreDoc(temp.getString("nombreDoc"));
@@ -131,7 +130,7 @@ public class MetodosDoctor {
 
     public List<Doctor> BuscarDoctor(String especialidad) {
         List<Doctor> listaDoctores1 = new ArrayList<>();
-   
+
         Document filtro = null, resultado = null;
         try {
             filtro = new Document("especialidad", especialidad);

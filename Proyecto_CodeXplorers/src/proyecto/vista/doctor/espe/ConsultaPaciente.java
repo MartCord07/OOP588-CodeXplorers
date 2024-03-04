@@ -30,6 +30,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
 
         cbxMedicoDisponible.setVisible(false);
         lblMedico.setVisible(false);
+        AreaDiagnostico.setVisible(false);
         listadoctores = DoctorServicio.ListarDoctores();
         cargarComboEspecialidad(listadoctores);
 
@@ -101,7 +102,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         txtApellidoDoc = new javax.swing.JTextField();
         txtID = new javax.swing.JTextField();
         cbxEspecialidad = new javax.swing.JComboBox<>();
-        jLabel14 = new javax.swing.JLabel();
+        lblDiagnostico = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         AreaDiagnostico = new javax.swing.JTextArea();
         btnMedicamentos = new javax.swing.JButton();
@@ -179,8 +180,17 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel13.setText("Datos del doctor");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+
+        txtNombreDoc.setEditable(false);
+        txtNombreDoc.setEnabled(false);
         jPanel1.add(txtNombreDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 150, -1));
+
+        txtApellidoDoc.setEditable(false);
+        txtApellidoDoc.setEnabled(false);
         jPanel1.add(txtApellidoDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 150, -1));
+
+        txtID.setEditable(false);
+        txtID.setEnabled(false);
         jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 150, -1));
 
         cbxEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Area Especializada", " " }));
@@ -191,8 +201,8 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         });
         jPanel1.add(cbxEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 150, -1));
 
-        jLabel14.setText("Diagnostico");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
+        lblDiagnostico.setText("Diagnostico");
+        jPanel1.add(lblDiagnostico, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
 
         AreaDiagnostico.setColumns(20);
         AreaDiagnostico.setRows(5);
@@ -231,7 +241,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
 
         cbxMedicoDisponible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un medico", " " }));
         jPanel1.add(cbxMedicoDisponible, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 150, -1));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, -1, -1));
+        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, 90, -1));
 
         jLabel16.setText("Cantidadad Medicamento");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
@@ -289,16 +299,30 @@ public class ConsultaPaciente extends javax.swing.JFrame {
 
                 for (String element : nuevoArray) {
                     cbxMedicoDisponible.addItem(element);
-                    System.out.println(element);
 
                 }
+                cbxMedicoDisponible.addItemListener((ItemEvent evt1) -> {
+                    if (evt1.getStateChange() == ItemEvent.SELECTED) {
+                        String selectedItem = (String) evt1.getItem();
+                        String[] parts = selectedItem.split(" - ");
+                        String nombreDoc = parts[0];
+                        String apellidoDoc = parts[1];
+                        String idDoctor = parts[2];
+                        txtNombreDoc.setText(nombreDoc);
+                        txtApellidoDoc.setText(apellidoDoc);
+                        txtID.setText(idDoctor);
+                    }
+                });
 
                 cbxMedicoDisponible.setVisible(true);
                 lblMedico.setVisible(true);
+                AreaDiagnostico.setVisible(true);
+
             } else {
                 doctor.clear();
                 cbxMedicoDisponible.setVisible(false);
                 lblMedico.setVisible(false);
+                AreaDiagnostico.setVisible(false);
             }
 
         }
@@ -351,7 +375,6 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -365,6 +388,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel lblDiagnostico;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblMedico;
     private javax.swing.JTextField txtApellido;
