@@ -1,11 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package proyecto.vista.doctor.espe;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import proyecto.modelo.espe.Doctor;
 import proyecto.servicio.espe.DoctorServicio;
 
@@ -20,10 +22,55 @@ public class HistorialClinico extends javax.swing.JFrame {
 
     public HistorialClinico() {
         initComponents();
+
         setLocationRelativeTo(null);
         setResizable(false);
         cargarHistoriales();
+        ocultarUltimaColumna();
+        mostrarContenidoUltimaColumna();
+        setDateChooserToCurrentDate();
 
+        tblHistorial.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if (!event.getValueIsAdjusting()) {
+                    mostrarContenidoUltimaColumna();
+                }
+            }
+        });
+
+    }
+
+    public void ocultarUltimaColumna() {
+        int lastColumnIndex = tblHistorial.getColumnCount() - 1;
+        TableColumn lastColumn = tblHistorial.getColumnModel().getColumn(lastColumnIndex);
+        tblHistorial.removeColumn(lastColumn);
+    }
+
+    public void mostrarContenidoUltimaColumna() {
+
+        int lastColumnIndex = modeloTabla.getColumnCount() - 1;
+
+        int selectedRow = tblHistorial.getSelectedRow();
+
+        if (selectedRow != -1) {
+
+            Object contenidoUltimaColumna = modeloTabla.getValueAt(selectedRow, lastColumnIndex);
+
+            AreaDiagnostico.setText(contenidoUltimaColumna.toString());
+        } else {
+
+            AreaDiagnostico.setText("");
+        }
+    }
+
+    public void setDateChooserToCurrentDate() {
+
+        LocalDate currentDate = LocalDate.now();
+
+        Date date = Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        fechaCreacion.setDate(date);
     }
 
     public void cargarHistoriales() {
@@ -64,7 +111,7 @@ public class HistorialClinico extends javax.swing.JFrame {
 
     public void cargarTablaBusqueda(String cedula) {
         limpiarTabla();
-        Doctor historial = new DoctorServicio().BuscarHistorial(cedula);
+        Doctor historial = DoctorServicio.BuscarHistorial(cedula);
         modeloTabla.addRow(new Object[]{
             historial.getCedula(),
             historial.getNombre(),
@@ -98,10 +145,11 @@ public class HistorialClinico extends javax.swing.JFrame {
         fechaCreacion = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         AreaDiagnostico = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
         cbxHistoriales = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHistorial = new javax.swing.JTable();
+        btnRegresar = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         jLabel2.setText("Historial Clinico");
@@ -124,20 +172,22 @@ public class HistorialClinico extends javax.swing.JFrame {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, -1));
         jPanel2.add(fechaCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 190, -1));
 
+        AreaDiagnostico.setEditable(false);
         AreaDiagnostico.setColumns(20);
         AreaDiagnostico.setRows(5);
+        AreaDiagnostico.setEnabled(false);
         jScrollPane1.setViewportView(AreaDiagnostico);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 710, 150));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_consulta.png"))); // NOI18N
-        jButton1.setText("Consultar historiales");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_consulta.png"))); // NOI18N
+        btnConsultar.setText("Consultar historiales");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnConsultarActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 480, -1, -1));
+        jPanel2.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 480, -1, -1));
 
         cbxHistoriales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione un historial--", "Todos" }));
         jPanel2.add(cbxHistoriales, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 200, -1));
@@ -177,6 +227,14 @@ public class HistorialClinico extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 820, 190));
 
+        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_regresar.png"))); // NOI18N
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
+
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_histMed.jpg"))); // NOI18N
         jPanel2.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 620));
 
@@ -205,17 +263,26 @@ public class HistorialClinico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         limpiarTabla();
-       if(cbxHistoriales.getSelectedItem()=="Todos"){
-           listaHistoriales=DoctorServicio.ListarHistoriales();
-           cargarTablaTodosHistoriales(listaHistoriales);
-       }else{
-           String dato = cbxHistoriales.getSelectedItem().toString();
-           String[] cedula= dato.split("-");
-           cargarTablaBusqueda(cedula[0].trim());
-       }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        limpiarTabla();
+        if (cbxHistoriales.getSelectedItem() == "Todos") {
+            listaHistoriales = DoctorServicio.ListarHistoriales();
+            cargarTablaTodosHistoriales(listaHistoriales);
+        } else {
+            String dato = cbxHistoriales.getSelectedItem().toString();
+            String[] cedula = dato.split("-");
+            cargarTablaBusqueda(cedula[0].trim());
+            Doctor historialSeleccionado = DoctorServicio.BuscarHistorial(cedula[0].trim());
+
+        }
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        dispose();
+        AtencionMedica atencion = new AtencionMedica();
+        atencion.setVisible(true);
+        atencion.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,9 +321,10 @@ public class HistorialClinico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea AreaDiagnostico;
+    private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbxHistoriales;
     private com.toedter.calendar.JDateChooser fechaCreacion;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
