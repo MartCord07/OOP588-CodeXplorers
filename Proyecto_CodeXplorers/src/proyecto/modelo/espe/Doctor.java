@@ -6,11 +6,9 @@ public class Doctor {
 
     private String cedula, nombre, apellido, genero, telefono, edad;
     private String nombreMed, descrpicionMed, disponibleMed, tipoMed;
-    private String nombreDoc, apellidoDoc, especialidad, iDdoctor;
+    private String nombreDoc, apellidoDoc, especialidad, iDdoctor, diagnostico;
 
-    private Date fechaNacimiento;
-
-    public Doctor(String cedula, String nombre, String apellido, String genero, String telefono, String edad, String nombreMed, String descrpicionMed, String disponibleMed, String tipoMed, String nombreDoc, String apellidoDoc, String especialidad, String iDdoctor, Date fechaNacimiento) {
+    public Doctor(String cedula, String nombre, String apellido, String genero, String telefono, String edad, String nombreMed, String descrpicionMed, String disponibleMed, String tipoMed, String nombreDoc, String apellidoDoc, String especialidad, String iDdoctor, String diagnostico) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -25,7 +23,34 @@ public class Doctor {
         this.apellidoDoc = apellidoDoc;
         this.especialidad = especialidad;
         this.iDdoctor = iDdoctor;
-        this.fechaNacimiento = fechaNacimiento;
+        this.diagnostico = diagnostico;
+
+    }
+
+    public Doctor() {
+
+    }
+
+    public Doctor(String cedula, String nombre, String apellido, String genero, String edad, String nombreDoc, String apellidoDoc,String especialidad, String iDdoctor, String diagnostico) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.genero = genero;
+        this.edad = edad;
+        this.nombreDoc = nombreDoc;
+        this.apellidoDoc = apellidoDoc;
+        this.especialidad = especialidad;
+        this.iDdoctor = iDdoctor;
+        this.diagnostico = diagnostico;
+    }
+    
+
+    public String getDiagnostico() {
+        return diagnostico;
+    }
+
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
     }
 
     public String getNombreDoc() {
@@ -60,14 +85,8 @@ public class Doctor {
         this.iDdoctor = iDdoctor;
     }
 
-   
-
     public Doctor(String cedula) {
         this.cedula = cedula;
-    }
-
-    public Doctor() {
-
     }
 
     public String getNombreMed() {
@@ -150,17 +169,9 @@ public class Doctor {
         this.edad = edad;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
     @Override
     public String toString() {
-        return "Doctor{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", telefono=" + telefono + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento + '}';
+        return "Doctor{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", telefono=" + telefono + ", edad=" + edad + ", nombreMed=" + nombreMed + ", descrpicionMed=" + descrpicionMed + ", disponibleMed=" + disponibleMed + ", tipoMed=" + tipoMed + ", nombreDoc=" + nombreDoc + ", apellidoDoc=" + apellidoDoc + ", especialidad=" + especialidad + ", iDdoctor=" + iDdoctor + ", diagnostico=" + diagnostico + '}';
     }
 
 }

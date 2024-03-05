@@ -18,6 +18,7 @@ public class MetodosDoctor {
     private MongoCollection coleccionUsuario;
     private MongoCollection coleccionMedicina;
     private MongoCollection coleccionDoctor;
+    private MongoCollection coleccionHistorial;
 
     public MetodosDoctor() {
         if (conn != null) {
@@ -26,6 +27,7 @@ public class MetodosDoctor {
             this.coleccionUsuario = database.getCollection("usuario");
             this.coleccionMedicina = database.getCollection("medicamentos");
             this.coleccionDoctor = database.getCollection("doctor");
+            this.coleccionHistorial = database.getCollection("historial");
         }
     }
 
@@ -82,6 +84,34 @@ public class MetodosDoctor {
         return listaDoctores;
     }
 
+    public List<Doctor> ListarHistoriales() {
+        List<Doctor> listaHistoriales = new ArrayList<>();
+        FindIterable<Document> documentoHistoriales;
+        try {
+            documentoHistoriales = coleccionHistorial.find();
+            for (Document temp : documentoHistoriales) {
+
+                Doctor doctor = new Doctor();
+                doctor.setCedula(temp.getString("cedulaPac"));
+                doctor.setNombre(temp.getString("nombrePac"));
+                doctor.setApellido(temp.getString("apellidoPac"));
+                doctor.setEdad(temp.getString("edadPac"));
+                doctor.setGenero(temp.getString("generoPac"));
+                doctor.setNombreDoc(temp.getString("nombreDoctor"));
+                doctor.setApellidoDoc(temp.getString("apellidoDoctor"));
+                doctor.setEspecialidad(temp.getString("especialidadDoc"));
+                doctor.setiDdoctor(temp.getString("idDoc"));
+                doctor.setDiagnostico(temp.getString("diagnosticoDoc"));
+                listaHistoriales.add(doctor); // Agregar paciente a la lista
+            }
+        } catch (MongoException ex) {
+            JOptionPane.showMessageDialog(null, "Error al consultar datos" + ex.getMessage());
+        } finally {
+            cierreConexion();
+        }
+        return listaHistoriales;
+    }
+
     public Doctor BuscarCedulaPaciente(String cedula) {
 
         Doctor paciente = new Doctor(cedula);
@@ -104,6 +134,35 @@ public class MetodosDoctor {
             cierreConexion();
         }
         return paciente;
+    }
+    public Doctor BuscarHistorial(String cedula) {
+
+        Doctor historial = new Doctor(cedula);
+
+        try {
+            Document filtro = new Document("cedula", cedula);
+            Document resultado = (Document) coleccionHistorial.find(filtro).first();
+
+            if (resultado != null) {
+                historial.setCedula(resultado.getString("cedulaPac"));
+                historial.setNombre(resultado.getString("nombrePac"));
+                historial.setApellido(resultado.getString("apellidoPac"));
+                historial.setEdad(resultado.getString("edadPac"));
+                historial.setGenero(resultado.getString("generoPac"));
+                historial.setNombreDoc(resultado.getString("nombreDoctor"));
+                historial.setApellidoDoc(resultado.getString("apellidoDoctor"));
+                historial.setEspecialidad(resultado.getString("especialidadDoc"));
+                historial.setiDdoctor(resultado.getString("idDoc"));
+                historial.setDiagnostico(resultado.getString("diagnosticoDoc"));
+                
+            }
+
+        } catch (MongoException ex) {
+            JOptionPane.showMessageDialog(null, "Error al consultar por cedula");
+        } finally {
+            cierreConexion();
+        }
+        return historial;
     }
 
     public Doctor BuscarNombreMedicina(String nombreMed) {
@@ -153,6 +212,30 @@ public class MetodosDoctor {
             cierreConexion();
         }
         return listaDoctores1;
+    }
+
+    public boolean GenerarHistorial(Doctor historial) {
+        Document documento;
+        try {
+            documento = new Document("cedulaPac", historial.getCedula())
+                    .append("nombrePac", historial.getNombre())
+                    .append("apellidoPac", historial.getApellido())
+                    .append("edadPac", historial.getEdad())
+                    .append("generoPac", historial.getGenero())
+                    .append("nombreDoctor", historial.getNombreDoc())
+                    .append("apellidoDoctor", historial.getApellidoDoc())
+                    .append("especialidadDoc", historial.getEspecialidad())
+                    .append("idDoc", historial.getiDdoctor())
+                    .append("diagnosticoDoc", historial.getDiagnostico());
+            coleccionHistorial.insertOne(documento);
+
+        } catch (MongoException ex) {
+            JOptionPane.showMessageDialog(null, "Error al generar historial" + ex.toString());
+            return false;
+        } finally {
+            cierreConexion();
+        }
+        return true;
     }
 
 }

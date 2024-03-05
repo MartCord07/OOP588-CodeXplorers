@@ -5,12 +5,11 @@
 package proyecto.vista.doctor.espe;
 
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import proyecto.modelo.espe.Doctor;
 import proyecto.servicio.espe.DoctorServicio;
 
@@ -22,7 +21,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
 
     String ci = null;
     List<Doctor> listadoctores = null;
-    JComboBox<String> comboMedico;
+    
 
     public ConsultaPaciente() {
 
@@ -277,6 +276,31 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMedicamentosActionPerformed
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
+        if (!txtCedula.getText().trim().equals("") && !txtNombre.getText().trim().equals("")
+                && !txtApellido.getText().trim().equals("") && !txtEdad.getText().trim().equals("")
+                && !txtGenero.getText().trim().equals("") && !txtNombreDoc.getText().trim().equals("")
+                && !txtApellidoDoc.getText().trim().equals("") && !txtID.getText().trim().equals("")
+                && !AreaDiagnostico.getText().trim().equals("") && JOptionPane.showConfirmDialog(this, "Seguro de generar historial", "Ingrese", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+
+            Doctor generarHistorial = new Doctor(
+                    txtCedula.getText(),
+                    txtNombre.getText(),
+                    txtApellido.getText(),
+                    txtGenero.getText(),
+                    txtEdad.getText(),
+                    txtNombreDoc.getText(),
+                    txtApellidoDoc.getText(),
+                    cbxEspecialidad.getSelectedItem().toString(),
+                    txtID.getText(),
+                    AreaDiagnostico.getText()
+            );
+            if (DoctorServicio.GenerarHistorial(generarHistorial)) {
+                JOptionPane.showMessageDialog(null, "Historial creado correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al generar historial");
+            }
+        }
+
         HistorialClinico historial = new HistorialClinico();
         historial.setVisible(true);
         setVisible(false);

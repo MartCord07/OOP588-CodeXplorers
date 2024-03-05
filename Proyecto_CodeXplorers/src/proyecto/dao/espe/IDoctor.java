@@ -13,10 +13,16 @@ public interface IDoctor {
 
     public Doctor BuscarCedulaPaciente(String cedula);
 
+    public boolean GenerarHistorial(Doctor historial);
+
     public Doctor BuscarNombreMedicina(String nombreMed);
-    
+
     public Doctor BuscarDoctor(String especialidad);
-    
+
     public List<Doctor> ListarDoctores();
+    
+    public List<Doctor>ListarHistoriales();
+    
+    public Doctor BuscarHistorial(String cedula);
 
 }

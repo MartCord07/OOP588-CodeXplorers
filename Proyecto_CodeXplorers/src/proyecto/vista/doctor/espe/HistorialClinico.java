@@ -4,20 +4,79 @@
  */
 package proyecto.vista.doctor.espe;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import proyecto.modelo.espe.Doctor;
+import proyecto.servicio.espe.DoctorServicio;
+
 /**
  *
  * @author Usuario
  */
 public class HistorialClinico extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HistorialClinico
-     */
+    private DefaultTableModel modeloTabla;
+    List<Doctor> listaHistoriales = null;
+
     public HistorialClinico() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        
+        cargarHistoriales();
+
+    }
+
+    public void cargarHistoriales() {
+        cbxHistoriales.setSelectedItem("Todos");
+        listaHistoriales = DoctorServicio.ListarHistoriales();
+        cargarTablaTodosHistoriales(listaHistoriales);
+        cargarComboHistoriales(listaHistoriales);
+    }
+
+    public void cargarComboHistoriales(List<Doctor> listarHistoriales) {
+        for (Doctor historial : listarHistoriales) {
+            cbxHistoriales.addItem(historial.getNombre() + " - " + historial.getNombreDoc());
+        }
+    }
+
+    public void limpiarTabla() {
+        modeloTabla = (DefaultTableModel) tblHistorial.getModel();
+        modeloTabla.setRowCount(0);
+    }
+
+    public void cargarTablaTodosHistoriales(List<Doctor> listaHistorial) {
+        limpiarTabla();
+        for (Doctor historial : listaHistorial) {
+            modeloTabla.addRow(new Object[]{
+                historial.getCedula(),
+                historial.getNombre(),
+                historial.getApellido(),
+                historial.getEdad(),
+                historial.getGenero(),
+                historial.getNombreDoc(),
+                historial.getApellidoDoc(),
+                historial.getEspecialidad(),
+                historial.getiDdoctor(),
+                historial.getDiagnostico()
+            });
+        }
+    }
+
+    public void cargarTablaBusqueda(String cedula) {
+        limpiarTabla();
+        Doctor historial = new DoctorServicio().BuscarHistorial(cedula);
+        modeloTabla.addRow(new Object[]{
+            historial.getCedula(),
+            historial.getNombre(),
+            historial.getApellido(),
+            historial.getEdad(),
+            historial.getGenero(),
+            historial.getNombreDoc(),
+            historial.getApellidoDoc(),
+            historial.getEspecialidad(),
+            historial.getiDdoctor(),
+            historial.getDiagnostico()
+        });
     }
 
     /**
@@ -36,12 +95,13 @@ public class HistorialClinico extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         fechaCreacion = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         AreaDiagnostico = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxHistoriales = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblHistorial = new javax.swing.JTable();
         lblFondo = new javax.swing.JLabel();
 
         jLabel2.setText("Historial Clinico");
@@ -50,35 +110,72 @@ public class HistorialClinico extends javax.swing.JFrame {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Datos paciente");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        jLabel1.setText("Datos ");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
         jLabel3.setText("Fecha de consulta");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
 
         jLabel4.setText("Observaciones y diagnostico");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Historial Clinico");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, -1));
-
-        jLabel8.setText("Doctor encargado");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
-        jPanel2.add(fechaCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 190, -1));
+        jPanel2.add(fechaCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 190, -1));
 
         AreaDiagnostico.setColumns(20);
         AreaDiagnostico.setRows(5);
         jScrollPane1.setViewportView(AreaDiagnostico);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 710, 150));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 710, 150));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_consulta.png"))); // NOI18N
         jButton1.setText("Consultar historiales");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 520, -1, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 480, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 200, -1));
+        cbxHistoriales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione un historial--", "Todos" }));
+        jPanel2.add(cbxHistoriales, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 200, -1));
+
+        tblHistorial.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Cedula paciente", "Nombre paciente", "Apellido paciente", "Edad Paciente", "Genero Paciente", "Nombre Doctor", "Apellido Doctor", "Especialidad", "ID Doctor", "Diagnostico"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblHistorial);
+        if (tblHistorial.getColumnModel().getColumnCount() > 0) {
+            tblHistorial.getColumnModel().getColumn(0).setResizable(false);
+            tblHistorial.getColumnModel().getColumn(1).setResizable(false);
+            tblHistorial.getColumnModel().getColumn(2).setResizable(false);
+            tblHistorial.getColumnModel().getColumn(3).setResizable(false);
+            tblHistorial.getColumnModel().getColumn(4).setResizable(false);
+            tblHistorial.getColumnModel().getColumn(5).setResizable(false);
+            tblHistorial.getColumnModel().getColumn(6).setResizable(false);
+            tblHistorial.getColumnModel().getColumn(7).setResizable(false);
+            tblHistorial.getColumnModel().getColumn(8).setResizable(false);
+            tblHistorial.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 820, 190));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_histMed.jpg"))); // NOI18N
         jPanel2.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 620));
@@ -107,6 +204,18 @@ public class HistorialClinico extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         limpiarTabla();
+       if(cbxHistoriales.getSelectedItem()=="Todos"){
+           listaHistoriales=DoctorServicio.ListarHistoriales();
+           cargarTablaTodosHistoriales(listaHistoriales);
+       }else{
+           String dato = cbxHistoriales.getSelectedItem().toString();
+           String[] cedula= dato.split("-");
+           cargarTablaBusqueda(cedula[0].trim());
+       }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,18 +254,19 @@ public class HistorialClinico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea AreaDiagnostico;
+    private javax.swing.JComboBox<String> cbxHistoriales;
     private com.toedter.calendar.JDateChooser fechaCreacion;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JTable tblHistorial;
     // End of variables declaration//GEN-END:variables
 }
