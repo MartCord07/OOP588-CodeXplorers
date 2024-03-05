@@ -10,6 +10,21 @@ public class DoctorServicio {
         return new MetodosDoctor().ListarPacientes();
     }
 
+    public static List<Doctor> ListarDoctores() {
+        return new MetodosDoctor().ListarDoctores();
+    }
+
+    public static List<Doctor> ListarHistoriales() {
+        return new MetodosDoctor().ListarHistoriales();
+    }
+    public static List<Doctor>ListarMedicamentos(){
+        return new MetodosDoctor().ListarMedicamentos();
+    }
+
+    public static List<Doctor> BuscarDoctor(String especialidad) {
+        return new MetodosDoctor().BuscarDoctor(especialidad);
+    }
+
     public static Doctor BuscarCedulaPaciente(String cedula) {
         return new MetodosDoctor().BuscarCedulaPaciente(cedula);
     }
@@ -18,22 +33,12 @@ public class DoctorServicio {
         return new MetodosDoctor().BuscarNombreMedicina(nombreMed);
     }
 
+    public static Doctor BuscarHistorial(String cedula) {
+        return new MetodosDoctor().BuscarHistorial(cedula);
+    }
+
     public static boolean GenerarHistorial(Doctor historial) {
         return new MetodosDoctor().GenerarHistorial(historial);
     }
 
-    public static List<Doctor> BuscarDoctor(String especialidad) {
-        return new MetodosDoctor().BuscarDoctor(especialidad);
-    }
-
-    public static List<Doctor> ListarDoctores() {
-        return new MetodosDoctor().ListarDoctores();
-    }
-
-    public static List<Doctor> ListarHistoriales() {
-        return new MetodosDoctor().ListarHistoriales();
-    }
-    public static Doctor BuscarHistorial(String cedula) {
-        return new MetodosDoctor().BuscarHistorial(cedula);
-    }
 }

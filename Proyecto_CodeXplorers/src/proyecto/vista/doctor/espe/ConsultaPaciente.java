@@ -21,7 +21,6 @@ public class ConsultaPaciente extends javax.swing.JFrame {
 
     String ci = null;
     List<Doctor> listadoctores = null;
-    
 
     public ConsultaPaciente() {
 
@@ -51,6 +50,14 @@ public class ConsultaPaciente extends javax.swing.JFrame {
             cbxEspecialidad.addItem(element);
 
         }
+    }
+
+    public void cargarComboMedicamentos(List<Doctor> listarMedicamentos) {
+        List<String> filtro = new ArrayList<>();
+        for (Doctor doc : listarMedicamentos) {
+            filtro.add(doc.getNombreMed());
+        }
+        
     }
 
     protected void asignarPaciente(String cedula) {
@@ -109,8 +116,10 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
         lblMedico = new javax.swing.JLabel();
         cbxMedicoDisponible = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
+        spinerMed = new javax.swing.JSpinner();
         jLabel16 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        cbxMedicamentos = new javax.swing.JComboBox<>();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -240,10 +249,16 @@ public class ConsultaPaciente extends javax.swing.JFrame {
 
         cbxMedicoDisponible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un medico", " " }));
         jPanel1.add(cbxMedicoDisponible, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 150, -1));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, 90, -1));
+        jPanel1.add(spinerMed, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 500, 90, -1));
 
         jLabel16.setText("Cantidadad Medicamento");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, -1, -1));
+
+        jLabel11.setText("Medicamentos");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, -1, -1));
+
+        cbxMedicamentos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medicamentos disponibles" }));
+        jPanel1.add(cbxMedicamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 500, 160, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_consultamed.jpg"))); // NOI18N
         jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -394,9 +409,11 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     private javax.swing.JButton btnMedicamentos;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbxEspecialidad;
+    private javax.swing.JComboBox<String> cbxMedicamentos;
     private javax.swing.JComboBox<String> cbxMedicoDisponible;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
@@ -411,10 +428,10 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblDiagnostico;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblMedico;
+    private javax.swing.JSpinner spinerMed;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtApellidoDoc;
     private javax.swing.JTextField txtCedula;
