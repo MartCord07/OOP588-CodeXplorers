@@ -31,7 +31,6 @@ public class PacienteVentana extends javax.swing.JFrame {
 
     private String seleccionGenero = "";
     private MongoCollection<Document> usuario;
-    
 
     public PacienteVentana() {
         initComponents();
@@ -79,6 +78,19 @@ public class PacienteVentana extends javax.swing.JFrame {
         setVisible(false);
     }
 
+    private boolean isValidDate(Date date) {
+        if (date == null) {
+            return false;
+        }
+
+        Calendar calSistema = Calendar.getInstance();
+        Calendar calSeleccionada = Calendar.getInstance();
+        calSeleccionada.setTime(date);
+
+        // Comparar las fechas
+        return !calSeleccionada.after(calSistema);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -107,7 +119,6 @@ public class PacienteVentana extends javax.swing.JFrame {
         cbmHorario = new javax.swing.JComboBox<>();
         btnRegistrarCita = new javax.swing.JToggleButton();
         btnConsultarCita = new javax.swing.JToggleButton();
-        btnRegresar = new javax.swing.JToggleButton();
         btnCerrarSesion = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -224,16 +235,6 @@ public class PacienteVentana extends javax.swing.JFrame {
         });
         jPanel1.add(btnConsultarCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, 180, -1));
 
-        btnRegresar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_volver48.png"))); // NOI18N
-        btnRegresar.setText("Regresar");
-        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 570, -1, -1));
-
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/cerrar sesion icon.png"))); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesión");
@@ -242,7 +243,7 @@ public class PacienteVentana extends javax.swing.JFrame {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, -1, -1));
+        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 530, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo paciente (1).jpeg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 460, 680));
@@ -268,8 +269,8 @@ public class PacienteVentana extends javax.swing.JFrame {
 
     private void btnRegistrarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCitaActionPerformed
 
-        if ( !txtCedula.getText().equals("") && !txtApellido.getText().trim().equals("")
-                && !txtNombre.getText().trim().equals("") 
+        if (!txtCedula.getText().equals("") && !txtApellido.getText().trim().equals("")
+                && !txtNombre.getText().trim().equals("")
                 && !txtTelefono.getText().trim().equals("") && !txtEdad.getText().trim().equals("")
                 && JOptionPane.showConfirmDialog(this, "¿Seguro de guardar los datos?", "Ingreso de Datos",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == 0
@@ -295,29 +296,37 @@ public class PacienteVentana extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Error al registrar cita");
             }
-            
 
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese todos los datos para registrar la cita");
         }
 
     }//GEN-LAST:event_btnRegistrarCitaActionPerformed
 
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        regresarLogin();
-    }//GEN-LAST:event_btnRegresarActionPerformed
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        LoginUsuario menu = new LoginUsuario();
+        menu.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void fechaNacimientoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaNacimientoPropertyChange
         if ("date".equals(evt.getPropertyName()) && fechaNacimiento.getDate() != null) {
-            int año = fechaNacimiento.getCalendar().get(Calendar.YEAR);
-            Date fecha = new Date();
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy");
-            String fechaSistema = formato.format(fecha);
-            int anio = Integer.parseInt(fechaSistema), resta;
-            resta = (anio - año);
-            String edad = Integer.toString(resta);
-            txtEdad.setText(edad);
+            Date fechaSeleccionada = fechaNacimiento.getDate();
 
+            if (isValidDate(fechaSeleccionada)) {
+                int año = fechaNacimiento.getCalendar().get(Calendar.YEAR);
+                Date fecha = new Date();
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy");
+                String fechaSistema = formato.format(fecha);
+                int anio = Integer.parseInt(fechaSistema), resta;
+                resta = (anio - año);
+                String edad = Integer.toString(resta);
+                txtEdad.setText(edad);
+            } else {
+                JOptionPane.showMessageDialog(null, "La fecha seleccionada no es válida");
+                fechaNacimiento.setDate(null);  // Limpia la fecha si no es válida
+                txtEdad.setText("");  // Limpia la edad
+            }
         }
     }//GEN-LAST:event_fechaNacimientoPropertyChange
 
@@ -353,12 +362,6 @@ public class PacienteVentana extends javax.swing.JFrame {
         consultaPac.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnConsultarCitaActionPerformed
-
-    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        MenuPrincipal menu = new MenuPrincipal();
-        menu.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,7 +403,6 @@ public class PacienteVentana extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnCerrarSesion;
     private javax.swing.JToggleButton btnConsultarCita;
     private javax.swing.JToggleButton btnRegistrarCita;
-    private javax.swing.JToggleButton btnRegresar;
     private javax.swing.JComboBox<String> cbmHorario;
     private javax.swing.JComboBox<String> cmbDia;
     private com.toedter.calendar.JDateChooser fechaNacimiento;
