@@ -198,7 +198,7 @@ public class MetodosDoctor {
                 medicina = new Doctor();
                 medicina.setNombreMed(resultado.getString("nombreMed"));
                 medicina.setDescripcionMed(resultado.getString("descrpicionMed"));
-                medicina.setDisponibleMed(resultado.getString("disponibleMed"));
+                medicina.setDisponibleMed(resultado.getInteger("disponibleMed").toString());
                 medicina.setTipoMed(resultado.getString("tipoMed"));
             }
         } catch (MongoException ex) {
