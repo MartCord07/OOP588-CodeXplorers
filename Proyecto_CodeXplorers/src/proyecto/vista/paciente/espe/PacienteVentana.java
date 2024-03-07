@@ -31,9 +31,12 @@ public class PacienteVentana extends javax.swing.JFrame {
 
     private String seleccionGenero = "";
     private MongoCollection<Document> usuario;
+    
 
     public PacienteVentana() {
         initComponents();
+        String cedula = LoginUsuario.codCedula;
+        txtCedula.setText(cedula);
         setResizable(false);
         setLocationRelativeTo(null);
         botones.add(masculino);
@@ -131,6 +134,9 @@ public class PacienteVentana extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 0, 255));
         jLabel1.setText("PACIENTE");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 170, -1));
+
+        txtCedula.setEditable(false);
+        txtCedula.setEnabled(false);
         jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 220, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
@@ -324,8 +330,8 @@ public class PacienteVentana extends javax.swing.JFrame {
                 txtEdad.setText(edad);
             } else {
                 JOptionPane.showMessageDialog(null, "La fecha seleccionada no es válida");
-                fechaNacimiento.setDate(null);  // Limpia la fecha si no es válida
-                txtEdad.setText("");  // Limpia la edad
+                fechaNacimiento.setDate(null);  
+                txtEdad.setText("");  
             }
         }
     }//GEN-LAST:event_fechaNacimientoPropertyChange
