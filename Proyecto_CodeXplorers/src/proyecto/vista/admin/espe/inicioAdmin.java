@@ -29,7 +29,7 @@ public class inicioAdmin extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel2.setText("Escoge una opcion: ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 210, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 210, -1));
 
         labelNombreAdmin.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
         getContentPane().add(labelNombreAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 80, 30));
@@ -51,7 +51,7 @@ public class inicioAdmin extends javax.swing.JFrame {
                 CitasActionPerformed(evt);
             }
         });
-        getContentPane().add(Citas, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
+        getContentPane().add(Citas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_inicioAdmin.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 600, 390));

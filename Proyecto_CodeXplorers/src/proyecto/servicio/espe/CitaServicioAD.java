@@ -7,27 +7,37 @@ package proyecto.servicio.espe;
 import java.util.List;
 import proyecto.dao.espe.MetodosCitaAD;
 import proyecto.modelo.espe.CitaAD;
-
+import proyecto.modelo.espe.Paciente;
+import proyecto.modelo.espe.Perfil;
 
 /**
  *
  * @author Aliss
  */
 public class CitaServicioAD {
-     public static List<CitaAD> ListaCitas() {
+    public List<Paciente> ListaCitas(){
         return new MetodosCitaAD().ListaCitas();
     }
-
-    public static boolean ActualizarCita(CitaAD cita) {
+    public List<Perfil> ListaLogin(){
+        return new MetodosCitaAD().ListaLogin();
+    }
+    public boolean ActualizarCita(CitaAD cita){
         return new MetodosCitaAD().ActualizarCita(cita);
     }
-
-    public static boolean EliminarCita(int  idcita) {
+    public boolean EliminarCita(int  idcita){
         return new MetodosCitaAD().EliminarCita(idcita);
-
     }
-    public CitaAD BuscarIdCita(int idcita){
+    public Paciente BuscarIdCita(int idcita){
         return new MetodosCitaAD().BuscarIdCita(idcita);
-    
     }
+    public Perfil buscarIdPerfil(int CIperfil){
+        return new MetodosCitaAD().buscarIdPerfil(CIperfil);
+    }
+    public boolean InsertarAdmin (CitaAD admin){
+        return new MetodosCitaAD().InsertarAdmin(admin);
+    }
+    public boolean ActualizarClave(Perfil clave){
+        return new MetodosCitaAD().ActualizarClave(clave);
+    }
+
 }
