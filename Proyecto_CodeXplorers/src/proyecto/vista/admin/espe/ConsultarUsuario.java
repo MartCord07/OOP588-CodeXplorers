@@ -15,6 +15,8 @@ public class ConsultarUsuario extends javax.swing.JFrame {
      */
     public ConsultarUsuario() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
     }
 
     /**
