@@ -4,18 +4,17 @@ import java.util.Date;
 
 public class Doctor {
 
-    private String cedula, nombre, apellido, genero, telefono, edad;
+    private String cedula, nombre, apellido, genero, edad;
     private String nombreMed, descrpicionMed, disponibleMed, tipoMed;
-    private String nombreDoc, apellidoDoc, especialidad, iDdoctor, diagnostico;
+    private String nombreDoc, apellidoDoc, especialidad, iDdoctor, diagnostico,pastillaDoc,cantidadMed;
 
     private Date fechaNacimiento;
 
-    public Doctor(String cedula, String nombre, String apellido, String genero, String telefono, String edad, String nombreMed, String descrpicionMed, String disponibleMed, String tipoMed, String nombreDoc, String apellidoDoc, String especialidad, String iDdoctor, String diagnostico, Date fechaNacimiento) {
+    public Doctor(String cedula, String nombre, String apellido, String genero, String edad, String nombreMed, String descrpicionMed, String disponibleMed, String tipoMed, String nombreDoc, String apellidoDoc, String especialidad, String iDdoctor, String diagnostico, String pastillaDoc, String cantidadMed, Date fechaNacimiento) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.genero = genero;
-        this.telefono = telefono;
         this.edad = edad;
         this.nombreMed = nombreMed;
         this.descrpicionMed = descrpicionMed;
@@ -26,10 +25,14 @@ public class Doctor {
         this.especialidad = especialidad;
         this.iDdoctor = iDdoctor;
         this.diagnostico = diagnostico;
+        this.pastillaDoc = pastillaDoc;
+        this.cantidadMed = cantidadMed;
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Doctor(String cedula, String nombre, String apellido, String genero, String edad, String nombreDoc, String apellidoDoc, String especialidad, String iDdoctor, String diagnostico) {
+  
+
+    public Doctor(String cedula, String nombre, String apellido, String genero, String edad, String nombreDoc, String apellidoDoc, String especialidad, String iDdoctor, String diagnostico, String pastillaDoc, String cantidadMed) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -40,6 +43,24 @@ public class Doctor {
         this.especialidad = especialidad;
         this.iDdoctor = iDdoctor;
         this.diagnostico = diagnostico;
+        this.pastillaDoc = pastillaDoc;
+        this.cantidadMed = cantidadMed;
+    }
+
+    public String getPastillaDoc() {
+        return pastillaDoc;
+    }
+
+    public void setPastillaDoc(String pastillaDoc) {
+        this.pastillaDoc = pastillaDoc;
+    }
+
+    public String getCantidadMed() {
+        return cantidadMed;
+    }
+
+    public void setCantidadMed(String cantidadMed) {
+        this.cantidadMed = cantidadMed;
     }
 
     public String getDiagnostico() {
@@ -154,14 +175,7 @@ public class Doctor {
         this.genero = genero;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
+    
     public String getEdad() {
         return edad;
     }
@@ -180,7 +194,8 @@ public class Doctor {
 
     @Override
     public String toString() {
-        return "Doctor{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", telefono=" + telefono + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento + '}';
+        return "Doctor{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", edad=" + edad + ", nombreMed=" + nombreMed + ", descrpicionMed=" + descrpicionMed + ", disponibleMed=" + disponibleMed + ", tipoMed=" + tipoMed + ", nombreDoc=" + nombreDoc + ", apellidoDoc=" + apellidoDoc + ", especialidad=" + especialidad + ", iDdoctor=" + iDdoctor + ", diagnostico=" + diagnostico + ", pastillaDoc=" + pastillaDoc + ", cantidadMed=" + cantidadMed + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
 
+    
 }

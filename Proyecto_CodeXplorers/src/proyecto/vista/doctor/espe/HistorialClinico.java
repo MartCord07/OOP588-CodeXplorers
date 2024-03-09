@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package proyecto.vista.doctor.espe;
 
 import java.time.LocalDate;
@@ -11,6 +7,7 @@ import java.util.List;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import proyecto.modelo.espe.Doctor;
 import proyecto.servicio.espe.DoctorServicio;
 
@@ -28,7 +25,7 @@ public final class HistorialClinico extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         cargarHistoriales();
-        ocultarUltimaColumna();
+        ocultarUltimasColumnas();
         mostrarContenidoUltimaColumna();
         setDateChooserToCurrentDate();
 
@@ -37,28 +34,41 @@ public final class HistorialClinico extends javax.swing.JFrame {
                 mostrarContenidoUltimaColumna();
             }
         });
-
     }
 
-    public void ocultarUltimaColumna() {
+    public void ocultarUltimasColumnas() {
         int lastColumnIndex = tblHistorial.getColumnCount() - 1;
-        TableColumn lastColumn = tblHistorial.getColumnModel().getColumn(lastColumnIndex);
-        tblHistorial.removeColumn(lastColumn);
+        int lastButOneColumnIndex = tblHistorial.getColumnCount() - 2;
+        int lastButTwoColumnIndex = tblHistorial.getColumnCount() - 3;
+
+        TableColumnModel columnModel = tblHistorial.getColumnModel();
+        TableColumn lastColumn = columnModel.getColumn(lastColumnIndex);
+        TableColumn lastButOneColumn = columnModel.getColumn(lastButOneColumnIndex);
+        TableColumn lastButTwoColumn = columnModel.getColumn(lastButTwoColumnIndex);
+
+        columnModel.removeColumn(lastColumn);
+        columnModel.removeColumn(lastButOneColumn);
+        columnModel.removeColumn(lastButTwoColumn);
     }
 
     public void mostrarContenidoUltimaColumna() {
-
-        int lastColumnIndex = modeloTabla.getColumnCount() - 1;
+        int antepenultimaColumnIndex = modeloTabla.getColumnCount() - 3;
+        int penultimaColumnIndex = modeloTabla.getColumnCount() - 2;
+        int ultimaColumnIndex = modeloTabla.getColumnCount() - 1;
 
         int selectedRow = tblHistorial.getSelectedRow();
 
         if (selectedRow != -1) {
+            Object contenidoAntepenultimaColumna = modeloTabla.getValueAt(selectedRow, antepenultimaColumnIndex);
+            Object contenidoPenultimaColumna = modeloTabla.getValueAt(selectedRow, penultimaColumnIndex);
+            Object contenidoUltimaColumna = modeloTabla.getValueAt(selectedRow, ultimaColumnIndex);
 
-            Object contenidoUltimaColumna = modeloTabla.getValueAt(selectedRow, lastColumnIndex);
+            String contenidoTotal = "Diagnostico: " + contenidoAntepenultimaColumna.toString() + System.lineSeparator()
+                    + "Medicamento: " + contenidoPenultimaColumna.toString() + System.lineSeparator()
+                    + "Cantidad del medicamento: " + contenidoUltimaColumna.toString();
 
-            AreaDiagnostico.setText(contenidoUltimaColumna.toString());
+            AreaDiagnostico.setText(contenidoTotal);
         } else {
-
             AreaDiagnostico.setText("");
         }
     }
@@ -103,7 +113,9 @@ public final class HistorialClinico extends javax.swing.JFrame {
                 historial.getApellidoDoc(),
                 historial.getEspecialidad(),
                 historial.getiDdoctor(),
-                historial.getDiagnostico()
+                historial.getDiagnostico(),
+                historial.getPastillaDoc(),
+                historial.getCantidadMed()
             });
         }
     }
@@ -121,7 +133,9 @@ public final class HistorialClinico extends javax.swing.JFrame {
             historial.getApellidoDoc(),
             historial.getEspecialidad(),
             historial.getiDdoctor(),
-            historial.getDiagnostico()
+            historial.getDiagnostico(),
+            historial.getPastillaDoc(),
+            historial.getCantidadMed()
         });
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -151,10 +165,10 @@ public final class HistorialClinico extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Datos ");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
         jLabel3.setText("Fecha de consulta");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, -1));
 
         jLabel4.setText("Observaciones y diagnostico");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
@@ -162,7 +176,9 @@ public final class HistorialClinico extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Historial Clinico");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, -1));
-        jPanel2.add(fechaCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 190, -1));
+
+        fechaCreacion.setEnabled(false);
+        jPanel2.add(fechaCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 190, -1));
 
         AreaDiagnostico.setEditable(false);
         AreaDiagnostico.setColumns(20);
@@ -182,21 +198,21 @@ public final class HistorialClinico extends javax.swing.JFrame {
         jPanel2.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, -1, -1));
 
         cbxHistoriales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
-        jPanel2.add(cbxHistoriales, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 190, 20));
+        jPanel2.add(cbxHistoriales, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 190, 20));
 
         tblHistorial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cedula Paciente", "Nombre Paciente", "Apellido Paciente", "Edad Paciente", "Genero Paciente", "Nombre Doctor", "Apellido Doctor", "Especialidad", "ID Doctor", "Diagnostico"
+                "Cedula Paciente", "Nombre Paciente", "Apellido Paciente", "Edad Paciente", "Genero Paciente", "Nombre Doctor", "Apellido Doctor", "Especialidad", "ID Doctor", "Diagnostico", "Medicamento", "Cantidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -215,6 +231,8 @@ public final class HistorialClinico extends javax.swing.JFrame {
             tblHistorial.getColumnModel().getColumn(7).setResizable(false);
             tblHistorial.getColumnModel().getColumn(8).setResizable(false);
             tblHistorial.getColumnModel().getColumn(9).setResizable(false);
+            tblHistorial.getColumnModel().getColumn(10).setResizable(false);
+            tblHistorial.getColumnModel().getColumn(11).setResizable(false);
         }
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 790, 200));

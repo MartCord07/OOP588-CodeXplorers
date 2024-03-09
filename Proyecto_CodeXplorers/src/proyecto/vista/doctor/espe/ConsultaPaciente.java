@@ -43,20 +43,18 @@ public class ConsultaPaciente extends javax.swing.JFrame {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     jSpinner1.setValue(0);
-                    // Obtener el medicamento seleccionado
+
                     String nombreMedicamento = cbxMedicamentos.getSelectedItem().toString();
 
-                    // Buscar el medicamento en la lista de medicamentos
                     for (Doctor medicamento : listamedicamentos) {
                         if (medicamento.getNombreMed().equals(nombreMedicamento)) {
-                            // Obtener la cantidad disponible del medicamento seleccionado
+
                             int cantidadDisponible = Integer.parseInt(medicamento.getDisponibleMed());
 
-                            // Establecer el valor máximo del JSpinner
                             SpinnerNumberModel model = (SpinnerNumberModel) jSpinner1.getModel();
                             model.setMaximum(cantidadDisponible);
 
-                            break; // Terminar el bucle una vez que se encuentre el medicamento
+                            break;
                         }
                     }
                 }
@@ -355,7 +353,9 @@ public class ConsultaPaciente extends javax.swing.JFrame {
                         txtApellidoDoc.getText(),
                         cbxEspecialidad.getSelectedItem().toString(),
                         txtID.getText(),
-                        AreaDiagnostico.getText()
+                        AreaDiagnostico.getText(),
+                        cbxMedicamentos.getSelectedItem().toString(),
+                        jSpinner1.getValue().toString()
                 );
                 if (DoctorServicio.GenerarHistorial(generarHistorial)) {
                     JOptionPane.showMessageDialog(null, "Historial creado correctamente");

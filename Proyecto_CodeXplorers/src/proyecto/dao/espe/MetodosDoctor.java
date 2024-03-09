@@ -4,7 +4,6 @@ import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.eq;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -81,6 +80,8 @@ public class MetodosDoctor {
                 doctor.setEspecialidad(temp.getString("especialidadDoc"));
                 doctor.setiDdoctor(temp.getString("idDoc"));
                 doctor.setDiagnostico(temp.getString("diagnosticoDoc"));
+                doctor.setPastillaDoc(temp.getString("pastillasdoc"));
+                doctor.setCantidadMed(temp.getString("cantidadMed"));
                 listaHistoriales.add(doctor); // Agregar paciente a la lista
             }
         } catch (MongoException ex) {
@@ -148,7 +149,7 @@ public class MetodosDoctor {
                 paciente.setApellido(resultado.getString("apellido"));
                 paciente.setEdad(resultado.getString("edad"));
                 paciente.setGenero(resultado.getString("genero"));
-                paciente.setTelefono(resultado.getString("telefono"));
+
             }
 
         } catch (MongoException ex) {
@@ -250,7 +251,9 @@ public class MetodosDoctor {
                     .append("apellidoDoctor", historial.getApellidoDoc())
                     .append("especialidadDoc", historial.getEspecialidad())
                     .append("idDoc", historial.getiDdoctor())
-                    .append("diagnosticoDoc", historial.getDiagnostico());
+                    .append("diagnosticoDoc", historial.getDiagnostico())
+                    .append("pastillasdoc", historial.getPastillaDoc())
+                    .append("cantidadMed", historial.getCantidadMed());
             coleccionHistorial.insertOne(documento);
 
         } catch (MongoException ex) {
