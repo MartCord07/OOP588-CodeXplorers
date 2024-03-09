@@ -69,14 +69,19 @@ public class MetodosDoctor {
         try {
             documentoHistoriales = coleccionHistorial.find();
             for (Document temp : documentoHistoriales) {
-                Doctor historial = new Doctor();
-                historial.setCedula(temp.getString("cedula"));
-                historial.setNombre(temp.getString("nombre"));
-                historial.setApellido(temp.getString("apellido"));
-                historial.setEdad(temp.getString("edad"));
-                historial.setGenero(temp.getString("genero"));
 
-                listaHistoriales.add(historial); // Agregar paciente a la lista
+                Doctor doctor = new Doctor();
+                doctor.setCedula(temp.getString("cedulaPac"));
+                doctor.setNombre(temp.getString("nombrePac"));
+                doctor.setApellido(temp.getString("apellidoPac"));
+                doctor.setEdad(temp.getString("edadPac"));
+                doctor.setGenero(temp.getString("generoPac"));
+                doctor.setNombreDoc(temp.getString("nombreDoctor"));
+                doctor.setApellidoDoc(temp.getString("apellidoDoctor"));
+                doctor.setEspecialidad(temp.getString("especialidadDoc"));
+                doctor.setiDdoctor(temp.getString("idDoc"));
+                doctor.setDiagnostico(temp.getString("diagnosticoDoc"));
+                listaHistoriales.add(doctor); // Agregar paciente a la lista
             }
         } catch (MongoException ex) {
             JOptionPane.showMessageDialog(null, "Error al consultar datos" + ex.getMessage());

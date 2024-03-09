@@ -164,8 +164,10 @@ public final class HistorialClinico extends javax.swing.JFrame {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, -1));
         jPanel2.add(fechaCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 190, -1));
 
+        AreaDiagnostico.setEditable(false);
         AreaDiagnostico.setColumns(20);
         AreaDiagnostico.setRows(5);
+        AreaDiagnostico.setEnabled(false);
         jScrollPane1.setViewportView(AreaDiagnostico);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 710, 150));
