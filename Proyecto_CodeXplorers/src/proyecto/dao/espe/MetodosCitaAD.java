@@ -69,7 +69,6 @@ public class MetodosCitaAD implements ICitaAD {
                 persona.setTelefono(temp.getString("telefono"));
                 persona.setDia(temp.getString("dia"));
                 persona.setHorario(temp.getString("horario"));
-                persona.setGenero(temp.getString("genero"));
                 Date fechaNacimiento = temp.getDate("fechaNacimiento");
                 SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
                 persona.setFechaNacimiento(fechaNacimiento);

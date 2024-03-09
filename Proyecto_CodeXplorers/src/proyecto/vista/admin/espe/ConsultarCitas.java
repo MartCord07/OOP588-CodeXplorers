@@ -39,6 +39,7 @@ public class ConsultarCitas extends javax.swing.JFrame {
         listaPersonas = cita.ListaCitas();     
         cargarTablaTodasRegistro(listaPersonas);
         cargarComboCedula(listaPersonas);
+        
     }
 
     public void limpiarTabla() {
@@ -61,12 +62,13 @@ public class ConsultarCitas extends javax.swing.JFrame {
             modeloTabla.addRow(new Object[]{
                 persona.getCedula(),
                 persona.getApellido(),
-                persona.getGenero(),
+                persona.getNombre(),
                 fechaNacimientoStr,
                 edad,
                 persona.getTelefono(),
                 persona.getDia(),
-                persona.getHorario(),});
+                persona.getHorario()
+            });
         }
     }
 
@@ -80,12 +82,12 @@ public class ConsultarCitas extends javax.swing.JFrame {
             persona.getCedula(),
             persona.getApellido(),
             persona.getNombre(),
-            persona.getGenero(),
             fechaNacimientoStr,
             edad,
             persona.getTelefono(),
             persona.getDia(),
-            persona.getHorario(),});
+            persona.getHorario()
+        });
     }
 
 
@@ -135,20 +137,16 @@ public class ConsultarCitas extends javax.swing.JFrame {
 
         tbl_ConsultaPersona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cedula", "Apellido", "Nombre", "Genero", "Nacimiento", "Edad", "Telefono", "Dia", "Hora"
+                "Cedula", "Apellido", "Nombre", "Nacimiento", "Edad", "Telefono", "Dia", "Hora"
             }
         ));
         jScrollPane1.setViewportView(tbl_ConsultaPersona);
-        if (tbl_ConsultaPersona.getColumnModel().getColumnCount() > 0) {
-            tbl_ConsultaPersona.getColumnModel().getColumn(2).setHeaderValue("Nombre");
-            tbl_ConsultaPersona.getColumnModel().getColumn(3).setHeaderValue("Genero");
-        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 830, 130));
 

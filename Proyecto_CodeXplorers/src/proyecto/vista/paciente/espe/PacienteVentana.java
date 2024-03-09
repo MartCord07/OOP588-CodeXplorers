@@ -198,10 +198,10 @@ public class PacienteVentana extends javax.swing.JFrame {
         jLabel11.setText("Horario");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
-        cmbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione día", "Lunes", "Martes", "Miércoles", "Jueves ", "Viernes" }));
+        cmbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione día", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes" }));
         jPanel1.add(cmbDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 140, -1));
 
-        cbmHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione horario", "8:00 am - 9:00 am", " 9:00 am -10:00 am", "10:00 am - 11:00 am", "11:00 am - 12:00 pm", "12:00 pm -13:00 pm", "14:00pm -15:00pm", "15:00pm -16:00pm", "16:00pm -17:00pm" }));
+        cbmHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione horario", "8:00 am-9:00 am", "9:00 am-10:00 am", "10:00 am-11:00 am", "11:00 am-12:00 pm", "12:00 pm-13:00 pm", "14:00pm-15:00pm", "15:00pm-16:00pm", "16:00pm-17:00pm" }));
         jPanel1.add(cbmHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 140, -1));
 
         btnRegistrarCita.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
