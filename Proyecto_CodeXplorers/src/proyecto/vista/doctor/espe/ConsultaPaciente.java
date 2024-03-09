@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package proyecto.vista.doctor.espe;
 
 import java.awt.event.ItemEvent;
@@ -10,8 +6,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import proyecto.modelo.espe.Doctor;
 import proyecto.servicio.espe.DoctorServicio;
 
@@ -23,17 +19,49 @@ public class ConsultaPaciente extends javax.swing.JFrame {
 
     String ci = null;
     List<Doctor> listadoctores = null;
-    JComboBox<String> comboMedico;
+    List<Doctor> listamedicamentos = null;
 
     public ConsultaPaciente() {
 
         initComponents();
-
+        cbxMedicamentos.setEnabled(false);
+        jSpinner1.setEnabled(false);
         cbxMedicoDisponible.setVisible(false);
         lblMedico.setVisible(false);
         AreaDiagnostico.setVisible(false);
         listadoctores = DoctorServicio.ListarDoctores();
+        listamedicamentos = DoctorServicio.ListarMedicamento();
         cargarComboEspecialidad(listadoctores);
+        cargarComboMedicamentos(listamedicamentos);
+
+        SpinnerNumberModel model = (SpinnerNumberModel) jSpinner1.getModel();
+
+        model.setMinimum(0);
+
+        cbxMedicamentos.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    jSpinner1.setValue(0);
+                    // Obtener el medicamento seleccionado
+                    String nombreMedicamento = cbxMedicamentos.getSelectedItem().toString();
+
+                    // Buscar el medicamento en la lista de medicamentos
+                    for (Doctor medicamento : listamedicamentos) {
+                        if (medicamento.getNombreMed().equals(nombreMedicamento)) {
+                            // Obtener la cantidad disponible del medicamento seleccionado
+                            int cantidadDisponible = Integer.parseInt(medicamento.getDisponibleMed());
+
+                            // Establecer el valor máximo del JSpinner
+                            SpinnerNumberModel model = (SpinnerNumberModel) jSpinner1.getModel();
+                            model.setMaximum(cantidadDisponible);
+
+                            break; // Terminar el bucle una vez que se encuentre el medicamento
+                        }
+                    }
+                }
+            }
+        });
 
         setLocationRelativeTo(null);
         setResizable(false);
@@ -51,6 +79,21 @@ public class ConsultaPaciente extends javax.swing.JFrame {
 
         for (String element : nuevoArray) {
             cbxEspecialidad.addItem(element);
+
+        }
+    }
+
+    public void cargarComboMedicamentos(List<Doctor> listarMedicamentos) {
+
+        List<String> filtro = new ArrayList<>();
+        for (Doctor doc : listarMedicamentos) {
+            filtro.add(doc.getNombreMed());
+        }
+        Set<String> conjunto = new HashSet<>(filtro);
+        String[] nuevoArray = conjunto.toArray(new String[0]);
+
+        for (String element : nuevoArray) {
+            cbxMedicamentos.addItem(element);
 
         }
     }
@@ -113,6 +156,8 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         cbxMedicoDisponible = new javax.swing.JComboBox<>();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel16 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        cbxMedicamentos = new javax.swing.JComboBox<>();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -242,10 +287,16 @@ public class ConsultaPaciente extends javax.swing.JFrame {
 
         cbxMedicoDisponible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un medico", " " }));
         jPanel1.add(cbxMedicoDisponible, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 150, -1));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, 90, -1));
+        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 520, 90, -1));
 
-        jLabel16.setText("Cantidadad Medicamento");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
+        jLabel16.setText("Cantidad");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 490, -1, 20));
+
+        jLabel11.setText("Nombre Medicamento");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, -1, -1));
+
+        cbxMedicamentos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos los medicamentos", " " }));
+        jPanel1.add(cbxMedicamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 520, 160, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_consultamed.jpg"))); // NOI18N
         jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -272,37 +323,48 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicamentosActionPerformed
+        cbxMedicamentos.setEnabled(true);
+        jSpinner1.setEnabled(true);
         ConsultaMedicamentos medicamento = new ConsultaMedicamentos();
         medicamento.setVisible(true);
 
     }//GEN-LAST:event_btnMedicamentosActionPerformed
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
-         if (!txtCedula.getText().trim().equals("") && !txtNombre.getText().trim().equals("")
-                && !txtApellido.getText().trim().equals("") && !txtEdad.getText().trim().equals("")
-                && !txtGenero.getText().trim().equals("") && !txtNombreDoc.getText().trim().equals("")
-                && !txtApellidoDoc.getText().trim().equals("") && !txtID.getText().trim().equals("")
-                && !AreaDiagnostico.getText().trim().equals("") && JOptionPane.showConfirmDialog(this, "Seguro de generar historial", "Ingrese", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+        String medicamentoSeleccionado = cbxMedicamentos.getSelectedItem().toString();
 
-            Doctor generarHistorial = new Doctor(
-                    txtCedula.getText(),
-                    txtNombre.getText(),
-                    txtApellido.getText(),
-                    txtGenero.getText(),
-                    txtEdad.getText(),
-                    txtNombreDoc.getText(),
-                    txtApellidoDoc.getText(),
-                    cbxEspecialidad.getSelectedItem().toString(),
-                    txtID.getText(),
-                    AreaDiagnostico.getText()
-            );
-            if (DoctorServicio.GenerarHistorial(generarHistorial)) {
-                JOptionPane.showMessageDialog(null, "Historial creado correctamente");
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al generar historial");
+        int cantidadSeleccionada = (int) jSpinner1.getValue();
+
+        if (medicamentoSeleccionado.equals("Todos los medicamentos") || cantidadSeleccionada <= 0) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un medicamento y especificar una cantidad mayor a 0", "Campos obligatorios", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            if (!txtCedula.getText().trim().equals("") && !txtNombre.getText().trim().equals("")
+                    && !txtApellido.getText().trim().equals("") && !txtEdad.getText().trim().equals("")
+                    && !txtGenero.getText().trim().equals("") && !txtNombreDoc.getText().trim().equals("")
+                    && !txtApellidoDoc.getText().trim().equals("") && !txtID.getText().trim().equals("")
+                    && !AreaDiagnostico.getText().trim().equals("") && JOptionPane.showConfirmDialog(this, "Seguro de generar historial", "Ingrese", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+
+                Doctor generarHistorial = new Doctor(
+                        txtCedula.getText(),
+                        txtNombre.getText(),
+                        txtApellido.getText(),
+                        txtGenero.getText(),
+                        txtEdad.getText(),
+                        txtNombreDoc.getText(),
+                        txtApellidoDoc.getText(),
+                        cbxEspecialidad.getSelectedItem().toString(),
+                        txtID.getText(),
+                        AreaDiagnostico.getText()
+                );
+                if (DoctorServicio.GenerarHistorial(generarHistorial)) {
+                    JOptionPane.showMessageDialog(null, "Historial creado correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al generar historial");
+                }
             }
         }
-         
+
         HistorialClinico historial = new HistorialClinico();
         historial.setVisible(true);
         setVisible(false);
@@ -396,9 +458,11 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     private javax.swing.JButton btnMedicamentos;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbxEspecialidad;
+    private javax.swing.JComboBox<String> cbxMedicamentos;
     private javax.swing.JComboBox<String> cbxMedicoDisponible;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;

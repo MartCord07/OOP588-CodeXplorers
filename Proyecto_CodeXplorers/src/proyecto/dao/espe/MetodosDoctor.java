@@ -123,7 +123,7 @@ public class MetodosDoctor {
                 Doctor medicina = new Doctor();
                 medicina.setNombreMed(temp.getString("nombreMed"));
                 medicina.setDescripcionMed(temp.getString("descrpicionMed"));
-                medicina.setDisponibleMed(temp.getString("disponibleMed"));
+                medicina.setDisponibleMed(temp.getInteger("disponibleMed").toString());
                 medicina.setTipoMed(temp.getString("tipoMed"));
                 listaMedicamento.add(medicina); // Agregar paciente a la lista
             }
