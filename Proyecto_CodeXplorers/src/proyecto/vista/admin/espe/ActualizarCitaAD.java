@@ -7,6 +7,7 @@ package proyecto.vista.admin.espe;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import proyecto.modelo.espe.CitaAD;
 import proyecto.modelo.espe.Paciente;
 import proyecto.servicio.espe.CitaServicioAD;
 
@@ -27,6 +28,23 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
         ConsultarCitas dato = new ConsultarCitas();
         cedula = dato.codCedula;
         cargarDatos();
+    }
+
+    private boolean validarCampos() {
+        String diaSeleccionado = cmbDia1.getSelectedItem().toString();
+        String horarioSeleccionado = cbmHorario.getSelectedItem().toString();
+
+        if ("Seleccione día".equals(diaSeleccionado)) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un día.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if ("Seleccione horario".equals(horarioSeleccionado)) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un horario.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
     }
 
     public void cargarDatos() {
@@ -81,7 +99,7 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         fechaNacimiento = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_Actualizar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -157,41 +175,21 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
         jLabel4.setText("Nombre");
 
         txt_nombre.setEditable(false);
-        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_nombreKeyTyped(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel5.setText("Apellido");
 
         txt_apellido.setEditable(false);
-        txt_apellido.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_apellidoKeyTyped(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel8.setText("Teléfono");
 
         txt_Telefono.setEditable(false);
-        txt_Telefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_TelefonoKeyTyped(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel6.setText("Fecha de Nacimiento");
 
         fechaNacimiento.setEnabled(false);
-        fechaNacimiento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                fechaNacimientoPropertyChange(evt);
-            }
-        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel7.setText("DATOS DEL PACIENTE");
@@ -256,16 +254,21 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 400, 250));
 
-        jButton1.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/refresh_42.png"))); // NOI18N
-        jButton1.setText("Actualizar");
-        jButton1.setContentAreaFilled(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/refresh_42.png"))); // NOI18N
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/refresh_72.png"))); // NOI18N
-        jButton1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 150, 110));
+        btn_Actualizar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        btn_Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/refresh_42.png"))); // NOI18N
+        btn_Actualizar.setText("Actualizar");
+        btn_Actualizar.setContentAreaFilled(false);
+        btn_Actualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Actualizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/refresh_42.png"))); // NOI18N
+        btn_Actualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/refresh_72.png"))); // NOI18N
+        btn_Actualizar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btn_Actualizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ActualizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 150, 110));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/Fondo_ActualizarCita.jpg"))); // NOI18N
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 470));
@@ -273,21 +276,30 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
+    private void btn_ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ActualizarActionPerformed
+        CitaServicioAD reingreso = new CitaServicioAD();
+        if (validarCampos()) {
+            int confirmacion = JOptionPane.showConfirmDialog(this, "Seguro de guardar datos", "Cambio de Datos", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            //obtener el id para insertarlo en la base datos
+            if (confirmacion == JOptionPane.OK_OPTION) {
+                CitaAD persona = new CitaAD(
+                        txt_cedula.getText(),
+                        txt_apellido.getText(),
+                        txt_Telefono.getText(),
+                        cmbDia1.getSelectedItem().toString(),
+                        cbmHorario.getSelectedItem().toString(),
+                        fechaNacimiento.getDate()    
+                );
+                if (reingreso.ActualizarCita(persona)) {
+                    JOptionPane.showMessageDialog(null, "Registro actualizado correctamente");
+                    //limpiarDatos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No fue posible actualizar");
 
-    }//GEN-LAST:event_txt_nombreKeyTyped
-
-    private void txt_apellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apellidoKeyTyped
-
-    }//GEN-LAST:event_txt_apellidoKeyTyped
-
-    private void fechaNacimientoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaNacimientoPropertyChange
-
-    }//GEN-LAST:event_fechaNacimientoPropertyChange
-
-    private void txt_TelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_TelefonoKeyTyped
-
-    }//GEN-LAST:event_txt_TelefonoKeyTyped
+                }
+            }
+        }
+    }//GEN-LAST:event_btn_ActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,10 +338,10 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Actualizar;
     private javax.swing.JComboBox<String> cbmHorario;
     private javax.swing.JComboBox<String> cmbDia1;
     private com.toedter.calendar.JDateChooser fechaNacimiento;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

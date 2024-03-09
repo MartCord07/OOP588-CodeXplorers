@@ -38,22 +38,18 @@ public class CitaAD {
      * Constructor para consultar citas
      *
      * @param cedulaP cedula del paciente
-     * @param nombreP nombre del paciente
      * @param apellidoP apellido del paciente
      * @param telefono telefono del paciente
      * @param dia dia de la cida
      * @param horario hora de la cita
      * @param fechaNacimiento fecha de nacimiento del que se va a atende
-     * @param genero genero paciente
      */
-    public CitaAD(String cedulaP, String nombreP, String apellidoP, String telefono, String dia, String horario, String genero, Date fechaNacimiento) {    
+    public CitaAD(String cedulaP, String apellidoP, String telefono, String dia, String horario, Date fechaNacimiento) {    
         this.cedulaP = cedulaP;
-        this.nombreP = nombreP;
         this.apellidoP = apellidoP;
         this.telefono = telefono;
         this.dia = dia;
         this.horario = horario;
-        this.genero = genero;
         this.fechaNacimiento = fechaNacimiento;
     }
 

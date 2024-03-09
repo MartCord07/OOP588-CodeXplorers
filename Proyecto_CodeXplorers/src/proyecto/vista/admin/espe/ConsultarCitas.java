@@ -102,6 +102,7 @@ public class ConsultarCitas extends javax.swing.JFrame {
 
         return anioActual - anioNacimiento;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
