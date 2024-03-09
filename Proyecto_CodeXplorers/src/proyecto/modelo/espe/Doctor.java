@@ -6,11 +6,11 @@ public class Doctor {
 
     private String cedula, nombre, apellido, genero, telefono, edad;
     private String nombreMed, descrpicionMed, disponibleMed, tipoMed;
-    private String nombreDoc, apellidoDoc, especialidad, iDdoctor;
+    private String nombreDoc, apellidoDoc, especialidad, iDdoctor, diagnostico;
 
     private Date fechaNacimiento;
 
-    public Doctor(String cedula, String nombre, String apellido, String genero, String telefono, String edad, String nombreMed, String descrpicionMed, String disponibleMed, String tipoMed, String nombreDoc, String apellidoDoc, String especialidad, String iDdoctor, Date fechaNacimiento) {
+    public Doctor(String cedula, String nombre, String apellido, String genero, String telefono, String edad, String nombreMed, String descrpicionMed, String disponibleMed, String tipoMed, String nombreDoc, String apellidoDoc, String especialidad, String iDdoctor, String diagnostico, Date fechaNacimiento) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -25,7 +25,29 @@ public class Doctor {
         this.apellidoDoc = apellidoDoc;
         this.especialidad = especialidad;
         this.iDdoctor = iDdoctor;
+        this.diagnostico = diagnostico;
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Doctor(String cedula, String nombre, String apellido, String genero, String edad, String nombreDoc, String apellidoDoc, String especialidad, String iDdoctor, String diagnostico) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.genero = genero;
+        this.edad = edad;
+        this.nombreDoc = nombreDoc;
+        this.apellidoDoc = apellidoDoc;
+        this.especialidad = especialidad;
+        this.iDdoctor = iDdoctor;
+        this.diagnostico = diagnostico;
+    }
+
+    public String getDiagnostico() {
+        return diagnostico;
+    }
+
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
     }
 
     public String getNombreDoc() {
@@ -59,8 +81,6 @@ public class Doctor {
     public void setiDdoctor(String iDdoctor) {
         this.iDdoctor = iDdoctor;
     }
-
-   
 
     public Doctor(String cedula) {
         this.cedula = cedula;
