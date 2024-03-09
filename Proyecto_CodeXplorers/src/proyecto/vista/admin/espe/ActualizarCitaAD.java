@@ -103,7 +103,7 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel16.setText("DATOS DE LA CITA");
 
-        cmbDia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione día", "Lunes", "Martes", "Miércoles", "Jueves ", "Viernes" }));
+        cmbDia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione día", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes" }));
 
         cbmHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione horario", "8:00 am-9:00 am", "9:00 am-10:00 am", "10:00 am-11:00 am", "11:00 am-12:00 pm", "12:00 pm-13:00 pm", "14:00pm-15:00pm", "15:00pm-16:00pm", "16:00pm-17:00pm" }));
 

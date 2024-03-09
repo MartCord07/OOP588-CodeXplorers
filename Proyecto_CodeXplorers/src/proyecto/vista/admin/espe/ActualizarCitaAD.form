@@ -132,7 +132,7 @@
                 <StringItem index="1" value="Lunes"/>
                 <StringItem index="2" value="Martes"/>
                 <StringItem index="3" value="Mi&#xe9;rcoles"/>
-                <StringItem index="4" value="Jueves "/>
+                <StringItem index="4" value="Jueves"/>
                 <StringItem index="5" value="Viernes"/>
               </StringArray>
             </Property>
