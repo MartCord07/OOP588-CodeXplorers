@@ -69,7 +69,7 @@ public class MetodosCitaAD implements ICitaAD {
                 persona.setTelefono(temp.getString("telefono"));
                 persona.setDia(temp.getString("dia"));
                 persona.setHorario(temp.getString("horario"));
-                persona.setGenero(temp.getString("horario"));
+                persona.setGenero(temp.getString("genero"));
                 Date fechaNacimiento = temp.getDate("fechaNacimiento");
                 SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
                 persona.setFechaNacimiento(fechaNacimiento);
@@ -136,7 +136,7 @@ public class MetodosCitaAD implements ICitaAD {
     }
 
     @Override
-    public boolean EliminarCita(int idcita) {
+    public boolean EliminarCita(String idcita) {
         Bson filtro = null;
         DeleteResult result = null;
         boolean eliminar = false;
@@ -158,36 +158,7 @@ public class MetodosCitaAD implements ICitaAD {
     }
 
     @Override
-    public Paciente BuscarIdCita(int idcita) {
-        Paciente paciente = null;
-        Document filtro = null, resultado = null, perfil = null;
-        try {
-            filtro = new Document("cedula", idcita);
-            resultado = (Document) coleccionPaciente.find(filtro).first();
-
-            if (resultado != null) {
-                paciente = new Paciente();
-                paciente.setCedula(resultado.getString("cedula"));
-                paciente.setNombre(resultado.getString("nombre"));
-                paciente.setApellido(resultado.getString("apellido"));
-                paciente.setTelefono(resultado.getString("telefono"));
-                paciente.setDia(resultado.getString("dia"));
-                paciente.setHorario(resultado.getString("horario"));
-                Date fechaNacimiento = resultado.getDate("fechaNacimiento");
-                SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-                paciente.setFechaNacimiento(fechaNacimiento);
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error al consultar datos segun id : " + ex.getMessage());
-
-        } finally {
-            cierreConexion();
-        }
-        return paciente;
-    }
-
-    @Override
-    public Perfil buscarIdPerfil(int CIperfil) {
+    public Perfil buscarIdPerfil(String CIperfil) {
         Perfil perfil = null;
         Document filtro = null, resultado = null;
         try {
@@ -221,7 +192,7 @@ public class MetodosCitaAD implements ICitaAD {
                         .append("apellido", admin.getApellido())
                         .append("fecha_nacimiento", admin.getFechaNacimiento())
                         .append("email", admin.getEmail());
-                        
+
                 coleccionAdmin.insertOne(documento);
 
             } else {
@@ -243,12 +214,12 @@ public class MetodosCitaAD implements ICitaAD {
         Document filtro, update;
         UpdateResult resultado;
         boolean actualizar = false;
-        
+
         try {
             filtro = new Document("cedula", clave.getCedulaPerfil());
-            update = new Document("$set", new Document("clave",clave.getContrasena()));
+            update = new Document("$set", new Document("clave", clave.getContrasena()));
             resultado = coleccionPerfil.updateOne(filtro, update);
-            
+
             if (resultado.getModifiedCount() > 0) {
                 actualizar = true;
             }
@@ -259,6 +230,81 @@ public class MetodosCitaAD implements ICitaAD {
             cierreConexion();
         }
         return actualizar;
+    }
+
+    @Override
+    public Paciente BuscarIdCita(String idcita) {
+        Paciente paciente = null;
+        Document filtro = null, resultado = null, perfil = null;
+        try {
+            filtro = new Document("cedula", idcita);
+            resultado = (Document) coleccionPaciente.find(filtro).first();
+
+            if (resultado != null) {
+                paciente = new Paciente();
+                paciente.setCedula(resultado.getString("cedula"));
+                paciente.setNombre(resultado.getString("nombre"));
+                paciente.setApellido(resultado.getString("apellido"));
+                paciente.setTelefono(resultado.getString("telefono"));
+                paciente.setDia(resultado.getString("dia"));
+                paciente.setHorario(resultado.getString("horario"));
+                Date fechaNacimiento = resultado.getDate("fechaNacimiento");
+                SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+                paciente.setFechaNacimiento(fechaNacimiento);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al consultar datos segun id : " + ex.getMessage());
+
+        } finally {
+            cierreConexion();
+        }
+        return paciente;
+    }
+
+    @Override
+    public List<Doctor> ListaDoctor() {
+        List<Doctor> listaDoctor = new ArrayList<>();
+        FindIterable<Document> documentoPerfiles;
+        try {
+            documentoPerfiles = coleccionDoctor.find();
+
+            for (Document temp : documentoPerfiles) {
+                Doctor doctor = new Doctor();
+                doctor.setiDdoctor(temp.getString("idDoctor"));
+                doctor.setApellidoDoc(temp.getString("apellidoDoc"));
+                doctor.setNombreDoc(temp.getString("nombreDoc"));
+                doctor.setEspecialidad(temp.getString("especialidad"));
+                listaDoctor.add(doctor);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al consultar los datos : " + ex.getMessage());
+        } finally {
+            cierreConexion();
+        }
+        return listaDoctor;
+    }
+
+    @Override
+    public Doctor buscarIdDoctor(String idDoctor) {
+        Doctor doctor = new Doctor();
+        Document filtro = null, resultado = null;
+        try {
+            filtro = new Document("idDoctor", idDoctor);
+            resultado = (Document) coleccionDoctor.find(filtro).first();
+
+            if (resultado != null) {
+                doctor.setiDdoctor(resultado.getString("idDoctor"));
+                doctor.setApellidoDoc(resultado.getString("apellidoDoc"));
+                doctor.setNombreDoc(resultado.getString("nombreDoc"));
+                doctor.setEspecialidad(resultado.getString("especialidad"));
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al consultar datos segun id : " + ex.getMessage());
+
+        } finally {
+            cierreConexion();
+        }
+        return doctor;
     }
 
 }

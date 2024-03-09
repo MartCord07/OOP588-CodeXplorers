@@ -27,6 +27,12 @@ public class CitaAD {
      */
     private String cedulaP, nombreP, apellidoP, telefono, dia, horario, genero;
     private Date fechaNacimiento;
+    
+    /**
+     * Atributos Doctor
+     */
+    private String nombreDoc, apellidoDoc, especialidad, iDdoctor;
+    
 
     /**
      * Constructor para consultar citas

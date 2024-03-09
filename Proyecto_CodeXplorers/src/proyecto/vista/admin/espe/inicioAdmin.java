@@ -13,12 +13,16 @@ import proyecto.vista.perfil.espe.LoginUsuario;
  * @author Aliss
  */
 public class inicioAdmin extends javax.swing.JFrame {
+
     String cedula = null;
+
     public inicioAdmin() {
         initComponents();
         LoginUsuario CI = new LoginUsuario();
         cedula = CI.codCedula;
         txt_cedula.setText(cedula);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
     }
 
     private void abrirConsultarCitas() {

@@ -11,10 +11,12 @@ import proyecto.modelo.espe.Perfil;
 public interface ICitaAD {
     public List<Paciente> ListaCitas();
     public List<Perfil> ListaLogin();
+    public List<Doctor> ListaDoctor();
     public boolean ActualizarCita(CitaAD cita);
-    public boolean EliminarCita(int  idcita);
-    public Paciente BuscarIdCita(int idcita);
-    public Perfil buscarIdPerfil(int CIperfil);
+    public boolean EliminarCita(String  idcita);
+    public Paciente BuscarIdCita(String idcita);
+    public Perfil buscarIdPerfil(String CIperfil);
+    public Doctor buscarIdDoctor(String idDoctor);
     public boolean InsertarAdmin (CitaAD admin);
     public boolean ActualizarClave(Perfil clave);  
 }
