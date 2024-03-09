@@ -24,6 +24,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     public ConsultaPaciente() {
 
         initComponents();
+        btnRevisar.setVisible(false);
         cbxMedicamentos.setEnabled(false);
         jSpinner1.setEnabled(false);
         cbxMedicoDisponible.setVisible(false);
@@ -156,6 +157,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         cbxMedicamentos = new javax.swing.JComboBox<>();
+        btnRevisar = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -295,6 +297,10 @@ public class ConsultaPaciente extends javax.swing.JFrame {
 
         cbxMedicamentos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos los medicamentos", " " }));
         jPanel1.add(cbxMedicamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 520, 160, -1));
+
+        btnRevisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_consulta.png"))); // NOI18N
+        btnRevisar.setText("Revisar Historial");
+        jPanel1.add(btnRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 670, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_consultamed.jpg"))); // NOI18N
         jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -457,6 +463,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnMedicamentos;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JButton btnRevisar;
     private javax.swing.JComboBox<String> cbxEspecialidad;
     private javax.swing.JComboBox<String> cbxMedicamentos;
     private javax.swing.JComboBox<String> cbxMedicoDisponible;

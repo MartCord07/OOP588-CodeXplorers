@@ -41,5 +41,6 @@ public class DoctorServicio {
     public static Doctor BuscarHistorial(String cedula) {
         return new MetodosDoctor().BuscarHistorial(cedula);
     }
+    
 
 }
