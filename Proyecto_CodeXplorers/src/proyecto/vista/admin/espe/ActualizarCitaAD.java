@@ -322,7 +322,10 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
                 if (reingreso.ActualizarCita(persona)) {
                     JOptionPane.showMessageDialog(null, "Registro actualizado correctamente");
                     limpiarDatos();
-                    abrirConsultarCitas();
+                    ConsultarCitas consultarCitas = new ConsultarCitas();
+                    consultarCitas.setVisible(true);
+                    consultarCitas.setLocationRelativeTo(null);
+                    setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "No fue posible actualizar");
 
@@ -331,7 +334,6 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_ActualizarActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Actualizar;

@@ -122,9 +122,11 @@ public class CitaAD {
     /**
      * Constructor para actualizar usuario registrado
      */
-    public CitaAD(int id_perfil, String contraseñaPerfil) {
+    
+
+    public CitaAD(int id_perfil, String cedulaPerfil) {
         this.id_perfil = id_perfil;
-        this.contraseñaPerfil = contraseñaPerfil;
+        this.cedulaPerfil = cedulaPerfil;
     }
 
     public CitaAD() {

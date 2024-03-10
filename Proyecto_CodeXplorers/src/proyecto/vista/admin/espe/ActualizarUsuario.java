@@ -34,14 +34,13 @@ public class ActualizarUsuario extends javax.swing.JFrame {
         cedula = dato.codCedula;
         cargarDatos();
         setLocationRelativeTo(null);
-       
-    }
 
+    }
 
     public void limpiarDatos() {
         txt_Usuario.setText("");
         cbm_perfil.setSelectedItem("Seleccione");
-        
+
     }
 
     public void cargarComboPerfil(int idPerfil) {
@@ -138,7 +137,10 @@ public class ActualizarUsuario extends javax.swing.JFrame {
             String[] perfil = dato.split("-");
             idPerfil = Integer.parseInt(perfil[0].trim());
 
-            CitaAD persona = new CitaAD(idPerfil, txt_Usuario.getText());
+            CitaAD persona = new CitaAD(
+                    idPerfil,
+                    txt_Usuario.getText()
+            );
 
             if (idPerfil == 2) {
                 // Si el id_Perfil es 2, abrir el JFrame de ingreso de administrador
@@ -153,7 +155,10 @@ public class ActualizarUsuario extends javax.swing.JFrame {
                 if (perfilcita.ActualizarUsuario(persona)) {
                     JOptionPane.showMessageDialog(null, "Registro actualizado correctamente");
                     limpiarDatos();
-
+                    ConsultarUsuario consultar = new ConsultarUsuario();
+                    consultar.setVisible(true);
+                    consultar.setLocationRelativeTo(null);
+                    setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "No fue posible actualizar");
                 }

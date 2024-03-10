@@ -309,6 +309,7 @@ public class MetodosCitaAD implements ICitaAD {
 
         try {
             filtro = new Document("cedula_Perfil", usuario.getCedulaPerfil());
+            System.out.println("id_Perfil recibido: " + usuario.getId_perfil());
 
             // Mapeo de id_Perfil a rol_Perfil
             String rolPerfil;
@@ -325,7 +326,10 @@ public class MetodosCitaAD implements ICitaAD {
                 default:
                     rolPerfil = "Otro";
                     break;
+
             }
+            System.out.println("rol_Perfil asignado: " + rolPerfil);
+
             update = new Document("$set", new Document()
                     .append("cedula_Perfil", usuario.getCedulaPerfil())
                     .append("id_Perfil", usuario.getId_perfil())
@@ -341,6 +345,8 @@ public class MetodosCitaAD implements ICitaAD {
         } finally {
             cierreConexion();
         }
+        System.out.println("Acutualizar " + actualizar);
         return actualizar;
+        
     }
 }

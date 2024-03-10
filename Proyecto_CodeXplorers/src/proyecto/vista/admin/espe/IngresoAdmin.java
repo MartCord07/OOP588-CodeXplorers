@@ -223,15 +223,6 @@ public class IngresoAdmin extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Error al actualizar el usuario");
                     }
-                } else {
-                    // Insertar nuevo administrador
-                    if (nuevos.InsertarAdmin(insertarPersona)) {
-                        JOptionPane.showMessageDialog(null, "Registro ingresado correctamente");
-                        dispose();
-                        // limpiarDatos();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "La cedula ya fue ingresada con anterioridad");
-                    }
                 }
             }
         }
