@@ -1,6 +1,5 @@
 package proyecto.vista.doctor.espe;
 
-import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

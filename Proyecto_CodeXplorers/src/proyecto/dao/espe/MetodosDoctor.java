@@ -187,7 +187,7 @@ public class MetodosDoctor {
         Doctor historial = new Doctor(cedula);
 
         try {
-            Document filtro = new Document("cedula", cedula);
+            Document filtro = new Document("cedulaPac", cedula);
             Document resultado = (Document) coleccionHistorial.find(filtro).first();
 
             if (resultado != null) {

@@ -91,7 +91,7 @@ public final class HistorialClinico extends javax.swing.JFrame {
 
     public void cargarComboHistoriales(List<Doctor> listarHistoriales) {
         for (Doctor historial : listarHistoriales) {
-            cbxHistoriales.addItem(historial.getNombre() + " - " + historial.getNombreDoc());
+            cbxHistoriales.addItem(historial.getCedula() + " - " + historial.getNombreDoc());
         }
     }
 
@@ -103,6 +103,7 @@ public final class HistorialClinico extends javax.swing.JFrame {
     public void cargarTablaTodosHistoriales(List<Doctor> listaHistorial) {
         limpiarTabla();
         for (Doctor historial : listaHistorial) {
+
             modeloTabla.addRow(new Object[]{
                 historial.getCedula(),
                 historial.getNombre(),
@@ -117,12 +118,16 @@ public final class HistorialClinico extends javax.swing.JFrame {
                 historial.getPastillaDoc(),
                 historial.getCantidadMed()
             });
+
         }
+
     }
 
     public void cargarTablaBusqueda(String cedula) {
         limpiarTabla();
         Doctor historial = DoctorServicio.BuscarHistorial(cedula);
+        System.out.println(historial);
+
         modeloTabla.addRow(new Object[]{
             historial.getCedula(),
             historial.getNombre(),
@@ -137,6 +142,7 @@ public final class HistorialClinico extends javax.swing.JFrame {
             historial.getPastillaDoc(),
             historial.getCantidadMed()
         });
+
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
