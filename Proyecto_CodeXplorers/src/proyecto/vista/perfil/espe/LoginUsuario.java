@@ -1,4 +1,4 @@
-package proyecto.vista.perfil.espe;
+   package proyecto.vista.perfil.espe;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;

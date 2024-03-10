@@ -183,29 +183,24 @@ public class MetodosCitaAD implements ICitaAD {
     @Override
     public boolean InsertarAdmin(CitaAD admin) {
         Document documento, filtro = new Document("cedula", admin.getCedulaPerfil());
-        long contador = coleccionAdmin.countDocuments(filtro);
         try {
-            if (contador == 0) {
-                documento = new Document("cedula", admin.getCedulaPerfil())
-                        .append("nombre", admin.getNombre())
-                        .append("apellido", admin.getApellido())
-                        .append("fecha_nacimiento", admin.getFechaNacimiento())
-                        .append("email", admin.getEmail());
+            documento = new Document("cedula", admin.getCedulaPerfil())
+                    .append("nombre", admin.getNombre())
+                    .append("apellido", admin.getApellido())
+                    .append("fecha_nacimiento", admin.getNacimiento())
+                    .append("email", admin.getEmail());
 
-                coleccionAdmin.insertOne(documento);
+            coleccionAdmin.insertOne(documento);
+            System.out.println("Registro insertado correctamente en la colección admin.");
+            return true;
 
-            } else {
-                return false;
-            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar registro : " + ex.getMessage());
 
         } finally {
             cierreConexion();
         }
-
         return true;
-
     }
 
     @Override
@@ -306,4 +301,47 @@ public class MetodosCitaAD implements ICitaAD {
         return doctor;
     }
 
+    @Override
+    public boolean ActualizarUsuario(CitaAD usuario) {
+        Document filtro, update;
+        UpdateResult resultado;
+        boolean actualizar = false;
+
+        try {
+            filtro = new Document("cedula_Perfil", usuario.getCedulaPerfil());
+
+            // Mapeo de id_Perfil a rol_Perfil
+            String rolPerfil;
+            switch (usuario.getId_perfil()) {
+                case 1:
+                    rolPerfil = "Paciente";
+                    break;
+                case 2:
+                    rolPerfil = "Admin";
+                    break;
+                case 3:
+                    rolPerfil = "Doctor";
+                    break;
+                default:
+                    rolPerfil = "Otro";
+                    break;
+            }
+
+            update = new Document("$set", new Document()
+                    .append("cedula_Perfil", usuario.getCedulaPerfil())
+                    .append("id_Perfil", usuario.getId_perfil())
+                    .append("rol_Perfil", rolPerfil));
+
+            resultado = coleccionPerfil.updateOne(filtro, update);
+
+            if (resultado.getModifiedCount() > 0) {
+                actualizar = true;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            cierreConexion();
+        }
+        return actualizar;
+    }
 }

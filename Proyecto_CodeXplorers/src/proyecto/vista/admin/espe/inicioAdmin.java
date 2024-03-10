@@ -6,6 +6,7 @@ package proyecto.vista.admin.espe;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import proyecto.vista.perfil.espe.LoginUsuario;
 
 /**
@@ -21,7 +22,7 @@ public class inicioAdmin extends javax.swing.JFrame {
         LoginUsuario CI = new LoginUsuario();
         cedula = CI.codCedula;
         txt_cedula.setText(cedula);
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
     }
 
@@ -38,6 +39,7 @@ public class inicioAdmin extends javax.swing.JFrame {
             @Override
             public void windowClosed(WindowEvent e) {
                 inicioAdmin.this.setVisible(true);
+                setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
             }
         });
 
@@ -58,6 +60,7 @@ public class inicioAdmin extends javax.swing.JFrame {
             @Override
             public void windowClosed(WindowEvent e) {
                 inicioAdmin.this.setVisible(true);
+                setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
             }
         });
 
@@ -168,15 +171,6 @@ public class inicioAdmin extends javax.swing.JFrame {
         menu.setLocationRelativeTo(null);
         setVisible(false);
     }//GEN-LAST:event_btnsalirActionPerformed
-
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new inicioAdmin().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Citas;

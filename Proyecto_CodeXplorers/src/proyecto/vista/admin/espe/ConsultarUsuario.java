@@ -4,6 +4,8 @@
  */
 package proyecto.vista.admin.espe;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -21,11 +23,28 @@ public class ConsultarUsuario extends javax.swing.JFrame {
     private DefaultTableModel modeloTabla;
     List<Perfil> listaPersonas = null;
     public static String codCedula = "";
+    public static int idPerfil = 0;
 
     public ConsultarUsuario() {
         initComponents();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         cargarRegistro();
+        setLocationRelativeTo(null);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                abrirInicioAdmin();
+            }
+        });
+        setLocationRelativeTo(null);
+    }
+
+    private void abrirInicioAdmin() {
+        // Aquí, instancias y muestras tu frame ConsultarCitas
+        inicioAdmin inicio = new inicioAdmin();
+        inicio.setVisible(true);
+        inicio.setLocationRelativeTo(null);
     }
 
     public void limpiarTabla() {
@@ -43,7 +62,7 @@ public class ConsultarUsuario extends javax.swing.JFrame {
 
     public void cargarComboCedula(List<Perfil> listarPersonas) {
         for (Perfil person : listarPersonas) {
-            cmb_usuarios.addItem(person.getCedulaPerfil()+ " - " + person.getTipoPerfil());
+            cmb_usuarios.addItem(person.getCedulaPerfil() + " - " + person.getTipoPerfil());
         }
     }
 
@@ -77,13 +96,12 @@ public class ConsultarUsuario extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cmb_usuarios = new javax.swing.JComboBox<>();
         btn_Buscar = new javax.swing.JButton();
-        Btn_Eliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Actualizar = new javax.swing.JMenu();
         ActualizarUsuario = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 36)); // NOI18N
@@ -103,7 +121,7 @@ public class ConsultarUsuario extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbl_ConsultaPersona);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 440, 90));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 440, 90));
 
         jLabel3.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel3.setText("Busqueda:");
@@ -124,25 +142,9 @@ public class ConsultarUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(btn_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 120, -1));
 
-        Btn_Eliminar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        Btn_Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/Eliminar 48.png"))); // NOI18N
-        Btn_Eliminar.setText("Eliminar ");
-        Btn_Eliminar.setContentAreaFilled(false);
-        Btn_Eliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Btn_Eliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/Eliminar 48.png"))); // NOI18N
-        Btn_Eliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/Eliminar 72.png"))); // NOI18N
-        Btn_Eliminar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Btn_Eliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_EliminarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Btn_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 120, 100));
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_ConsultaCita.png"))); // NOI18N
         jLabel1.setText("        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 430));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 380));
 
         Actualizar.setText("Mas opciones");
 
@@ -174,33 +176,11 @@ public class ConsultarUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_BuscarActionPerformed
 
-    private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
-        int filaSeleccionada = tbl_ConsultaPersona.getSelectedRow();
-        if (filaSeleccionada >= 0) {
-            int confirmar = JOptionPane.showConfirmDialog(null, "Seguro de eliminar el registro",
-                    "Confirmacion", JOptionPane.YES_NO_OPTION);
-            if (confirmar == JOptionPane.YES_OPTION) {
-                codCedula = (String) modeloTabla.getValueAt(filaSeleccionada, 0);
-                CitaServicioAD cita = new CitaServicioAD();
-
-                if (cita.EliminarCita(codCedula)) {
-                    modeloTabla.removeRow(filaSeleccionada);
-                    JOptionPane.showMessageDialog(null, "Registro eliminado correctamente");
-                }
-            } else {
-                ListSelectionModel seleccionModel = tbl_ConsultaPersona.getSelectionModel();
-                seleccionModel.clearSelection();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione el registro a eliminar");
-        }
-    }//GEN-LAST:event_Btn_EliminarActionPerformed
-
     private void ActualizarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarUsuarioActionPerformed
         int filaSeleccionada = tbl_ConsultaPersona.getSelectedRow();
         if (filaSeleccionada >= 0) {
             codCedula = (String) modeloTabla.getValueAt(filaSeleccionada, 0);
-            ActualizarCitaAD modificar = new ActualizarCitaAD();
+            ActualizarUsuario modificar = new ActualizarUsuario();
             modificar.setVisible(true);
             setVisible(false);
         } else {
@@ -246,7 +226,6 @@ public class ConsultarUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Actualizar;
     private javax.swing.JMenuItem ActualizarUsuario;
-    private javax.swing.JButton Btn_Eliminar;
     private javax.swing.JButton btn_Buscar;
     private javax.swing.JComboBox<String> cmb_usuarios;
     private javax.swing.JLabel jLabel1;

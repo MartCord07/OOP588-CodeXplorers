@@ -19,4 +19,5 @@ public interface ICitaAD {
     public Doctor buscarIdDoctor(String idDoctor);
     public boolean InsertarAdmin (CitaAD admin);
     public boolean ActualizarClave(Perfil clave);  
+    public boolean ActualizarUsuario(CitaAD usuario);  
 }

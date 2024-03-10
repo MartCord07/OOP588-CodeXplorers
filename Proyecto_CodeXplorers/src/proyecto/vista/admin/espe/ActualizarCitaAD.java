@@ -4,8 +4,11 @@
  */
 package proyecto.vista.admin.espe;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import proyecto.modelo.espe.CitaAD;
 import proyecto.modelo.espe.Paciente;
@@ -20,14 +23,29 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
     String cedula = null;
     Paciente persona = null;
     List<Paciente> listaPersonas = null;
+    private JFrame ventanaPadre;
 
     public ActualizarCitaAD() {
         initComponents();
         txt_cedula.setEditable(false);
-
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         ConsultarCitas dato = new ConsultarCitas();
         cedula = dato.codCedula;
         cargarDatos();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                abrirConsultarCitas();
+            }
+        });
+        setLocationRelativeTo(null);
+    }
+
+    private void abrirConsultarCitas() {
+        // Aquí, instancias y muestras tu frame ConsultarCitas
+        ConsultarCitas consultarCitas = new ConsultarCitas();
+        consultarCitas.setVisible(true);
+        consultarCitas.setLocationRelativeTo(null);
     }
 
     private boolean validarCampos() {
@@ -45,6 +63,16 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
         }
 
         return true;
+    }
+
+    public void limpiarDatos() {
+        txt_cedula.setText("");
+        txt_Telefono.setText("");
+        txt_apellido.setText("");
+        txt_nombre.setText("");
+        fechaNacimiento.setDate(null);
+        cbmHorario.setSelectedItem("");
+        cmbDia1.setSelectedItem("");
     }
 
     public void cargarDatos() {
@@ -288,11 +316,11 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
                         txt_Telefono.getText(),
                         cmbDia1.getSelectedItem().toString(),
                         cbmHorario.getSelectedItem().toString(),
-                        fechaNacimiento.getDate()    
+                        fechaNacimiento.getDate()
                 );
                 if (reingreso.ActualizarCita(persona)) {
                     JOptionPane.showMessageDialog(null, "Registro actualizado correctamente");
-                    //limpiarDatos();
+                    limpiarDatos();
                 } else {
                     JOptionPane.showMessageDialog(null, "No fue posible actualizar");
 
@@ -301,41 +329,7 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_ActualizarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ActualizarCitaAD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ActualizarCitaAD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ActualizarCitaAD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ActualizarCitaAD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ActualizarCitaAD().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Actualizar;

@@ -46,6 +46,9 @@ public class CitaServicioAD {
     public Doctor buscarIdDoctor(String idDoctor){
         return new MetodosCitaAD().buscarIdDoctor(idDoctor);
     }
+    public boolean ActualizarUsuario(CitaAD usuario){
+        return new MetodosCitaAD().ActualizarUsuario(usuario);
+    }
 
 
 }

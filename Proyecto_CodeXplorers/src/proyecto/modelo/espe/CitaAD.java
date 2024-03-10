@@ -15,7 +15,8 @@ public class CitaAD {
      * Atributos de admin
      */
 
-    private String Nombre, Apellido, email, Naciemiento;
+    private String Nombre, Apellido, email;
+    private Date Nacimiento;
     /**
      * Atributos del registro
      */
@@ -69,24 +70,39 @@ public class CitaAD {
     /**
      * Constructor para el ingreso de mas administradores
      */
-    
-    public CitaAD(String Nombre, String Apellido, String email, String Naciemiento, int id_perfil, String cedulaPerfil, String rolperfil) {
+
+    public CitaAD(String Nombre, String Apellido, String email, Date Nacimiento, int id_perfil, String cedulaPerfil, String rolperfil) {
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.email = email;
-        this.Naciemiento = Naciemiento;
+        this.Nacimiento = Nacimiento;
         this.id_perfil = id_perfil;
         this.cedulaPerfil = cedulaPerfil;
         this.rolperfil = rolperfil;
     }
 
+    public CitaAD(String Nombre, String Apellido, String email, Date Nacimiento, String cedulaPerfil) {
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
+        this.email = email;
+        this.Nacimiento = Nacimiento;
+        this.cedulaPerfil = cedulaPerfil;
+    }
+
+    public CitaAD(String Nombre, String Apellido, String email, Date Nacimiento) {
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
+        this.email = email;
+        this.Nacimiento = Nacimiento;
+    }
+    
+    
     /**
      * Constructor para generar el cambio de clave
      *
      * @param cedulaPerfil cedula del usuario registrado
      * @param contraseñaPerfil contraseña con la cual se registro
      */
-
     public CitaAD(String cedulaPerfil, String contraseñaPerfil) {
         this.cedulaPerfil = cedulaPerfil;
         this.contraseñaPerfil = contraseñaPerfil;
@@ -127,13 +143,15 @@ public class CitaAD {
         this.email = email;
     }
 
-    public String getNaciemiento() {
-        return Naciemiento;
+    public Date getNacimiento() {
+        return Nacimiento;
     }
 
-    public void setNaciemiento(String Naciemiento) {
-        this.Naciemiento = Naciemiento;
+    public void setNacimiento(Date Nacimiento) {
+        this.Nacimiento = Nacimiento;
     }
+
+    
 
     public int getId_perfil() {
         return id_perfil;
@@ -235,7 +253,7 @@ public class CitaAD {
 
     @Override
     public String toString() {
-        return "CitaAD{" + "Nombre=" + Nombre + ", Apellido=" + Apellido + ", email=" + email + ", Naciemiento=" + Naciemiento + ", id_perfil=" + id_perfil + ", cedulaPerfil=" + cedulaPerfil + ", contrase\u00f1aPerfil=" + contraseñaPerfil + ", rolperfil=" + rolperfil + ", cedulaP=" + cedulaP + ", nombreP=" + nombreP + ", apellidoP=" + apellidoP + ", telefono=" + telefono + ", dia=" + dia + ", horario=" + horario + ", fechaNacimiento=" + fechaNacimiento + '}';
+        return "CitaAD{" + "Nombre=" + Nombre + ", Apellido=" + Apellido + ", email=" + email + ", Naciemiento=" + Nacimiento + ", id_perfil=" + id_perfil + ", cedulaPerfil=" + cedulaPerfil + ", contrase\u00f1aPerfil=" + contraseñaPerfil + ", rolperfil=" + rolperfil + ", cedulaP=" + cedulaP + ", nombreP=" + nombreP + ", apellidoP=" + apellidoP + ", telefono=" + telefono + ", dia=" + dia + ", horario=" + horario + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
 
 }

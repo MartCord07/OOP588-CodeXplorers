@@ -4,17 +4,78 @@
  */
 package proyecto.vista.admin.espe;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import javax.swing.JOptionPane;
+import proyecto.modelo.espe.CitaAD;
+import proyecto.modelo.espe.Perfil;
+import proyecto.servicio.espe.CitaServicioAD;
+import proyecto.vista.perfil.espe.LoginUsuario;
+
 /**
  *
  * @author Aliss
  */
 public class IngresoAdmin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form IngresoAdmin
-     */
+    String cedula = null;
+    Perfil persona = null;
+    CitaServicioAD perfilcita = new CitaServicioAD();
+    private int idUsuarioActualizar;
+
     public IngresoAdmin() {
         initComponents();
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
+        ConsultarUsuario dato = new ConsultarUsuario();
+        cedula = dato.codCedula;
+        cargarDatos();
+        setLocationRelativeTo(null);
+        txt_Nacimiento.setMaxSelectableDate(new GregorianCalendar(2006, Calendar.DECEMBER, 30).getTime());
+
+    }
+
+    public void setIdUsuarioActualizar(int idUsuario) {
+        this.idUsuarioActualizar = idUsuario;
+    }
+
+    public boolean datosLlenos() {
+        return !txtNombre.getText().isEmpty() && !txtApellido.getText().isEmpty()
+                && !txtEmail.getText().isEmpty() && txt_Nacimiento.getDate() == null;
+
+    }
+
+    public void cargarDatos() {
+
+        persona = perfilcita.buscarIdPerfil(cedula);
+        txtCedula.setText(persona.getCedulaPerfil());
+
+    }
+
+    public boolean validacion() {
+        List<String> errores = new ArrayList<>();
+
+        if (txtNombre.getText().isEmpty()) {
+            errores.add("Ingrese el Nombre");
+        }
+        if (txtApellido.getText().isEmpty()) {
+            errores.add("Ingrese el Apellido");
+        }
+        if (txtEmail.getText().isEmpty()) {
+            errores.add("Ingrese el correo");
+        }
+        if (txt_Nacimiento.getDate() == null) {
+            errores.add("Ingrese la fecha de nacimiento");
+        }
+        if (!errores.isEmpty()) {
+            JOptionPane.showMessageDialog(null, String.join("\n", errores));
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -26,57 +87,214 @@ public class IngresoAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txt_Nacimiento = new com.toedter.calendar.JDateChooser();
+        txtCedula = new javax.swing.JTextField();
+        btnIngresar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        btnsalir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 36)); // NOI18N
+        jLabel2.setText("Ingreso Admin");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 260, 40));
+
+        jLabel5.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        jLabel5.setText("Fecha Nacimiento");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 150, -1));
+
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 150, -1));
+
+        jLabel7.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        jLabel7.setText("Apellido:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
+
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 260, -1));
+
+        jLabel8.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        jLabel8.setText("Email");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+        getContentPane().add(txt_Nacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 130, -1));
+
+        txtCedula.setEditable(false);
+        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 150, -1));
+
+        btnIngresar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/Añadir48.png"))); // NOI18N
+        btnIngresar.setText("Ingresar");
+        btnIngresar.setContentAreaFilled(false);
+        btnIngresar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnIngresar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/Añadir48.png"))); // NOI18N
+        btnIngresar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/Añadir64.png"))); // NOI18N
+        btnIngresar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnIngresar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 120, 100));
+
+        jLabel9.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        jLabel9.setText("Cedula:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        jLabel10.setText("Nombre:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+
+        btnsalir.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/iconos/espe/icono_volver48.png"))); // NOI18N
+        btnsalir.setText("Salir");
+        btnsalir.setContentAreaFilled(false);
+        btnsalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnsalir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnsalir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsalirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 60, 80));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo_registro.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        if (validacion()) {
+            CitaServicioAD nuevos = new CitaServicioAD();
+            int confirmacion = JOptionPane.showConfirmDialog(this, "Seguro de guardar datos", "Ingreso de Datos", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            //obtener el id para insertarlo en la base datos
+            if (confirmacion == JOptionPane.OK_OPTION) {
+                CitaAD insertarPersona = new CitaAD(
+                        txtNombre.getText(),
+                        txtApellido.getText(),
+                        txtEmail.getText(),
+                        txt_Nacimiento.getDate(),
+                        txtCedula.getText()
+                );
+                if (nuevos.InsertarAdmin(insertarPersona)) {
+                    JOptionPane.showMessageDialog(null, "Registro ingresado correctamente");
+                    //limpiarDatos();
+                    dispose();
+                }
+                if (idUsuarioActualizar > 0) {
+                    insertarPersona.setId_perfil(idUsuarioActualizar);
+                    if (nuevos.ActualizarUsuario(insertarPersona)) {
+                        System.out.println("Registro actualizado en lugar de insertar.");
+                        dispose();
+                        ActualizarUsuario actualizar = new ActualizarUsuario();
+                        actualizar.dispose();
+                        ConsultarUsuario consultar = new ConsultarUsuario();
+                        consultar.setVisible(true);
+                        consultar.setLocationRelativeTo(null);
+
+                        // limpiarDatos();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error al actualizar el usuario");
+                    }
+                } else {
+                    // Insertar nuevo administrador
+                    if (nuevos.InsertarAdmin(insertarPersona)) {
+                        JOptionPane.showMessageDialog(null, "Registro ingresado correctamente");
+                        dispose();
+                        // limpiarDatos();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La cedula ya fue ingresada con anterioridad");
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char validacionNombre = evt.getKeyChar();
+        if (Character.isDigit(validacionNombre)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "No se permiten Números");
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        char validacionApellido = evt.getKeyChar();
+        if (Character.isDigit(validacionApellido)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "No se permiten Números");
+        }
+    }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
+        char vcorreo = evt.getKeyChar();
+
+        if ((evt.getKeyChar() == '\n') && (!txtEmail.getText().contains("@") || !txtEmail.getText().contains("."))) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Debe ingresar un correo electrónico válido antes de pasar al siguiente campo");
+        } else if (!(Character.isLetterOrDigit(vcorreo) || vcorreo == '@' || vcorreo == '.' || vcorreo == '_' || vcorreo == '-' || evt.getKeyChar() == '\b' || evt.getKeyChar() == '\n')) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingresar caracteres válidos para un correo electrónico");
+        }
+    }//GEN-LAST:event_txtEmailKeyTyped
+
+    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
+        dispose();
+        ActualizarUsuario menu = new ActualizarUsuario();
+        menu.setVisible(true);
+        menu.setLocationRelativeTo(null);
+        setVisible(false);
+    }//GEN-LAST:event_btnsalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IngresoAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IngresoAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IngresoAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IngresoAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IngresoAdmin().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnsalir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNombre;
+    private com.toedter.calendar.JDateChooser txt_Nacimiento;
     // End of variables declaration//GEN-END:variables
 }

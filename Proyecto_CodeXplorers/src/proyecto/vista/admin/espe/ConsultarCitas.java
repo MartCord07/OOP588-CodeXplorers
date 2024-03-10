@@ -31,6 +31,20 @@ public class ConsultarCitas extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         cargarRegistro();
+        setLocationRelativeTo(null);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                abrirInicioAdmin();
+            }
+        });
+        setLocationRelativeTo(null);
+    }
+    private void abrirInicioAdmin() {
+        // Aquí, instancias y muestras tu frame ConsultarCitas
+        inicioAdmin inicio = new inicioAdmin();
+        inicio.setVisible(true);
+        inicio.setLocationRelativeTo(null);
     }
 
     public void cargarRegistro() {
