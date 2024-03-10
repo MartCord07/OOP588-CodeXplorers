@@ -326,7 +326,6 @@ public class MetodosCitaAD implements ICitaAD {
                     rolPerfil = "Otro";
                     break;
             }
-
             update = new Document("$set", new Document()
                     .append("cedula_Perfil", usuario.getCedulaPerfil())
                     .append("id_Perfil", usuario.getId_perfil())

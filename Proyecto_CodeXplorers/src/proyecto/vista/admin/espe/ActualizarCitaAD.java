@@ -312,6 +312,7 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
             if (confirmacion == JOptionPane.OK_OPTION) {
                 CitaAD persona = new CitaAD(
                         txt_cedula.getText(),
+                        txt_nombre.getText(),
                         txt_apellido.getText(),
                         txt_Telefono.getText(),
                         cmbDia1.getSelectedItem().toString(),
@@ -321,6 +322,7 @@ public class ActualizarCitaAD extends javax.swing.JFrame {
                 if (reingreso.ActualizarCita(persona)) {
                     JOptionPane.showMessageDialog(null, "Registro actualizado correctamente");
                     limpiarDatos();
+                    abrirConsultarCitas();
                 } else {
                     JOptionPane.showMessageDialog(null, "No fue posible actualizar");
 

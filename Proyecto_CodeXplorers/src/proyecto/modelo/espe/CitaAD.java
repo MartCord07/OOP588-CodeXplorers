@@ -54,6 +54,17 @@ public class CitaAD {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public CitaAD(String cedulaP, String nombreP, String apellidoP, String telefono, String dia, String horario, Date fechaNacimiento) {
+        this.cedulaP = cedulaP;
+        this.nombreP = nombreP;
+        this.apellidoP = apellidoP;
+        this.telefono = telefono;
+        this.dia = dia;
+        this.horario = horario;
+        this.fechaNacimiento = fechaNacimiento;
+    }
+    
+
     /**
      * Constructor para consultar usuarios registrados
      *
