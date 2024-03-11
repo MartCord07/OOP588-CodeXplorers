@@ -110,7 +110,6 @@ public class PacienteVentana extends javax.swing.JFrame {
         masculino = new javax.swing.JRadioButton();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
-        fechaNacimiento = new com.toedter.calendar.JDateChooser();
         txtEdad = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -120,6 +119,7 @@ public class PacienteVentana extends javax.swing.JFrame {
         btnRegistrarCita = new javax.swing.JToggleButton();
         btnConsultarCita = new javax.swing.JToggleButton();
         btnCerrarSesion = new javax.swing.JToggleButton();
+        fechaNacimiento = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -186,13 +186,6 @@ public class PacienteVentana extends javax.swing.JFrame {
         });
         jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 220, -1));
 
-        fechaNacimiento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                fechaNacimientoPropertyChange(evt);
-            }
-        });
-        jPanel1.add(fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 150, -1));
-
         txtEdad.setEditable(false);
         txtEdad.setEnabled(false);
         jPanel1.add(txtEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 80, -1));
@@ -247,6 +240,13 @@ public class PacienteVentana extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 530, -1, -1));
+
+        fechaNacimiento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fechaNacimientoPropertyChange(evt);
+            }
+        });
+        jPanel1.add(fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 150, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/fondos/espe/fondo paciente (1).jpeg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 460, 680));
