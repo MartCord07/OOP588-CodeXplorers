@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyecto.modelo.espe.Paciente;
 import proyecto.servicio.espe.PacienteServicio;
+import proyecto.vista.perfil.espe.LoginUsuario;
 import proyecto.vista.perfil.espe.MenuPrincipal;
 
 /**
@@ -150,7 +151,7 @@ public class ConsultaPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        MenuPrincipal menu = new MenuPrincipal();
+        LoginUsuario menu = new LoginUsuario();
         menu.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
